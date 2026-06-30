@@ -46,7 +46,7 @@ int main()
         // --- 绘图 ---
         window.clear(sf::Color::Black);   // 清空为黑色背景
         window.draw(circle);              // 绘制绿色圆形
-        window.display();                 // 刷新窗口显示
+        window.display();                 // 刷新窗口显示 ABCD
     }
 
     return 0;
