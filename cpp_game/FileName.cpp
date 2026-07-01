@@ -4,7 +4,7 @@
 int main()
 {
     // 1. 创建一个 800x600 的窗口
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML 3.1.0 测试成功！");
+    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "SFML 3.1.0 test passed！");
     window.setFramerateLimit(60); // 限制帧率为 60 FPS
 
     // 2. 创建一个绿色的圆形，半径 50 像素
