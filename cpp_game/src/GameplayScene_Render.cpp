@@ -84,6 +84,19 @@ void GameplayScene::render(sf::RenderTarget& target) {
     m_judgmentLineShape.setSize({m_screenWidth, 3.0f + m_glowIntensity});
     target.draw(m_judgmentLineShape);
 
+    // ── 分数弹出 ──
+    for (auto& sp : m_scorePopups) if (sp.text.has_value()) target.draw(*sp.text);
+
+    // ── 判定光环 ──
+    for (auto& hr : m_hitRings) target.draw(hr.shape);
+
+    // ── 连击闪光 ──
+    if (m_comboFlashTimer > 0) {
+        float fa = m_comboFlashTimer / 0.15f * 180;
+        m_comboFlashOverlay.setFillColor(sf::Color(255, 255, 255, (std::uint8_t)fa));
+        target.draw(m_comboFlashOverlay);
+    }
+
     // HUD
     if (m_scoreText.has_value()) {
         m_scoreText->setPosition({20.0f, 10.0f});
@@ -124,6 +137,15 @@ void GameplayScene::render(sf::RenderTarget& target) {
         pb.setFillColor(sf::Color(0, 200, 255, 180));
         target.draw(pb);
     }
+    // ── 倒计时渲染 ──
+    if (m_countdownState == CountdownState::Counting) {
+        sf::RectangleShape cdOverlay({m_screenWidth, m_screenHeight});
+        cdOverlay.setFillColor(sf::Color(0, 0, 0, 140));
+        target.draw(cdOverlay);
+        if (m_cdNumText.has_value()) target.draw(*m_cdNumText);
+        if (m_cdGoText.has_value()) target.draw(*m_cdGoText);
+    }
+
     // ── 恢复视图 + 闪光覆盖 ──
     target.setView(originalView);
     if (m_anomalySystem.isActive(AnomalyType::Flash)) {

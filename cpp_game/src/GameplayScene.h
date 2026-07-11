@@ -12,6 +12,16 @@
 #include <memory>
 #include <optional>
 
+// 节奏大师打击特效结构体
+struct ScorePopup {
+    std::optional<sf::Text> text;
+    float life = 1.0f;
+};
+struct HitRing {
+    sf::CircleShape shape;
+    float life = 0.5f;
+};
+
 struct ResultData {
     int score = 0;
     int maxCombo = 0;
@@ -60,6 +70,8 @@ private:
     void endGame();
 
     float getTrackCenterX(int track) const;
+    void addScorePopup(float x, float y, const std::string& text, const sf::Color& color);
+    void addHitRing(float x, float y, const sf::Color& color);
 
     // chart & audio
     BeatmapParser m_beatmapParser;
@@ -69,7 +81,17 @@ private:
     int  m_noteIndex = 0;
     bool m_isPlaying = false;
     bool m_songFinished = false;
+    bool m_initialized = false;   // true after onEnter() runs once
     float m_simTime = 0.0f;       // 模拟时钟（无音乐时用）
+
+    // 节奏大师 倒计时 3-2-1
+    enum class CountdownState { None, Counting, Started };
+    CountdownState m_countdownState = CountdownState::None;
+    float m_countdownTimer = 3.0f;
+    std::optional<sf::Text> m_cdNumText;
+    std::optional<sf::Text> m_cdGoText;
+    int m_cdLastDisplayed = -1;
+    bool m_countdownShouldStart = false;
     static constexpr float SPAWN_LOOKAHEAD = 1.5f;
 
     // runtime notes
@@ -102,6 +124,10 @@ private:
     std::vector<sf::RectangleShape> m_tracks;
     sf::RectangleShape m_judgmentLineShape;
     ParticleSystem m_hitFX;
+    std::vector<ScorePopup> m_scorePopups;
+    std::vector<HitRing> m_hitRings;
+    float m_comboFlashTimer = 0.0f;
+    sf::RectangleShape m_comboFlashOverlay;
     
 
     int m_lastHitTrack = 0; // track for particle emit position

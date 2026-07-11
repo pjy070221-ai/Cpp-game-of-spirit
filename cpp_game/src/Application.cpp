@@ -1,4 +1,4 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "SceneManager.h"
 
 Application::Application(const sf::String& title, unsigned int width, unsigned int height)
@@ -11,6 +11,10 @@ Application::Application(const sf::String& title, unsigned int width, unsigned i
 void Application::run() {
     sf::Clock clock;
     while (m_window.isOpen()) {
+        if (SceneManager::s_exitRequested) {
+            m_window.close();
+            break;
+        }
         m_deltaTime = clock.restart().asSeconds();
         if (m_deltaTime > 0.05f) m_deltaTime = 0.05f;
 
@@ -47,3 +51,4 @@ void Application::render() {
 sf::RenderWindow& Application::getWindow() { return m_window; }
 SceneManager&     Application::getSceneManager() { return m_sceneManager; }
 float             Application::getDeltaTime() const { return m_deltaTime; }
+
