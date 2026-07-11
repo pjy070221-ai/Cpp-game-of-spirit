@@ -5,6 +5,7 @@
 #include "BeatmapParser.h"
 #include "MusicPlayer.h"
 #include "ParticleSystem.h"
+#include "AnomalySystem.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
@@ -25,6 +26,8 @@ class GameplayScene : public IScene {
 public:
     GameplayScene();
     static std::string s_chartPath;   // set by PackScene before push
+    static bool s_randomMode;  // set by PackScene — randomize tracks on enter
+    static bool s_retry;        // set by PauseScene/ResultScene — restart current song
     static bool s_returnToMenu;       // set by PauseScene -> checked in update
         ~GameplayScene() override = default;
   
@@ -66,11 +69,12 @@ private:
     int  m_noteIndex = 0;
     bool m_isPlaying = false;
     bool m_songFinished = false;
+    float m_simTime = 0.0f;       // 模拟时钟（无音乐时用）
     static constexpr float SPAWN_LOOKAHEAD = 1.5f;
 
     // runtime notes
     std::vector<NoteRuntime> m_noteRuntimes;
-    std::vector<sf::CircleShape> m_activeShapes;
+    std::vector<sf::RectangleShape> m_activeShapes;  // 节奏大师 矩形音符
     std::vector<sf::RectangleShape> m_holdBars;
     bool m_keysHeld[4] = {false, false, false, false};
 
@@ -84,6 +88,7 @@ private:
     int m_score = 0, m_combo = 0, m_maxCombo = 0;
     int m_perfectCount = 0, m_greatCount = 0;
     int m_goodCount = 0, m_missCount = 0;
+    int m_hp = 100, m_maxHp = 100;    // 节奏大师 健康值系统
 
     // track layout
     int   m_trackCount = 4;
@@ -99,6 +104,7 @@ private:
     ParticleSystem m_hitFX;
     
 
+    int m_lastHitTrack = 0; // track for particle emit position
     sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
     // HUD
     sf::Font m_font;
@@ -109,10 +115,18 @@ private:
     float m_judgmentDisplayTimer = 0.0f;
     sf::Color m_lastJudgmentColor;
     float m_pulseTime = 0.0f;
-    int m_lastHitTrack = 0; // for particle emit position
+    AnomalySystem m_anomalySystem;
+    sf::RectangleShape m_flashOverlay;
+    
     
     float m_glowIntensity = 0.5f;
 };
+
+
+
+
+
+
 
 
 

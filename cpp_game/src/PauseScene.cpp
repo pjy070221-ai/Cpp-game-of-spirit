@@ -17,7 +17,7 @@ PauseScene::PauseScene() {
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
     m_titleText->setPosition({640.0f, 200.0f});
 
-    for (auto& s : {"Continue", "Return to Menu"}) {
+    for (auto& s : {"Continue", "Retry", "Return to Menu"}) {
         sf::Text txt(m_font, s, 36);
         txt.setFillColor(m_itemTexts.empty() ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto ib = txt.getLocalBounds();
@@ -36,12 +36,12 @@ void PauseScene::handleEvent(const sf::Event& event) {
     // ── 键盘 ──
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
-            m_selection = 1 - m_selection;
+            m_selection = (m_selection + 1) % 3;
             updateSelectionVisuals();
             return;
         }
         if (key->scancode == sf::Keyboard::Scan::Down || key->code == sf::Keyboard::Key::Down) {
-            m_selection = 1 - m_selection;
+            m_selection = (m_selection + 1) % 3;
             updateSelectionVisuals();
             return;
         }
@@ -85,10 +85,14 @@ void PauseScene::handleEvent(const sf::Event& event) {
 
 void PauseScene::activateItem(int index) {
     if (index == 0) {
-        // Continue → 回到 GameplayScene
+        // Continue
+        requestPop();
+    } else if (index == 1) {
+        // Retry
+        GameplayScene::s_retry = true;
         requestPop();
     } else {
-        // Return to Menu → 通知 GameplayScene 退出
+        // Return to Menu
         GameplayScene::s_returnToMenu = true;
         requestPop();
     }
@@ -107,4 +111,5 @@ void PauseScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 }
+
 

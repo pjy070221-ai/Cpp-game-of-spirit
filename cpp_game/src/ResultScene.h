@@ -1,19 +1,13 @@
 ﻿#pragma once
 
-#include "IScene.h"
-#include "Types.h"
+#include "GameplayScene.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <optional>
 
+
 class ResultScene : public IScene {
 public:
-    struct ResultData {
-        int score = 0, maxCombo = 0;
-        int perfectCount = 0, greatCount = 0, goodCount = 0, missCount = 0;
-        std::string songTitle;
-    };
-
     ResultScene(const ResultData& data, const std::string& grade);
     ~ResultScene() override = default;
 
@@ -31,4 +25,6 @@ private:
 
     std::optional<sf::Text> m_titleText, m_scoreText, m_gradeText;
     std::optional<sf::Text> m_perfectText, m_greatText, m_goodText, m_missText, m_comboText;
+    std::optional<sf::Text> m_retryText, m_continueText;
 };
+

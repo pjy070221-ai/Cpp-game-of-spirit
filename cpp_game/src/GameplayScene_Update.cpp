@@ -4,6 +4,14 @@
 
 void GameplayScene::update(float dt) {
     if (!m_isPlaying || m_songFinished) return;
+
+    // 节奏大师 重试：重启当前谱面
+    if (s_retry) {
+        s_retry = false;
+        requestReplace(std::make_unique<GameplayScene>());
+        return;
+    }
+
     if (s_returnToMenu) {
         s_returnToMenu = false;
         m_musicPlayer.stop();
@@ -17,14 +25,29 @@ void GameplayScene::update(float dt) {
     m_glowIntensity = 0.5f + 0.3f * std::sin(m_pulseTime * 2.0f);
 
     float currentTime = 0.0f;
-    if (m_musicPlayer.isLoaded())
+    if (m_musicPlayer.isLoaded()) {
         currentTime = m_musicPlayer.getCurrentTime();
+    } else if (m_isPlaying) {
+        // 无音乐时用模拟时钟推进
+        m_simTime += dt;
+        currentTime = m_simTime;
+    }
 
-    spawnNotes(currentTime);
+    // 异象系统更新
+    m_anomalySystem.update(currentTime, dt);
+
+    // 计算有效下落速度（受 NoteSpeedChange 异象影响）
+    float effSpeed = m_noteSpeedPixels;
+    if (m_anomalySystem.isActive(AnomalyType::NoteSpeedChange)) {
+        float speedMult = m_anomalySystem.getParam("speed", 0.5f);
+        effSpeed *= speedMult;
+    }
+
+        spawnNotes(currentTime);
 
     for (auto& nr : m_noteRuntimes) {
         if (nr.active && !nr.processed)
-            nr.y += m_noteSpeedPixels * dt;
+            nr.y += effSpeed * dt;
     }
 
     for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
@@ -71,6 +94,14 @@ void GameplayScene::update(float dt) {
         m_judgmentDisplayTimer -= dt;
 
     m_hitFX.update(dt);
+    // 节奏大师 HP 归零 → 游戏结束
+    if (m_hp <= 0 && m_isPlaying) {
+        m_isPlaying = false;
+        m_songFinished = true;
+        endGame();
+        return;
+    }
+
     if (m_noteIndex >= (int)m_noteData.size() && allNotesProcessed())
         endGame();
 }
@@ -91,11 +122,21 @@ void GameplayScene::spawnNotes(float currentTime) {
             nr.isHeld = false;
             m_noteRuntimes.push_back(nr);
 
-            sf::CircleShape note(22.0f);
-            note.setFillColor(sf::Color(0, 255, 255, 220));
+            // 节奏大师: 矩形音符 + 轨道独立颜色
+            static const sf::Color nc[4] = {
+                sf::Color(0, 220, 255), sf::Color(255, 100, 200),
+                sf::Color(255, 210, 0), sf::Color(100, 230, 100)
+            };
+            static const sf::Color no[4] = {
+                sf::Color(0, 180, 220), sf::Color(200, 60, 160),
+                sf::Color(200, 170, 0), sf::Color(60, 190, 60)
+            };
+            float nw = m_trackWidth - 10.0f;
+            sf::RectangleShape note({nw, 28.0f});
+            note.setFillColor(nc[src.track % 4]);
             note.setOutlineThickness(2.0f);
-            note.setOutlineColor(sf::Color(0, 200, 255));
-            note.setOrigin({22.0f, 22.0f});
+            note.setOutlineColor(no[src.track % 4]);
+            note.setOrigin({nw / 2.0f, 14.0f});
             m_activeShapes.push_back(note);
 
             sf::RectangleShape bar;
@@ -136,6 +177,10 @@ void GameplayScene::handleEvent(const sf::Event& event) {
         if (track >= 0) { m_keysHeld[track] = false; checkHoldRelease(track); }
     }
 }
+
+
+
+
 
 
 
