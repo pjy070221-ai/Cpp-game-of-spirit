@@ -23,7 +23,8 @@ void GameplayScene::endGame() {
               << " Good: " << m_goodCount << " Miss: " << m_missCount << "\n"
               << "Accuracy: " << accuracy << "%  Grade: " << grade << "\n";
 
-    requestPop();
+    auto data = getResultData();
+    requestReplace(std::make_unique<ResultScene>(data, grade));
 }
 
 ResultData GameplayScene::getResultData() const {
@@ -34,6 +35,7 @@ ResultData GameplayScene::getResultData() const {
     d.songTitle = m_songInfo.title;
     return d;
 }
+
 
 
 

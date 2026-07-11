@@ -7,8 +7,8 @@
 #include <memory>
 
 PackScene::PackScene()
-    : m_songNames({"Example Song 1", "Example Song 2"})
-    , m_chartPaths({"", ""})
+    : m_songNames({sf::String(L"Beat Demo"), sf::String(L"\u6E38\u4EAC"), sf::String(L"Practice Mode")})
+    , m_chartPaths({"song_demo.json", "song.json", ""})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
@@ -106,4 +106,8 @@ void PackScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 }
+
+
+
+
 

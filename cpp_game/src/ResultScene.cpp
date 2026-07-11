@@ -1,4 +1,5 @@
 ﻿#include "ResultScene.h"
+#include "GameplayScene.h"
 #include "SceneManager.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -48,19 +49,40 @@ ResultScene::ResultScene(const ResultData& data, const std::string& grade)
     auto cb = m_comboText->getLocalBounds();
     m_comboText->setOrigin({cb.size.x / 2.0f, 0.0f});
     m_comboText->setPosition({640.0f, 460.0f});
+
+    // 节奏大师：Retry / Continue 按钮
+    m_retryText.emplace(m_font, "Retry", 32);
+    m_retryText->setFillColor(sf::Color::Yellow);
+    auto rt = m_retryText->getLocalBounds();
+    m_retryText->setOrigin({rt.size.x / 2.0f, 0.0f});
+    m_retryText->setPosition({480.0f, 560.0f});
+
+    m_continueText.emplace(m_font, "Song List", 32);
+    m_continueText->setFillColor(sf::Color(200, 200, 200));
+    auto ct = m_continueText->getLocalBounds();
+    m_continueText->setOrigin({ct.size.x / 2.0f, 0.0f});
+    m_continueText->setPosition({800.0f, 560.0f});
 }
 
 void ResultScene::onEnter() { m_timer = 0.0f; }
 
 void ResultScene::handleEvent(const sf::Event& event) {
-    // 任意键盘按键或鼠标点击 → 返回
-    if (event.getIf<sf::Event::KeyPressed>()) {
-        requestPop();
+    if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
+        if (key->scancode == sf::Keyboard::Scan::R || key->code == sf::Keyboard::Key::R)
+            requestReplace(std::make_unique<GameplayScene>());
+        else
+            requestPop();
         return;
     }
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
-            requestPop();
+            sf::Vector2f mousePos(mouseBtn->position);
+            if (m_retryText.has_value() && m_retryText->getGlobalBounds().contains(mousePos))
+                requestReplace(std::make_unique<GameplayScene>());
+            else if (m_continueText.has_value() && m_continueText->getGlobalBounds().contains(mousePos))
+                requestPop();
+            else
+                requestPop();  // click anywhere else = continue
             return;
         }
     }
@@ -79,4 +101,6 @@ void ResultScene::render(sf::RenderTarget& target) {
     if (m_goodText.has_value()) target.draw(*m_goodText);
     if (m_missText.has_value()) target.draw(*m_missText);
     if (m_comboText.has_value()) target.draw(*m_comboText);
+    if (m_retryText.has_value()) target.draw(*m_retryText);
+    if (m_continueText.has_value()) target.draw(*m_continueText);
 }

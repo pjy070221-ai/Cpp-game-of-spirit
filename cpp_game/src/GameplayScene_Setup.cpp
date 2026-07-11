@@ -1,9 +1,13 @@
 ﻿#include "GameplayScene.h"
 #include "SettingsData.h"
 #include "ResourceManager.h"
+#include <algorithm>
+#include <random>
 
 std::string GameplayScene::s_chartPath = "";
 
+bool GameplayScene::s_retry = false;
+bool GameplayScene::s_randomMode = false;
 bool GameplayScene::s_returnToMenu = false;
 
 
@@ -20,6 +24,14 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
+    // ── 随机模式：重排音符轨道 ──
+    if (s_randomMode) {
+        s_randomMode = false;
+        std::mt19937 rng(std::random_device{}());
+        for (auto& note : m_noteData)
+            note.track = std::uniform_int_distribution<int>(0, 3)(rng);
+    }
+
     applySettings();
 
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
@@ -34,6 +46,21 @@ void GameplayScene::onEnter() {
     buildBackground();
     buildTracks();
     buildJudgmentLine();
+
+    // ── 测试异象事件（5.4）──
+    std::vector<AnomalyEvent> testEvents = {
+        { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
+        { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
+        { 9.0f, 5.0f, AnomalyType::NoteSpeedChange, {{"speed", 1.8f}} },
+        {16.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 0.2f}, {"color_b", 0.2f}} },
+        {20.0f, 2.5f, AnomalyType::ScreenShake,     {{"intensity", 0.6f}} },
+        {25.0f, 3.0f, AnomalyType::NoteSpeedChange, {{"speed", 0.4f}} },
+    };
+    m_anomalySystem.setEvents(testEvents);
+
+    m_flashOverlay.setSize({m_screenWidth, m_screenHeight});
+    m_flashOverlay.setFillColor(sf::Color::Transparent);
+
     startGame();
 }
 
@@ -57,6 +84,8 @@ void GameplayScene::startGame() {
     m_activeShapes.clear();
     m_holdBars.clear();
     m_keysHeld[0] = m_keysHeld[1] = m_keysHeld[2] = m_keysHeld[3] = false;
+    m_hp = m_maxHp;
+    m_simTime = 0.0f;
     m_songFinished = false;
     m_isPlaying = true;
     m_musicPlayer.play();
@@ -94,6 +123,11 @@ void GameplayScene::buildBackground() {
     m_bgGradient[2] = sf::Vertex({0.0f, m_screenHeight}, sf::Color(20, 10, 40));
     m_bgGradient[3] = sf::Vertex({m_screenWidth, m_screenHeight}, sf::Color(20, 10, 40));
 }
+
+
+
+
+
 
 
 

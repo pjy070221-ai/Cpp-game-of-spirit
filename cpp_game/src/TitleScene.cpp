@@ -67,7 +67,7 @@ TitleScene::TitleScene() {
     }
 
     // 提示文字
-    m_promptText.emplace(m_font); m_promptText->setString(L">> Press ENTER <<");
+    m_promptText.emplace(m_font); m_promptText->setString(L">> Press Any Key <<");
     m_promptText->setCharacterSize(24);
     m_promptText->setFillColor(sf::Color(200, 200, 200, 0));
     auto pb = m_promptText->getLocalBounds();
@@ -113,9 +113,9 @@ void TitleScene::handleEvent(const sf::Event& event) {
     if (m_state != State::Idle) return;
     const auto* key = event.getIf<sf::Event::KeyPressed>();
     if (!key) return;
-    if (key->scancode == sf::Keyboard::Scan::Enter || key->code == sf::Keyboard::Key::Enter) {
+    // 按任意键（ESC 除外）进入主菜单
+    if (!(key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape))
         requestReplace(std::make_unique<MenuScene>());
-    }
 }
 
 void TitleScene::triggerGlitch() {
@@ -267,5 +267,7 @@ void TitleScene::render(sf::RenderTarget& target) {
         target.draw(m_loadFill);
     }
 }
+
+
 
 

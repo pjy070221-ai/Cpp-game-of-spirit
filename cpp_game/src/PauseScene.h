@@ -26,3 +26,5 @@ private:
     std::optional<sf::Text> m_titleText;
     std::vector<sf::Text> m_itemTexts;
 };
+
+

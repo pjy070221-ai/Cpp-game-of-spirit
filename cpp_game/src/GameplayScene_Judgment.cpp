@@ -64,6 +64,7 @@ void GameplayScene::checkJudgment(int track) {
     else                                result = JudgeResult::Miss;
 
     onNoteJudged(result);
+    nr.processed = true;
 }
 
 void GameplayScene::checkHoldRelease(int track) {
@@ -75,6 +76,8 @@ void GameplayScene::checkHoldRelease(int track) {
             nr.processed = true;
             m_missCount++;
             m_combo = 0;
+            m_hp -= 5;
+            m_hp -= 8;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("BREAK");
                 m_judgmentText->setFillColor(sf::Color::Red);
@@ -105,7 +108,7 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
     }
         break;
     case JudgeResult::Good: {
-        m_score += 25; m_combo++; m_goodCount++;
+        m_score += 25; m_combo++; m_goodCount++; m_hp -= 3;
         if (m_judgmentText.has_value()) m_judgmentText->setString("GOOD");
         m_lastJudgmentColor = sf::Color::Green;
         float cx = getTrackCenterX(m_lastHitTrack);
@@ -114,7 +117,7 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
     }
         break;
     case JudgeResult::Miss: {
-        m_missCount++; m_combo = 0;
+        m_missCount++; m_combo = 0; m_hp -= 8;
         if (m_judgmentText.has_value()) m_judgmentText->setString("MISS");
         m_lastJudgmentColor = sf::Color::Red;
         float cx = getTrackCenterX(m_lastHitTrack);
@@ -144,6 +147,7 @@ void GameplayScene::autoMissCheck() {
             nr.processed = true;
             m_missCount++;
             m_combo = 0;
+            m_hp -= 8;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("MISS");
                 m_judgmentText->setFillColor(sf::Color::Red);
@@ -158,5 +162,8 @@ bool GameplayScene::allNotesProcessed() const {
         if (nr.active && !nr.processed) return false;
     return true;
 }
+
+
+
 
 
