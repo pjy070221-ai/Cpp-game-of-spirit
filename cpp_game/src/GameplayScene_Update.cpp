@@ -3,21 +3,55 @@
 #include <cmath>
 
 void GameplayScene::update(float dt) {
-    if (!m_isPlaying || m_songFinished) return;
-
-    // 节奏大师 重试：重启当前谱面
-    if (s_retry) {
-        s_retry = false;
-        requestReplace(std::make_unique<GameplayScene>());
+    // ── 倒计时 3-2-1 ──
+    if (m_countdownState == CountdownState::Counting) {
+        m_countdownTimer -= dt;
+        if (m_countdownTimer <= 0.0f) {
+            m_countdownState = CountdownState::Started;
+            m_cdNumText.reset(); m_cdGoText.reset(); m_cdLastDisplayed = -1;
+            if (m_countdownShouldStart) { m_countdownShouldStart = false; startGame(); }
+            else { m_isPlaying = true; m_musicPlayer.play(); }
+        } else {
+            int disp = 0;
+            if (m_countdownTimer > 2.5f) disp = 3;
+            else if (m_countdownTimer > 1.5f) disp = 2;
+            else if (m_countdownTimer > 0.5f) disp = 1;
+            if (disp != m_cdLastDisplayed) {
+                m_cdLastDisplayed = disp; m_cdNumText.reset(); m_cdGoText.reset();
+                if (disp > 0) {
+                    m_cdNumText.emplace(m_font, std::to_string(disp), 130);
+                    auto b = m_cdNumText->getLocalBounds();
+                    m_cdNumText->setOrigin({b.size.x/2, b.size.y/2});
+                    m_cdNumText->setPosition({m_screenWidth/2, m_screenHeight/2});
+                    m_cdNumText->setFillColor(sf::Color::White);
+                } else {
+                    m_cdGoText.emplace(m_font, L"\x5F00\x59CB!", 80);
+                    auto b = m_cdGoText->getLocalBounds();
+                    m_cdGoText->setOrigin({b.size.x/2, b.size.y/2});
+                    m_cdGoText->setPosition({m_screenWidth/2, m_screenHeight/2});
+                    m_cdGoText->setFillColor(sf::Color(255,255,100));
+                }
+            }
+        }
         return;
     }
 
+    // Return to Menu 优先处理
     if (s_returnToMenu) {
         s_returnToMenu = false;
         m_musicPlayer.stop();
         m_isPlaying = false;
         m_songFinished = true;
         requestPop();
+        return;
+    }
+
+    if (!m_isPlaying || m_songFinished) return;
+
+    // 节奏大师 重试：重启当前谱面
+    if (s_retry) {
+        s_retry = false;
+        requestReplace(std::make_unique<GameplayScene>());
         return;
     }
 
@@ -94,6 +128,37 @@ void GameplayScene::update(float dt) {
         m_judgmentDisplayTimer -= dt;
 
     m_hitFX.update(dt);
+
+    // ── 分数弹出 ──
+    for (auto& sp : m_scorePopups) {
+        sp.life -= dt;
+        if (sp.life > 0) {
+            sp.text->move({0, -dt * 80});
+            auto col = sp.text->getFillColor();
+            col.a = (std::uint8_t)(sp.life / 0.8f * 255);
+            sp.text->setFillColor(col);
+        }
+    }
+    m_scorePopups.erase(std::remove_if(m_scorePopups.begin(), m_scorePopups.end(),
+        [](auto& s) { return s.life <= 0; }), m_scorePopups.end());
+
+    // ── 判定光环 ──
+    for (auto& hr : m_hitRings) {
+        hr.life -= dt;
+        if (hr.life > 0) {
+            float sc = 1.0f + (1.0f - hr.life / 0.5f) * 4.0f;
+            hr.shape.setScale({sc, sc});
+            auto col = hr.shape.getOutlineColor();
+            col.a = (std::uint8_t)(hr.life / 0.5f * 200);
+            hr.shape.setOutlineColor(col);
+        }
+    }
+    m_hitRings.erase(std::remove_if(m_hitRings.begin(), m_hitRings.end(),
+        [](auto& h) { return h.life <= 0; }), m_hitRings.end());
+
+    // ── 连击闪光 ──
+    if (m_comboFlashTimer > 0) m_comboFlashTimer -= dt;
+
     // 节奏大师 HP 归零 → 游戏结束
     if (m_hp <= 0 && m_isPlaying) {
         m_isPlaying = false;

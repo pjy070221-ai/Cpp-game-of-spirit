@@ -95,6 +95,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_lastJudgmentColor = sf::Color::Yellow;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 25, sf::Color::Yellow, 60, 250, 0.3f, 0.8f, 2.0f, 7.0f);
+        addScorePopup(cx, m_judgmentLineY, " +100", sf::Color::Yellow);
+        addHitRing(cx, m_judgmentLineY, sf::Color::Yellow);
         break;
     }
         break;
@@ -104,6 +106,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_lastJudgmentColor = sf::Color::Cyan;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 20, sf::Color::Cyan, 50, 200, 0.3f, 0.7f, 2.0f, 6.0f);
+        addScorePopup(cx, m_judgmentLineY, " +50", sf::Color::Cyan);
+        addHitRing(cx, m_judgmentLineY, sf::Color::Cyan);
         break;
     }
         break;
@@ -113,6 +117,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_lastJudgmentColor = sf::Color::Green;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 15, sf::Color::Green, 40, 160, 0.3f, 0.6f, 2.0f, 5.0f);
+        addScorePopup(cx, m_judgmentLineY, " +25", sf::Color::Green);
+        addHitRing(cx, m_judgmentLineY, sf::Color::Green);
         break;
     }
         break;
@@ -122,6 +128,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_lastJudgmentColor = sf::Color::Red;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 8, sf::Color::Red, 30, 100, 0.2f, 0.5f, 1.0f, 4.0f);
+        addScorePopup(cx, m_judgmentLineY, " +0", sf::Color::Red);
+        addHitRing(cx, m_judgmentLineY, sf::Color::Red);
         break;
     }
         break;
@@ -167,3 +175,25 @@ bool GameplayScene::allNotesProcessed() const {
 
 
 
+
+void GameplayScene::addScorePopup(float x, float y, const std::string& text, const sf::Color& color) {
+    ScorePopup sp;
+    sp.text.emplace(m_font, text, 26);
+    sp.text->setFillColor(color);
+    auto sb = sp.text->getLocalBounds();
+    sp.text->setOrigin({sb.size.x / 2.0f, sb.size.y / 2.0f});
+    sp.text->setPosition({x, y - 20});
+    sp.life = 0.8f;
+    m_scorePopups.push_back(std::move(sp));
+}
+
+void GameplayScene::addHitRing(float x, float y, const sf::Color& color) {
+    HitRing hr;
+    hr.shape.setRadius(8.0f);
+    hr.shape.setPosition({x - 8, y - 8});
+    hr.shape.setFillColor(sf::Color::Transparent);
+    hr.shape.setOutlineThickness(3.0f);
+    hr.shape.setOutlineColor(color);
+    hr.life = 0.5f;
+    m_hitRings.push_back(std::move(hr));
+}

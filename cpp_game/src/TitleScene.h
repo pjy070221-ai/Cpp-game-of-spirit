@@ -65,5 +65,10 @@ private:
     // ── 提示文字 ──
     std::optional<sf::Text> m_promptText;
     bool m_promptReady = false;
+
+    // ── 过渡 → MenuScene ──
+    bool m_transitioning = false;
+    float m_transitionTimer = 0.0f;
 };
+
 

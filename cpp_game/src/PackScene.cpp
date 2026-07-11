@@ -98,14 +98,25 @@ void PackScene::updateSelectionVisuals() {
         m_itemTexts[i].setFillColor(i == m_selection ? sf::Color::Yellow : sf::Color(200, 200, 200));
 }
 
-void PackScene::update(float) {}
+void PackScene::update(float dt) {
+    if (SceneManager::s_transitionAlpha > 0.001f)
+        SceneManager::s_transitionAlpha = std::max(0.0f, SceneManager::s_transitionAlpha - dt * 2.5f);
+}
 
 void PackScene::render(sf::RenderTarget& target) {
     target.clear(sf::Color(10, 5, 20));
     if (!m_fontLoaded) return;
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
+
+    // 菜单过渡遮罩渐入
+    if (SceneManager::s_transitionAlpha > 0.001f) {
+        sf::RectangleShape ov({1280, 720});
+        ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));
+        target.draw(ov);
+    }
 }
+
 
 
 

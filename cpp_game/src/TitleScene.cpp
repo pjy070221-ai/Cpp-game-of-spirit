@@ -114,8 +114,10 @@ void TitleScene::handleEvent(const sf::Event& event) {
     const auto* key = event.getIf<sf::Event::KeyPressed>();
     if (!key) return;
     // 按任意键（ESC 除外）进入主菜单
-    if (!(key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape))
-        requestReplace(std::make_unique<MenuScene>());
+    if (!(key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape)) {
+        m_transitioning = true;
+        m_transitionTimer = 0.0f;
+    }
 }
 
 void TitleScene::triggerGlitch() {
@@ -214,6 +216,18 @@ void TitleScene::update(float dt) {
         return;
     }
 
+    // ── 过渡到菜单 ──
+    if (m_transitioning) {
+        m_transitionTimer += dt;
+        float prog = std::min(1.0f, m_transitionTimer / 0.5f);
+        SceneManager::s_transitionAlpha = prog;
+        if (prog >= 1.0f) {
+            m_transitioning = false;
+            requestReplace(std::make_unique<MenuScene>());
+        }
+        return;
+    }
+
     // ── Idle ──
     if (m_state == State::Idle && m_promptReady) {
         float blink = (std::sin(m_elapsedTime * 3.0f) + 1.0f) * 0.5f;
@@ -267,6 +281,7 @@ void TitleScene::render(sf::RenderTarget& target) {
         target.draw(m_loadFill);
     }
 }
+
 
 
 

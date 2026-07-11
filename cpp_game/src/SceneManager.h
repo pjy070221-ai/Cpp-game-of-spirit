@@ -7,6 +7,8 @@
 
 class SceneManager {
 public:
+    inline static float s_transitionAlpha = 0.0f;
+    inline static bool s_exitRequested = false; // set by scenes to close window
     SceneManager() = default;
     ~SceneManager() = default;
     SceneManager(const SceneManager&) = delete;
@@ -35,4 +37,6 @@ private:
     std::vector<std::unique_ptr<IScene>> m_scenes;
     PendingChange m_pending;
 };
+
+
 

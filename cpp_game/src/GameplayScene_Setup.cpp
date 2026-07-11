@@ -16,6 +16,20 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
+    // Return to Menu：不启动倒计时，直接返回菜单
+    if (s_returnToMenu) {
+        m_countdownState = CountdownState::None;
+        m_isPlaying = false;
+        return;
+    }
+    // 节奏大师 倒计时 3-2-1
+    m_countdownState = CountdownState::Counting;
+    m_countdownTimer = 3.0f;
+    if (m_initialized) { m_isPlaying = false; return; } // 暂停恢复 → 开始新倒计时
+    
+    m_initialized = true;
+    m_countdownShouldStart = true;
+
     if (!s_chartPath.empty()) {
         loadChart(s_chartPath);
     } else {
@@ -60,7 +74,9 @@ void GameplayScene::onEnter() {
 
     m_flashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_flashOverlay.setFillColor(sf::Color::Transparent);
-
+    m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
+    m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
+    // startGame(); // 改为在倒计时结束后由 Countdown 调用
     startGame();
 }
 
@@ -73,6 +89,10 @@ void GameplayScene::loadChart(const std::string& filePath) {
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
+    // 从谱面 JSON 加载音乐文件
+    if (!m_songInfo.musicFile.empty()) {
+        m_musicPlayer.load(m_songInfo.musicFile);
+    }
 }
 
 void GameplayScene::startGame() {
@@ -123,6 +143,10 @@ void GameplayScene::buildBackground() {
     m_bgGradient[2] = sf::Vertex({0.0f, m_screenHeight}, sf::Color(20, 10, 40));
     m_bgGradient[3] = sf::Vertex({m_screenWidth, m_screenHeight}, sf::Color(20, 10, 40));
 }
+
+
+
+
 
 
 
