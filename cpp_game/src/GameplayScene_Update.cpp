@@ -1,4 +1,4 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include "PauseScene.h"
 #include <cmath>
 
@@ -180,8 +180,9 @@ void GameplayScene::spawnNotes(float currentTime) {
             nr.track = src.track;
             nr.targetTime = src.time;
             nr.type = src.type;
-            nr.y = 100.0f;
             nr.noteSpeed = m_noteSpeedPixels;
+            float timeUntilHit = src.time - currentTime;
+            nr.y = m_judgmentLineY - nr.noteSpeed * timeUntilHit;
             nr.active = true;
             nr.holdDuration = src.holdDuration;
             nr.isHeld = false;

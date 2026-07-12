@@ -1,4 +1,4 @@
-﻿#include "SettingsScene.h"
+#include "SettingsScene.h"
 #include "SettingsData.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"

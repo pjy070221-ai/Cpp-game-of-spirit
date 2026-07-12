@@ -1,4 +1,4 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include "SettingsData.h"
 #include "ResourceManager.h"
 #include <algorithm>

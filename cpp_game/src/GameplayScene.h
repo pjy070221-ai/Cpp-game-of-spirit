@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "IScene.h"
 #include "Types.h"
@@ -100,10 +100,11 @@ private:
     std::vector<sf::RectangleShape> m_holdBars;
     bool m_keysHeld[4] = {false, false, false, false};
 
-    // judgment
-    float m_perfectWindow = 20.0f;
-    float m_greatWindow   = 50.0f;
-    float m_goodWindow    = 100.0f;
+    // judgment — 时间判定窗口（秒）
+    float m_perfectTimeWindow = 0.040f;  // ±40ms
+    float m_greatTimeWindow   = 0.100f;  // ±100ms
+    float m_goodTimeWindow    = 0.200f;  // ±200ms
+    float m_missTimeWindow    = 0.300f;  // 超出不响应
     float m_judgmentLineY = 550.0f;
 
     // scoring

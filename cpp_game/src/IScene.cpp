@@ -1,4 +1,4 @@
-﻿#include "IScene.h"
+#include "IScene.h"
 #include "SceneManager.h"
 
 void IScene::requestPush(std::unique_ptr<IScene> scene) {

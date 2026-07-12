@@ -1,36 +1,41 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include <cmath>
 
 void GameplayScene::checkJudgment(int track) {
-    float minDist = 9999.0f;
+    // ── 获取当前音乐时间 ──
+    float currentTime = m_simTime;
+    if (m_musicPlayer.isLoaded())
+        currentTime = m_musicPlayer.getCurrentTime();
+
+    float minTimeDiff = 9999.0f;
     int bestIdx = -1;
     for (int i = 0; i < (int)m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
         if (m_noteRuntimes[i].track != track) continue;
         // skip hold notes that are already being held
         if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
-        float dist = std::abs(m_noteRuntimes[i].y - m_judgmentLineY);
-        if (dist < minDist) { minDist = dist; bestIdx = i; }
+        float timeDiff = std::abs(currentTime - m_noteRuntimes[i].targetTime);
+        if (timeDiff < minTimeDiff) { minTimeDiff = timeDiff; bestIdx = i; }
     }
-    if (bestIdx < 0) return;
+    if (bestIdx < 0) return;  // 该轨道无待判定音符，空按不响应
 
     auto& nr = m_noteRuntimes[bestIdx];
 
-    // hold note press
+    // hold note press（时间判定）
     if (nr.type == 1) {
-        float dist = std::abs(nr.y - m_judgmentLineY);
-        if (dist > m_goodWindow) return; // too early or too late, ignore
+        float timeDiff = std::abs(currentTime - nr.targetTime);
+        if (timeDiff > m_goodTimeWindow) return; // too early or too late, ignore
         nr.isHeld = true;
         m_holdBars[bestIdx].setFillColor(sf::Color(0, 255, 200, 120));
         // score for the successful press
         nr.processed = true; // marks the head hit
-        if (dist < m_perfectWindow) {
+        if (timeDiff < m_perfectTimeWindow) {
             m_score += 50; m_perfectCount++;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("HOLD");
                 m_judgmentText->setFillColor(sf::Color::Yellow);
             }
-        } else if (dist < m_greatWindow) {
+        } else if (timeDiff < m_greatTimeWindow) {
             m_score += 30; m_greatCount++;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("HOLD");
@@ -56,12 +61,13 @@ void GameplayScene::checkJudgment(int track) {
     }
 
     m_lastHitTrack = track;
-    // normal note judgment
+    // normal note judgment — 时间判定
     JudgeResult result;
-    if      (minDist < m_perfectWindow) result = JudgeResult::Perfect;
-    else if (minDist < m_greatWindow)   result = JudgeResult::Great;
-    else if (minDist < m_goodWindow)    result = JudgeResult::Good;
-    else                                result = JudgeResult::Miss;
+    if      (minTimeDiff < m_perfectTimeWindow) result = JudgeResult::Perfect;
+    else if (minTimeDiff < m_greatTimeWindow)   result = JudgeResult::Great;
+    else if (minTimeDiff < m_goodTimeWindow)    result = JudgeResult::Good;
+    else if (minTimeDiff < m_missTimeWindow)    result = JudgeResult::Miss;
+    else                                        return;  // 超出 300ms 窗口，不响应
 
     onNoteJudged(result);
     nr.processed = true;
@@ -146,12 +152,15 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
 }
 
 void GameplayScene::autoMissCheck() {
-    float missThreshold = m_judgmentLineY + m_goodWindow + 50.0f;
+    float currentTime = m_simTime;
+    if (m_musicPlayer.isLoaded())
+        currentTime = m_musicPlayer.getCurrentTime();
+
     for (auto& nr : m_noteRuntimes) {
         if (!nr.active || nr.processed) continue;
         // don't auto-miss notes being held
         if (nr.type == 1 && nr.isHeld) continue;
-        if (nr.y > missThreshold) {
+        if (currentTime > nr.targetTime + m_missTimeWindow) {
             nr.processed = true;
             m_missCount++;
             m_combo = 0;

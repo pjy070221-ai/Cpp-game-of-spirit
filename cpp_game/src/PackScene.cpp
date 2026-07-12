@@ -1,4 +1,4 @@
-﻿#include "PackScene.h"
+#include "PackScene.h"
 #include "GameplayScene.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
@@ -37,7 +37,7 @@ void PackScene::onEnter() {
 }
 
 void PackScene::handleEvent(const sf::Event& event) {
-    // ── 键盘导航 ──
+    // 閳光偓閳光偓 闁款喚娲忕€佃壈鍩?閳光偓閳光偓
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         bool changed = false;
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
@@ -58,7 +58,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标悬停高亮 ──
+    // 閳光偓閳光偓 姒х姵鐖ｉ幃顒€浠犳妯瑰瘨 閳光偓閳光偓
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_itemTexts.size(); ++i) {
@@ -73,7 +73,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标点击 ──
+    // 閳光偓閳光偓 姒х姵鐖ｉ悙鐟板毊 閳光偓閳光偓
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);
@@ -109,7 +109,7 @@ void PackScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 
-    // 菜单过渡遮罩渐入
+    // 閼挎粌宕熸潻鍥ㄦ诞闁喚鍍靛〒鎰弳
     if (SceneManager::s_transitionAlpha > 0.001f) {
         sf::RectangleShape ov({1280, 720});
         ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));

@@ -1,4 +1,4 @@
-﻿#include "PauseScene.h"
+#include "PauseScene.h"
 #include "GameplayScene.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"

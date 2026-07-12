@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "IScene.h"
 #include "ParticleSystem.h"
@@ -7,11 +7,22 @@
 #include <string>
 #include <memory>
 
+struct TitleNote {
+    sf::RectangleShape shape;
+    sf::Vector2f velocity;
+    float life = 0.0f, maxLife = 1.0f;
+};
+
+struct TitleRing {
+    sf::CircleShape shape;
+    sf::Color color;
+    float life = 0.0f, maxLife = 2.0f;
+};
+
 class TitleScene : public IScene {
 public:
     TitleScene();
     ~TitleScene() override = default;
-
     void onEnter() override;
     void onExit() override;
     void handleEvent(const sf::Event& event) override;
@@ -19,33 +30,22 @@ public:
     void render(sf::RenderTarget& target) override;
 
 private:
-    // ── 状态机 ──
-    enum class State { Loading, Shattering, TitleReveal, Idle };
+    // state machine
+    enum class State { Loading, TitleReveal, Idle };
     State m_state = State::Loading;
     float m_elapsedTime = 0.0f;
 
-    // ── Loading ──
+    // Loading
     float m_loadProgress = 0.0f;
     static constexpr float LOAD_DURATION = 2.5f;
     sf::RectangleShape m_loadTrack, m_loadFill;
 
-    // ── Shattering ──
-    float m_shatterTimer = 0.0f;
-    static constexpr float SHATTER_DURATION = 0.8f;
-    struct ShatterCrack { float angle, maxLen, delay; };
-    std::vector<ShatterCrack> m_shatterCrackData;
-    sf::VertexArray m_shatterCrackGeom{ sf::PrimitiveType::Lines };
-
-    // ── 背景分层 ──
-    sf::VertexArray m_bgShards{ sf::PrimitiveType::Triangles };
+    // background layers
     sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
-    sf::VertexArray m_bgEnergy{ sf::PrimitiveType::TriangleFan };
-    sf::VertexArray m_bgCracks{ sf::PrimitiveType::Lines };
-    sf::VertexArray m_bgFlash{ sf::PrimitiveType::Triangles };
     ParticleSystem m_stars, m_dust;
     sf::RenderTexture m_textLayer;
 
-    // ── 标题字符动画 ──
+    // title character animation
     struct CharData {
         sf::Text text;
         float baseSize = 80.0f;
@@ -57,18 +57,27 @@ private:
     sf::Font m_font;
     bool m_fontLoaded = false;
 
-    // ── Glitch ──
+    // glitch effect
     float m_glitchTimer = 0.0f, m_glitchDuration = 0.0f, m_glitchIntensity = 0.0f;
     void triggerGlitch();
     float m_globalAlpha = 0.0f, m_subAlpha = 0.0f;
 
-    // ── 提示文字 ──
+    // prompt text
     std::optional<sf::Text> m_promptText;
     bool m_promptReady = false;
 
-    // ── 过渡 → MenuScene ──
+    // flying notes from edges
+    std::vector<TitleNote> m_titleNotes;
+    float m_noteSpawnTimer = 0.0f;
+    void spawnTitleNote();
+
+    // floating rings around title
+    std::vector<TitleRing> m_titleRings;
+    float m_ringSpawnTimer = 0.0f;
+    void spawnTitleRing();
+
+    // transition to MenuScene
     bool m_transitioning = false;
     float m_transitionTimer = 0.0f;
 };
-
 

@@ -1,4 +1,4 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include <cmath>
 
 float GameplayScene::getTrackCenterX(int track) const {
@@ -8,7 +8,7 @@ float GameplayScene::getTrackCenterX(int track) const {
 }
 
 void GameplayScene::render(sf::RenderTarget& target) {
-    // ── 屏幕震动 ──
+    // screen shake
     sf::View originalView = target.getView();
     if (m_anomalySystem.isActive(AnomalyType::ScreenShake)) {
         float intensity = m_anomalySystem.getIntensity(AnomalyType::ScreenShake);
@@ -20,7 +20,8 @@ void GameplayScene::render(sf::RenderTarget& target) {
         shaken.move({ox, oy});
         target.setView(shaken);
     }
-    // background with subtle pulse glow
+
+    // background pulse
     float glow = m_glowIntensity * 30.0f;
     sf::Color topColor((int)(10 + glow * 0.3f), (int)(5 + glow * 0.2f), (int)(20 + glow * 0.5f));
     sf::Color botColor((int)(20 + glow * 0.5f), (int)(10 + glow * 0.3f), (int)(40 + glow));
@@ -30,34 +31,91 @@ void GameplayScene::render(sf::RenderTarget& target) {
     m_bgGradient[3].color = botColor;
     target.draw(m_bgGradient);
 
-    // track columns with glow when notes approach
+    // track neon colors
+    static const sf::Color neonColors[4] = {
+        sf::Color(0, 220, 255),
+        sf::Color(255, 100, 200),
+        sf::Color(255, 210, 0),
+        sf::Color(100, 230, 100)
+    };
+    float startX = (m_screenWidth - (m_trackCount * m_trackWidth
+                   + (m_trackCount - 1) * m_trackSpacing)) / 2.0f;
+
     for (int t = 0; t < m_trackCount; ++t) {
+        float trackX = startX + t * (m_trackWidth + m_trackSpacing);
+        const auto& nc = neonColors[t];
+
+        // compute glow intensity from approaching notes
         float trackGlow = 0.0f;
         for (auto& nr : m_noteRuntimes) {
             if (!nr.active || nr.processed || nr.track != t) continue;
             float dist = std::abs(nr.y - m_judgmentLineY);
             if (dist < 200.0f) trackGlow = std::max(trackGlow, 1.0f - dist / 200.0f);
         }
+
+        // 1. outer glow behind track
+        float outerGlowA = 15.0f + trackGlow * 45.0f;
+        sf::RectangleShape outerGlow({m_trackWidth + 20.0f, m_judgmentLineY - 50.0f});
+        outerGlow.setPosition({trackX - 10.0f, 50.0f});
+        outerGlow.setFillColor(sf::Color(nc.r, nc.g, nc.b, (int)outerGlowA));
+        target.draw(outerGlow);
+
+        // 2. track body (enhanced)
         float g = 60.0f + trackGlow * 120.0f;
         m_tracks[t].setFillColor(sf::Color((int)(30 + g * 0.3f), (int)(20 + g * 0.5f),
-                                            (int)(50 + g * 0.8f), (int)(80 + (int)(trackGlow * 80))));
+                                            (int)(50 + g * 0.8f), (int)(80 + trackGlow * 80)));
         target.draw(m_tracks[t]);
 
-        // 节奏大师 轨道底部发光区
-        float glowA = 15.0f + trackGlow * 60.0f;
+        // 3. neon track border lines (left + right)
+        float lineGlowBase = 120.0f + trackGlow * 135.0f;
+        int rL = (int)std::min(255.0f, nc.r * lineGlowBase / 180.0f);
+        int gL = (int)std::min(255.0f, nc.g * lineGlowBase / 180.0f);
+        int bL = (int)std::min(255.0f, nc.b * lineGlowBase / 180.0f);
+        int aL = (int)(180 + trackGlow * 75);
+        sf::Color lineColor(rL, gL, bL, aL);
+
+        sf::RectangleShape borderL({3.0f, m_judgmentLineY - 50.0f});
+        borderL.setPosition({trackX, 50.0f});
+        borderL.setFillColor(lineColor);
+        target.draw(borderL);
+
+        sf::RectangleShape borderR({3.0f, m_judgmentLineY - 50.0f});
+        borderR.setPosition({trackX + m_trackWidth - 3.0f, 50.0f});
+        borderR.setFillColor(lineColor);
+        target.draw(borderR);
+
+        // 4. track bottom glow zone (enhanced)
+        float glowA = 20.0f + trackGlow * 80.0f;
         sf::RectangleShape gz({m_trackWidth, 80.0f});
-        gz.setPosition({m_tracks[t].getPosition().x, m_judgmentLineY - 80.0f});
-        gz.setFillColor(sf::Color(0, 200, 255, (int)glowA));
+        gz.setPosition({trackX, m_judgmentLineY - 80.0f});
+        gz.setFillColor(sf::Color(nc.r, nc.g, nc.b, (int)glowA));
         target.draw(gz);
     }
 
-    // 节奏大师 矩形音符（跳过已判定的）
+    // note trail (ghost rectangles above each note)
+    for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
+        if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
+        const auto& shape = m_activeShapes[i];
+        const auto& nr = m_noteRuntimes[i];
+        auto col = shape.getFillColor();
+        sf::Vector2f pos = shape.getPosition();
+        for (int t = 1; t <= 5; ++t) {
+            int alpha = 55 - t * 10;
+            if (alpha <= 0) continue;
+            sf::RectangleShape trail = shape;
+            trail.setPosition({pos.x, pos.y - t * 7.0f});
+            trail.setFillColor(sf::Color(col.r, col.g, col.b, (uint8_t)alpha));
+            target.draw(trail);
+        }
+    }
+
+    // tap notes
     for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
         if (m_noteRuntimes[i].active && !m_noteRuntimes[i].processed)
             target.draw(m_activeShapes[i]);
     }
 
-    // ── 节奏大师 HP 血条（左栏）──
+    // HP bar
     {
         float hpRatio = (float)m_hp / m_maxHp;
         sf::RectangleShape bg({22.0f, 260.0f});
@@ -79,21 +137,21 @@ void GameplayScene::render(sf::RenderTarget& target) {
     m_hitFX.render(target);
 
     // judgment line with pulse
-    float pulseAlpha = 128 + (int)(127 * m_glowIntensity);
+    uint8_t pulseAlpha = (uint8_t)(128 + (int)(127 * m_glowIntensity));
     m_judgmentLineShape.setFillColor(sf::Color(0, 255, 255, pulseAlpha));
     m_judgmentLineShape.setSize({m_screenWidth, 3.0f + m_glowIntensity});
     target.draw(m_judgmentLineShape);
 
-    // ── 分数弹出 ──
+    // score popups
     for (auto& sp : m_scorePopups) if (sp.text.has_value()) target.draw(*sp.text);
 
-    // ── 判定光环 ──
+    // hit rings
     for (auto& hr : m_hitRings) target.draw(hr.shape);
 
-    // ── 连击闪光 ──
+    // combo flash
     if (m_comboFlashTimer > 0) {
         float fa = m_comboFlashTimer / 0.15f * 180;
-        m_comboFlashOverlay.setFillColor(sf::Color(255, 255, 255, (std::uint8_t)fa));
+        m_comboFlashOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)fa));
         target.draw(m_comboFlashOverlay);
     }
 
@@ -103,7 +161,6 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(*m_scoreText);
     }
     if (m_comboText.has_value() && m_combo > 0) {
-        // 节奏大师: Combo 缩放
         float cs = 1.0f;
         if      (m_combo >= 50) cs = 2.0f;
         else if (m_combo >= 30) cs = 1.6f;
@@ -126,7 +183,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(*m_songTitleText);
     }
 
-    // 节奏大师 歌曲进度条
+    // progress bar
     {
         float duration = 30.0f;
         if (!m_noteData.empty())
@@ -137,7 +194,8 @@ void GameplayScene::render(sf::RenderTarget& target) {
         pb.setFillColor(sf::Color(0, 200, 255, 180));
         target.draw(pb);
     }
-    // ── 倒计时渲染 ──
+
+    // countdown overlay
     if (m_countdownState == CountdownState::Counting) {
         sf::RectangleShape cdOverlay({m_screenWidth, m_screenHeight});
         cdOverlay.setFillColor(sf::Color(0, 0, 0, 140));
@@ -146,18 +204,12 @@ void GameplayScene::render(sf::RenderTarget& target) {
         if (m_cdGoText.has_value()) target.draw(*m_cdGoText);
     }
 
-    // ── 恢复视图 + 闪光覆盖 ──
+    // restore view + flash overlay
     target.setView(originalView);
     if (m_anomalySystem.isActive(AnomalyType::Flash)) {
         float fi = m_anomalySystem.getIntensity(AnomalyType::Flash);
-        m_flashOverlay.setFillColor(sf::Color(255, 255, 255, (std::uint8_t)(fi * 200)));
+        m_flashOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)(fi * 200)));
         target.draw(m_flashOverlay);
     }
 }
-
-
-
-
-
-
 
