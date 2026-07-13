@@ -92,7 +92,14 @@ void GameplayScene::render(sf::RenderTarget& target) {
        target.draw(gz);
    }
 
-    // hold bars — hide when judged (processed). Render is synced to judgment lifecycle.
+    // milestone glow overlay
+    if (m_milestoneGlowTimer > 0) {
+        float msGlow = m_milestoneGlowTimer / 0.5f;
+        m_milestoneGlowOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)(msGlow * 100)));
+        target.draw(m_milestoneGlowOverlay);
+    }
+
+    // hold bars - hide when judged (sync'ed with judgment lifecycle)
     for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
         if (m_noteRuntimes[i].type != 1) continue;
@@ -127,26 +134,8 @@ void GameplayScene::render(sf::RenderTarget& target) {
         }
    }
 
-    // HP bar
-    {
-        float hpRatio = (float)m_hp / m_maxHp;
-        sf::RectangleShape bg({22.0f, 260.0f});
-        bg.setPosition({12.0f, 230.0f});
-        bg.setFillColor(sf::Color(40, 15, 20, 180));
-        bg.setOutlineThickness(1.0f);
-        bg.setOutlineColor(sf::Color(80, 30, 40, 200));
-        target.draw(bg);
-
-        sf::RectangleShape fill({18.0f, 254.0f * std::max(0.0f, hpRatio)});
-        fill.setPosition({14.0f, 232.0f + 254.0f * (1.0f - std::max(0.0f, hpRatio))});
-        if      (hpRatio > 0.5f) fill.setFillColor(sf::Color(0, 220, 80));
-        else if (hpRatio > 0.25f) fill.setFillColor(sf::Color(240, 220, 0));
-        else                      fill.setFillColor(sf::Color(240, 30, 30));
-        target.draw(fill);
-    }
-
-    // hit particles
     m_hitFX.render(target);
+    m_milestoneFX.render(target);
 
     // judgment line with pulse
     uint8_t pulseAlpha = (uint8_t)(128 + (int)(127 * m_glowIntensity));
@@ -177,7 +166,12 @@ void GameplayScene::render(sf::RenderTarget& target) {
         if      (m_combo >= 50) cs = 2.0f;
         else if (m_combo >= 30) cs = 1.6f;
         else if (m_combo >= 10) cs = 1.2f;
+        cs *= m_comboPopScale;
         m_comboText->setScale({cs, cs});
+        if (m_comboPopTimer > 0)
+            m_comboText->setFillColor(m_comboPopColor);
+        else
+            m_comboText->setFillColor(sf::Color::White);
         m_comboText->setPosition({640.0f, 600.0f});
         m_comboText->setOrigin({m_comboText->getLocalBounds().size.x / 2.0f, 0.0f});
         target.draw(*m_comboText);

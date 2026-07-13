@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "MenuScene.h"
+#include "SettingsData.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -32,13 +33,29 @@ PackScene::PackScene()
     }
 }
 
+void PackScene::rebuildItemTexts() {
+    SettingsData sd;
+    int diff = sd.getDifficulty();
+    std::string badge = (diff == 0) ? " [E]" : " [H]";
+    m_itemTexts.clear();
+    for (int i = 0; i < (int)m_songNames.size(); ++i) {
+        sf::Text txt(m_font, m_songNames[i] + sf::String(badge), 36);
+        txt.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color(200, 200, 200));
+        auto ib = txt.getLocalBounds();
+        txt.setOrigin({ib.size.x / 2.0f, 0.0f});
+        txt.setPosition({640.0f, 250.0f + i * 100.0f});
+        m_itemTexts.push_back(txt);
+    }
+}
+
 void PackScene::onEnter() {
     m_selection = 0;
+    rebuildItemTexts();
     updateSelectionVisuals();
 }
 
 void PackScene::handleEvent(const sf::Event& event) {
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?闂備焦顑欓崰姘鸿箛鏇楀亾娴ｅ啫顥嶉�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?闂備焦顑欓崰姘鸿箛鏇楀亾娴ｅ啫顥嶉�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         bool changed = false;
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
@@ -59,7 +76,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮楠炲啴顢楅埀顒佺閻樻剚娈楁俊顖滄嚀�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮楠炲啴顢楅埀顒佺閻樻剚娈楁俊顖滄嚀�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_itemTexts.size(); ++i) {
@@ -74,7 +91,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮閹瑩鎮烽弶鎸庣�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮閹瑩鎮烽弶鎸庣�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);
@@ -110,7 +127,7 @@ void PackScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 
-    // 闂佸吋瀵х划灞界暦閻斿憡浜ら柛銉ｅ妽鐠囩偤姊洪澶婃灓闁稿秹娼ч妴鎺楀箛椤掆偓�?
+    // 闂佸吋瀵х划灞界暦閻斿憡浜ら柛銉ｅ妽鐠囩偤姊洪澶婃灓闁稿秹娼ч妴鎺楀箛椤掆偓�?
     if (SceneManager::s_transitionAlpha > 0.001f) {
         sf::RectangleShape ov({1280, 720});
         ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));

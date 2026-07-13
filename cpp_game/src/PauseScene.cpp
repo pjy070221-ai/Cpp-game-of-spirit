@@ -33,7 +33,7 @@ void PauseScene::onEnter() {
 }
 
 void PauseScene::handleEvent(const sf::Event& event) {
-    // ── 键盘 ──
+    //
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
             m_selection = (m_selection + 1) % 3;
@@ -56,7 +56,7 @@ void PauseScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标悬停 ──
+    //
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_itemTexts.size(); ++i) {
@@ -68,7 +68,7 @@ void PauseScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标点击 ──
+    //
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);

@@ -9,7 +9,7 @@
 #include <memory>
 
 SettingsScene::SettingsScene()
-    : m_labels({"Volume", "Note Speed", "Fullscreen", "FPS Limit", "Offset (ms)"})
+    : m_labels({"Volume", "Note Speed", "Fullscreen", "FPS Limit", "Offset (ms)", "Difficulty"})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
@@ -19,7 +19,7 @@ SettingsScene::SettingsScene()
     SettingsData s;
     m_values = {s.getMasterVolume(), s.getNoteSpeed(),
                 s.getFullscreen() ? 1.0f : 0.0f,
-                (float)s.getFpsLimit(), s.getOffset()};
+                (float)s.getFpsLimit(), s.getOffset(), (float)s.getDifficulty()};
 
     m_titleText.emplace(m_font, "Settings", 48);
     m_titleText->setFillColor(sf::Color::White);
@@ -32,11 +32,16 @@ SettingsScene::SettingsScene()
 
 void SettingsScene::onEnter() {
     m_selection = 0;
+    SettingsData sd;
+    m_values = {sd.getMasterVolume(), sd.getNoteSpeed(),
+                sd.getFullscreen() ? 1.0f : 0.0f,
+                (float)sd.getFpsLimit(), sd.getOffset(), (float)sd.getDifficulty()};
+    refreshDisplay();
     updateSelectionVisuals();
 }
 
 void SettingsScene::handleEvent(const sf::Event& event) {
-    // ── 键盘 ──
+    // 鈹€鈹€ 閿�?鈹€鈹€
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
             m_selection = (m_selection - 1 + (int)m_labels.size()) % m_labels.size();
@@ -52,7 +57,7 @@ void SettingsScene::handleEvent(const sf::Event& event) {
             requestPop();
             return;
         }
-        // ── 修改数值 ──
+        // 鈹€鈹€ 淇敼鏁板€?鈹€鈹€
         float delta = 0.0f;
         if (key->scancode == sf::Keyboard::Scan::Right || key->code == sf::Keyboard::Key::Right)
             delta = 1.0f;
@@ -78,12 +83,18 @@ void SettingsScene::handleEvent(const sf::Event& event) {
         } else if (m_selection == 4) {    // Offset -200~200
             v = std::clamp(v + delta * 10.0f, -200.0f, 200.0f);
             s.setOffset(v);
+        } else if (m_selection == 5) {  // Difficulty
+            int diff = (int)v;
+            if (delta > 0) diff = (diff + 1) % 2;
+            else diff = (diff - 1 + 2) % 2;
+            v = (float)diff;
+            s.setDifficulty(diff);
         }
         refreshDisplay();
         return;
     }
 
-    // ── 鼠标悬停 ──
+    // 鈹€鈹€ 榧犳爣鎮�?鈹€鈹€
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_lineTexts.size(); ++i) {
@@ -95,7 +106,7 @@ void SettingsScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标点击 ──
+    // 鈹€鈹€ 榧犳爣鐐瑰嚮 鈹€鈹€
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);
@@ -116,6 +127,7 @@ void SettingsScene::refreshDisplay() {
         float v = m_values[i];
         if (i == 2) val = (v > 0.5f) ? "Yes" : "No";
         else if (i == 3 || i == 4) val = std::to_string((int)v);
+        else if (i == 5) { int d = (int)v; val = (d == 0) ? "Easy" : "Hard"; }
         else { std::ostringstream oss; oss << std::fixed << std::setprecision(1) << v; val = oss.str(); }
 
         sf::Text txt(m_font, m_labels[i] + ": " + val, 28);

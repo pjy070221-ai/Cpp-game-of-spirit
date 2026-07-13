@@ -2,7 +2,7 @@
 #include <cmath>
 
 void GameplayScene::checkJudgment(int track) {
-    // 閳光偓閳光偓 閼惧嘲褰囪ぐ鎾冲闂婂厖绠伴弮鍫曟？ 閳光偓閳光偓
+    //
     float currentTime = m_simTime;
     if (m_musicPlayer.isLoaded())
         currentTime = m_musicPlayer.getCurrentTime();
@@ -17,11 +17,11 @@ void GameplayScene::checkJudgment(int track) {
         float timeDiff = std::abs(currentTime - m_noteRuntimes[i].targetTime);
         if (timeDiff < minTimeDiff) { minTimeDiff = timeDiff; bestIdx = i; }
     }
-    if (bestIdx < 0) return;  // 鐠囥儴寤洪柆鎾存￥瀵板懎鍨界€规岸鐓剁粭锔肩礉缁岀儤瀵滄稉宥呮惙鎼?
+    if (bestIdx < 0) return;  // no eligible note found
 
     auto& nr = m_noteRuntimes[bestIdx];
 
-    // hold note press閿涘牊妞傞梻鏉戝灲鐎规熬绱?
+    // hold note press logic
     if (nr.type == 1) {
         float timeDiff = std::abs(currentTime - nr.targetTime);
         if (timeDiff > m_goodTimeWindow) return; // too early or too late, ignore
@@ -51,6 +51,14 @@ void GameplayScene::checkJudgment(int track) {
             }
         }
         m_combo++;
+        static std::mt19937 rngJh(std::random_device{}());
+        static const sf::Color jhc[6] = {
+            sf::Color(0, 220, 255), sf::Color(255, 100, 200), sf::Color(255, 210, 0),
+            sf::Color(100, 230, 100), sf::Color(255, 150, 50), sf::Color(200, 100, 255)
+        };
+        m_comboPopColor = jhc[std::uniform_int_distribution<int>(0,5)(rngJh)];
+        m_comboPopScale = 1.8f;
+        m_comboPopTimer = 0.35f;
         if (m_combo > m_maxCombo) m_maxCombo = m_combo;
         m_judgmentDisplayTimer = 0.8f;
         if (m_scoreText.has_value())
@@ -63,13 +71,13 @@ void GameplayScene::checkJudgment(int track) {
     }
 
     m_lastHitTrack = track;
-    // normal note judgment 閳?閺冨爼妫块崚銈呯暰
+    // normal note judgment
     JudgeResult result;
     if      (minTimeDiff < m_perfectTimeWindow) result = JudgeResult::Perfect;
     else if (minTimeDiff < m_greatTimeWindow)   result = JudgeResult::Great;
     else if (minTimeDiff < m_goodTimeWindow)    result = JudgeResult::Good;
     else if (minTimeDiff < m_missTimeWindow)    result = JudgeResult::Miss;
-    else                                        return;  // 鐡掑懎鍤?300ms 缁愭褰涢敍灞肩瑝閸濆秴绨?
+    else                                        return;  // beyond 300ms
 
     onNoteJudged(result);
     nr.processed = true;
@@ -84,8 +92,6 @@ void GameplayScene::checkHoldRelease(int track) {
             nr.processed = true;
             m_missCount++;
             m_combo = 0;
-            m_hp -= 5;
-            m_hp -= 8;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("BREAK");
                 m_judgmentText->setFillColor(sf::Color::Red);
@@ -96,6 +102,7 @@ void GameplayScene::checkHoldRelease(int track) {
 }
 
 void GameplayScene::onNoteJudged(JudgeResult result) {
+    int prevCombo = m_combo;  // track for pop animation
     switch (result) {
     case JudgeResult::Perfect: {
         m_score += 100; m_combo++; m_perfectCount++;
@@ -120,8 +127,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
     }
         break;
     case JudgeResult::Good: {
-        m_score += 25; m_combo++; m_goodCount++; m_hp -= 3;
         if (m_judgmentText.has_value()) m_judgmentText->setString("GOOD");
+        m_score += 25; m_combo++; m_goodCount++;
         m_lastJudgmentColor = sf::Color::Green;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 15, sf::Color::Green, 40, 160, 0.3f, 0.6f, 2.0f, 5.0f);
@@ -131,8 +138,8 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
     }
         break;
     case JudgeResult::Miss: {
-        m_missCount++; m_combo = 0; m_hp -= 8;
         if (m_judgmentText.has_value()) m_judgmentText->setString("MISS");
+        m_missCount++; m_combo = 0;
         m_lastJudgmentColor = sf::Color::Red;
         float cx = getTrackCenterX(m_lastHitTrack);
         m_hitFX.emit({cx, m_judgmentLineY}, 8, sf::Color::Red, 30, 100, 0.2f, 0.5f, 1.0f, 4.0f);
@@ -151,6 +158,33 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_scoreText->setString("Score: " + std::to_string(m_score));
     if (m_comboText.has_value())
         m_comboText->setString(std::to_string(m_combo));
+
+    // score milestone effect (every +1000)
+    int curMilestone = m_score / 1000;
+    if (curMilestone > m_lastScoreMilestone) {
+        m_lastScoreMilestone = curMilestone;
+        m_milestoneGlowTimer = 0.5f;
+        static std::mt19937 rngMs(std::random_device{}());
+        static const sf::Color msColors[6] = {
+            sf::Color(0, 220, 255), sf::Color(255, 100, 200), sf::Color(255, 210, 0),
+            sf::Color(100, 230, 100), sf::Color(255, 150, 50), sf::Color(200, 100, 255)
+        };
+        sf::Color mc = msColors[std::uniform_int_distribution<int>(0,5)(rngMs)];
+        m_milestoneFX.emit({120.0f, m_judgmentLineY}, 30, mc, 80, 300, 0.4f, 1.2f, 2.0f, 7.0f);
+        m_milestoneFX.emit({1160.0f, m_judgmentLineY}, 30, mc, 80, 300, 0.4f, 1.2f, 2.0f, 7.0f);
+    }
+
+    // combo pop animation (when combo increases)
+    if (m_combo > prevCombo) {
+        static std::mt19937 rngCp(std::random_device{}());
+        static const sf::Color cpColors[6] = {
+            sf::Color(0, 220, 255), sf::Color(255, 100, 200), sf::Color(255, 210, 0),
+            sf::Color(100, 230, 100), sf::Color(255, 150, 50), sf::Color(200, 100, 255)
+        };
+        m_comboPopColor = cpColors[std::uniform_int_distribution<int>(0,5)(rngCp)];
+        m_comboPopScale = 1.8f;
+        m_comboPopTimer = 0.35f;
+    }
 }
 
 void GameplayScene::autoMissCheck() {
@@ -166,7 +200,6 @@ void GameplayScene::autoMissCheck() {
             nr.processed = true;
             m_missCount++;
             m_combo = 0;
-            m_hp -= 8;
             if (m_judgmentText.has_value()) {
                 m_judgmentText->setString("MISS");
                 m_judgmentText->setFillColor(sf::Color::Red);

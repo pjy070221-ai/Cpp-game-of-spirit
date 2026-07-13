@@ -7,7 +7,7 @@
 #include <filesystem>
 
 int main() {
-    // 设置当前目录到项目根目录，确保能找到 assets/ 目录
+    //
     char exePath[MAX_PATH];
     GetModuleFileNameA(NULL, exePath, MAX_PATH);
     std::filesystem::path exeDir(exePath);

@@ -48,6 +48,11 @@ public:
     float getOffset() const;
     void  setOffset(float ms);
 
+    int getDifficulty() const;   // 0=Easy, 1=Normal, 2=Hard
+    void setDifficulty(int v);
+
+    void save();  // force immediate save to file
+
 private:
     bool loadFromFile();
     bool saveToFile() const;

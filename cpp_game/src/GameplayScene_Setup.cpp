@@ -16,7 +16,7 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // Return to Menu闁挎稒鐭粭澶愬触椤栨艾袟闁稿﹥甯熼鎼佸籍鐠佸湱绀夐柣鈺佺摠鐢瓨娼婚弬鎸庣闁兼寧绮屽畷?
+    // Return to Menu?
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
@@ -29,10 +29,10 @@ void GameplayScene::onEnter() {
         m_isPlaying = false;
         return;
     }
-    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
+    // ??3-2-1
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 闁哄棗鍊告禒鐘诲箒閵忕媭妲?闁?鐎殿喒鍋撳┑顔碱儐閺屽﹪宕愰幒鏇ㄥ悁闁?
+    if (m_initialized) { m_isPlaying = false; return; } // ???
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -45,7 +45,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // 闁冲厜鍋撻柍鍏夊亾 闂傚懎绻戝┃鈧俊顖椻偓宕囩闁挎稒宀搁崳鎼佸箳閹烘鍙剧紒妤嬬畳瀵ゆ椽鏌?闁冲厜鍋撻柍鍏夊亾
+    // ???
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -68,7 +68,7 @@ void GameplayScene::onEnter() {
     buildTracks();
     buildJudgmentLine();
 
-    // 闁冲厜鍋撻柍鍏夊亾 婵炴潙顑堥惁顖氼嚕閸屾繆鏉藉ù婊冾儎濞嗐垽鏁?.4闁挎稑顦弨銏ゅ煘閳?
+    // ??.4?
     std::vector<AnomalyEvent> testEvents = {
         { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
         { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
@@ -83,7 +83,7 @@ void GameplayScene::onEnter() {
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 闁衡偓闁稖绀嬮柛锔哄妼閳ь剚甯熼鎼佸籍閸撲胶娉㈤柡澶屽枎閹鎮?Countdown 閻犲鍟伴弫?
+    // startGame(); // ?Countdown ?
     startGame();
 }
 
@@ -92,11 +92,15 @@ void GameplayScene::onExit() {
 }
 
 void GameplayScene::loadChart(const std::string& filePath) {
+    SettingsData sd;
+    bool isEasy = (sd.getDifficulty() == 0);
     if (!m_beatmapParser.loadFromFile(filePath))
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
-    // 濞寸姴姘﹀銊╂?JSON 闁告梻濮惧ù鍥閸忓懐顔囬柡鍌氭矗濞?
+    if (isEasy) simplifyNotes();
+    if (isEasy) simplifyNotes();
+    // ?JSON ?
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
     }
@@ -111,8 +115,6 @@ void GameplayScene::startGame() {
     m_activeShapes.clear();
     m_holdBars.clear();
     m_keysHeld[0] = m_keysHeld[1] = m_keysHeld[2] = m_keysHeld[3] = false;
-    m_hp = 999999;
-    m_maxHp = 999999;
     m_simTime = 0.0f;
     m_songFinished = false;
     // play handled by countdown handler
@@ -121,9 +123,13 @@ void GameplayScene::startGame() {
 }
 
 void GameplayScene::applySettings() {
+    SettingsData sd2;
+    float speedMult = 1.0f;
+    if (sd2.getDifficulty() == 0) speedMult = 0.6f;
     SettingsData s;
-    m_noteSpeedPixels = 200.0f + s.getNoteSpeed() * 30.0f;
+    m_noteSpeedPixels = (400.0f + s.getNoteSpeed() * 80.0f) * speedMult;
     m_musicPlayer.setVolume(s.getMasterVolume());
+    m_musicPlayer.setOffset(s.getOffset());
 }
 
 void GameplayScene::buildTracks() {
@@ -153,15 +159,29 @@ void GameplayScene::buildBackground() {
     m_bgGradient[3] = sf::Vertex({m_screenWidth, m_screenHeight}, sf::Color(20, 10, 40));
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+void GameplayScene::simplifyNotes() {
+    if (m_noteData.empty()) return;
+    
+    bool isTarget = (m_songInfo.title.find("Infinite Strife") != std::string::npos) ||
+                    (m_songInfo.title.find("Pentiment") != std::string::npos);
+    if (!isTarget) return;
+    
+    std::vector<NoteData> simplified;
+    int trackCount = m_songInfo.trackCount;
+    for (int track = 0; track < trackCount; track++) {
+        float lastTime = -999.0f;
+        for (const auto& note : m_noteData) {
+            if (note.track != track) continue;
+            if (note.type == 1) {
+                simplified.push_back(note);
+                lastTime = note.time + note.holdDuration;
+            } else if (note.time - lastTime >= 2.5f) {
+                simplified.push_back(note);
+                lastTime = note.time;
+            }
+        }
+    }
+    std::sort(simplified.begin(), simplified.end(),
+        [](const NoteData& a, const NoteData& b) { return a.time < b.time; });
+    m_noteData = simplified;
+}

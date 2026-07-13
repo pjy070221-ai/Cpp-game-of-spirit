@@ -64,7 +64,7 @@ void ParticleSystem::update(float dt) {
 void ParticleSystem::render(sf::RenderTarget& target) const {
     if (m_particles.empty()) return;
 
-    // Each particle → 2 triangles (6 vertices) for variable-size quad
+    // Each particle -> 2 triangles (6 vertices) for variable-size quad
     sf::VertexArray va(sf::PrimitiveType::Triangles, m_particles.size() * 6);
     for (size_t i = 0; i < m_particles.size(); ++i) {
         const auto& p = m_particles[i];
