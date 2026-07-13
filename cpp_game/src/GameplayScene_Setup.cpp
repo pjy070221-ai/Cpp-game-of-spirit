@@ -16,7 +16,7 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // Return to Menu锛氫笉鍚姩鍊掕鏃讹紝鐩存帴杩斿洖鑿滃崟
+    // Return to Menu闁挎稒鐭粭澶愬触椤栨艾袟闁稿﹥甯熼鎼佸籍鐠佸湱绀夐柣鈺佺摠鐢瓨娼婚弬鎸庣闁兼寧绮屽畷?
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
@@ -29,10 +29,10 @@ void GameplayScene::onEnter() {
         m_isPlaying = false;
         return;
     }
-    // 鑺傚澶у笀 鍊掕鏃?3-2-1
+    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 鏆傚仠鎭㈠ 鈫?寮€濮嬫柊鍊掕鏃?
+    if (m_initialized) { m_isPlaying = false; return; } // 闁哄棗鍊告禒鐘诲箒閵忕媭妲?闁?鐎殿喒鍋撳┑顔碱儐閺屽﹪宕愰幒鏇ㄥ悁闁?
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -45,7 +45,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // 鈹€鈹€ 闅忔満妯″紡锛氶噸鎺掗煶绗﹁建閬?鈹€鈹€
+    // 闁冲厜鍋撻柍鍏夊亾 闂傚懎绻戝┃鈧俊顖椻偓宕囩闁挎稒宀搁崳鎼佸箳閹烘鍙剧紒妤嬬畳瀵ゆ椽鏌?闁冲厜鍋撻柍鍏夊亾
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -68,7 +68,7 @@ void GameplayScene::onEnter() {
     buildTracks();
     buildJudgmentLine();
 
-    // 鈹€鈹€ 娴嬭瘯寮傝薄浜嬩欢锛?.4锛夆攢鈹€
+    // 闁冲厜鍋撻柍鍏夊亾 婵炴潙顑堥惁顖氼嚕閸屾繆鏉藉ù婊冾儎濞嗐垽鏁?.4闁挎稑顦弨銏ゅ煘閳?
     std::vector<AnomalyEvent> testEvents = {
         { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
         { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
@@ -83,7 +83,7 @@ void GameplayScene::onEnter() {
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 鏀逛负鍦ㄥ€掕鏃剁粨鏉熷悗鐢?Countdown 璋冪敤
+    // startGame(); // 闁衡偓闁稖绀嬮柛锔哄妼閳ь剚甯熼鎼佸籍閸撲胶娉㈤柡澶屽枎閹鎮?Countdown 閻犲鍟伴弫?
     startGame();
 }
 
@@ -96,7 +96,7 @@ void GameplayScene::loadChart(const std::string& filePath) {
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
-    // 浠庤氨闈?JSON 鍔犺浇闊充箰鏂囦欢
+    // 濞寸姴姘﹀銊╂?JSON 闁告梻濮惧ù鍥閸忓懐顔囬柡鍌氭矗濞?
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
     }
@@ -111,11 +111,13 @@ void GameplayScene::startGame() {
     m_activeShapes.clear();
     m_holdBars.clear();
     m_keysHeld[0] = m_keysHeld[1] = m_keysHeld[2] = m_keysHeld[3] = false;
-    m_hp = m_maxHp;
+    m_hp = 999999;
+    m_maxHp = 999999;
     m_simTime = 0.0f;
     m_songFinished = false;
-    m_isPlaying = true;
-    m_musicPlayer.play();
+    // play handled by countdown handler
+    // m_isPlaying = true;
+    // m_musicPlayer.play();
 }
 
 void GameplayScene::applySettings() {

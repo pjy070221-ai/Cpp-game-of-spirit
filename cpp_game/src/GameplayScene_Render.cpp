@@ -92,7 +92,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
        target.draw(gz);
    }
 
-    // hold bars (长按音符条)
+    // hold bars — hide when judged (processed). Render is synced to judgment lifecycle.
     for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
         if (m_noteRuntimes[i].type != 1) continue;

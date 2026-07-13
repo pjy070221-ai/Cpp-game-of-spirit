@@ -12,7 +12,7 @@
 #include <memory>
 #include <optional>
 
-// 节奏大师打击特效结构体
+// 闁煎搫鍊搁〃鏃€寰勮缁椻偓闁瑰灚鎸搁崵顕€鎮х憴鍕珡缂備焦鎸婚悗顖涙媴?
 struct ScorePopup {
     std::optional<sf::Text> text;
     float life = 1.0f;
@@ -36,8 +36,8 @@ class GameplayScene : public IScene {
 public:
     GameplayScene();
     static std::string s_chartPath;   // set by PackScene before push
-    static bool s_randomMode;  // set by PackScene — randomize tracks on enter
-    static bool s_retry;        // set by PauseScene/ResultScene — restart current song
+    static bool s_randomMode;  // set by PackScene 闁?randomize tracks on enter
+    static bool s_retry;        // set by PauseScene/ResultScene 闁?restart current song
     static bool s_returnToMenu;       // set by PauseScene -> checked in update
         ~GameplayScene() override = default;
   
@@ -82,9 +82,9 @@ private:
     bool m_isPlaying = false;
     bool m_songFinished = false;
     bool m_initialized = false;   // true after onEnter() runs once
-    float m_simTime = 0.0f;       // 模拟时钟（无音乐时用）
+    float m_simTime = 0.0f;       // 婵☆垪鍓濈€氭瑩寮崼鏇熷闁挎稑鐗婂Λ銈夋閸忓懐顔囬柡鍐ㄥ閺併倝鏁?
 
-    // 节奏大师 倒计时 3-2-1
+    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
     enum class CountdownState { None, Counting, Started };
     CountdownState m_countdownState = CountdownState::None;
     float m_countdownTimer = 3.0f;
@@ -96,22 +96,22 @@ private:
 
     // runtime notes
     std::vector<NoteRuntime> m_noteRuntimes;
-    std::vector<sf::RectangleShape> m_activeShapes;  // 节奏大师 矩形音符
+    std::vector<sf::RectangleShape> m_activeShapes;  // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁活厸鏅涢懜浼存瀹曞浂鍎?
     std::vector<sf::RectangleShape> m_holdBars;
     bool m_keysHeld[4] = {false, false, false, false};
 
-    // judgment — 时间判定窗口（秒）
-    float m_perfectTimeWindow = 0.040f;  // ±40ms
-    float m_greatTimeWindow   = 0.100f;  // ±100ms
-    float m_goodTimeWindow    = 0.200f;  // ±200ms
-    float m_missTimeWindow    = 0.300f;  // 超出不响应
+    // judgment 闁?闁哄啫鐖煎Λ鍧楀礆閵堝懐鏆扮紒鎰殔瑜版盯鏁嶉崼銏╂健闁?
+    float m_perfectTimeWindow = 0.040f;  // 閸?0ms
+    float m_greatTimeWindow   = 0.100f;  // 閸?00ms
+    float m_goodTimeWindow    = 0.200f;  // 閸?00ms
+    float m_missTimeWindow    = 0.400f;  // 閻℃帒鎳庨崵顓熺▔瀹ュ懏鎯欓幖?
     float m_judgmentLineY = 550.0f;
 
     // scoring
     int m_score = 0, m_combo = 0, m_maxCombo = 0;
     int m_perfectCount = 0, m_greatCount = 0;
     int m_goodCount = 0, m_missCount = 0;
-    int m_hp = 100, m_maxHp = 100;    // 节奏大师 健康值系统
+    int m_hp = 100, m_maxHp = 100;    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿鍎遍幃宥夊磹閼测晠鍏囩紓?
 
     // track layout
     int   m_trackCount = 4;

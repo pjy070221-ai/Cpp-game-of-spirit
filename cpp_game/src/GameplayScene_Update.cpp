@@ -3,13 +3,13 @@
 #include <cmath>
 
 void GameplayScene::update(float dt) {
-    // 鈹€鈹€ 鍊掕鏃?3-2-1 鈹€鈹€
+    // 閳光偓閳光偓 閸婃帟顓搁弮?3-2-1 閳光偓閳光偓
     if (m_countdownState == CountdownState::Counting) {
         m_countdownTimer -= dt;
         if (m_countdownTimer <= 0.0f) {
             m_countdownState = CountdownState::Started;
             m_cdNumText.reset(); m_cdGoText.reset(); m_cdLastDisplayed = -1;
-            if (m_countdownShouldStart) { m_countdownShouldStart = false; startGame(); }
+            if (m_countdownShouldStart) { m_countdownShouldStart = false; m_isPlaying = true; m_musicPlayer.play(); }
             else { m_isPlaying = true; m_musicPlayer.play(); }
         } else {
             int disp = 0;
@@ -36,7 +36,7 @@ void GameplayScene::update(float dt) {
         return;
     }
 
-    // Return to Menu 浼樺厛澶勭悊
+    // Return to Menu 娴兼ê鍘涙径鍕倞
     if (s_returnToMenu) {
         s_returnToMenu = false;
         m_musicPlayer.stop();
@@ -61,15 +61,15 @@ void GameplayScene::update(float dt) {
     if (m_musicPlayer.isLoaded()) {
         currentTime = m_musicPlayer.getCurrentTime();
     } else if (m_isPlaying) {
-        // 鏃犻煶涔愭椂鐢ㄦā鎷熸椂閽熸帹杩?
+        // 閺冪娀鐓舵稊鎰閻劍膩閹风喐妞傞柦鐔稿腹鏉?
         m_simTime += dt;
         currentTime = m_simTime;
     }
 
-    // 寮傝薄绯荤粺鏇存柊
+    // 瀵倽钖勭化鑽ょ埠閺囧瓨鏌?
     m_anomalySystem.update(currentTime, dt);
 
-    // 璁＄畻鏈夋晥涓嬭惤閫熷害锛堝彈 NoteSpeedChange 寮傝薄褰卞搷锛?
+    // 鐠侊紕鐣婚張澶嬫櫏娑撳鎯ら柅鐔峰閿涘牆褰?NoteSpeedChange 瀵倽钖勮ぐ鍗炴惙閿?
     float effSpeed = m_noteSpeedPixels;
     if (m_anomalySystem.isActive(AnomalyType::NoteSpeedChange)) {
         float speedMult = m_anomalySystem.getParam("speed", 0.5f);
@@ -142,7 +142,7 @@ void GameplayScene::update(float dt) {
 
     m_hitFX.update(dt);
 
-    // 鈹€鈹€ 鍒嗘暟寮瑰嚭 鈹€鈹€
+    // 閳光偓閳光偓 閸掑棙鏆熷鐟板毉 閳光偓閳光偓
     for (auto& sp : m_scorePopups) {
         sp.life -= dt;
         if (sp.life > 0) {
@@ -155,7 +155,7 @@ void GameplayScene::update(float dt) {
     m_scorePopups.erase(std::remove_if(m_scorePopups.begin(), m_scorePopups.end(),
         [](auto& s) { return s.life <= 0; }), m_scorePopups.end());
 
-    // 鈹€鈹€ 鍒ゅ畾鍏夌幆 鈹€鈹€
+    // 閳光偓閳光偓 閸掋倕鐣鹃崗澶屽箚 閳光偓閳光偓
     for (auto& hr : m_hitRings) {
         hr.life -= dt;
         if (hr.life > 0) {
@@ -169,10 +169,10 @@ void GameplayScene::update(float dt) {
     m_hitRings.erase(std::remove_if(m_hitRings.begin(), m_hitRings.end(),
         [](auto& h) { return h.life <= 0; }), m_hitRings.end());
 
-    // 鈹€鈹€ 杩炲嚮闂厜 鈹€鈹€
+    // 閳光偓閳光偓 鏉╃偛鍤梻顏勫帨 閳光偓閳光偓
     if (m_comboFlashTimer > 0) m_comboFlashTimer -= dt;
 
-    // 鑺傚澶у笀 HP 褰掗浂 鈫?娓告垙缁撴潫
+    // 閼哄倸顨旀径褍绗€ HP 瑜版帡娴?閳?濞撳憡鍨欑紒鎾存将
     if (m_hp <= 0 && m_isPlaying) {
         m_isPlaying = false;
         m_songFinished = true;
@@ -201,7 +201,7 @@ void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
             nr.isHeld = false;
             m_noteRuntimes.push_back(nr);
 
-            // 鑺傚澶у笀: 鐭╁舰闊崇 + 杞ㄩ亾鐙珛棰滆壊
+            // 閼哄倸顨旀径褍绗€: 閻晛鑸伴棅宕囶儊 + 鏉炪劑浜鹃悪顒傜彌妫版粏澹?
             static const sf::Color nc[4] = {
                 sf::Color(0, 220, 255), sf::Color(255, 100, 200),
                 sf::Color(255, 210, 0), sf::Color(100, 230, 100)
