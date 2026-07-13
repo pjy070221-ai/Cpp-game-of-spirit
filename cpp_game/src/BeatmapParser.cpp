@@ -146,9 +146,10 @@ void BeatmapParser::extractNotes(const std::string& json) {
         if (objEnd == std::string::npos) break;
         std::string obj = json.substr(i, objEnd - i + 1);
 
-        note.time  = extractFloat(obj, "time");
-        note.track = extractInt(obj, "track");
-        note.type  = extractInt(obj, "type");
+       note.time  = extractFloat(obj, "time");
+       note.track = extractInt(obj, "track");
+       note.type  = extractInt(obj, "type");
+        note.holdDuration = extractFloat(obj, "holdDuration");
 
         m_notes.push_back(note);
         i = objEnd + 1;

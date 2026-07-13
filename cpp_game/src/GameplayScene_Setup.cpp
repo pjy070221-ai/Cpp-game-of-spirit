@@ -16,16 +16,23 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // Return to Menu：不启动倒计时，直接返回菜单
+    // Return to Menu锛氫笉鍚姩鍊掕鏃讹紝鐩存帴杩斿洖鑿滃崟
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
         return;
     }
-    // 节奏大师 倒计时 3-2-1
+
+    // Retry
+    if (s_retry) {
+        m_countdownState = CountdownState::None;
+        m_isPlaying = false;
+        return;
+    }
+    // 鑺傚澶у笀 鍊掕鏃?3-2-1
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 暂停恢复 → 开始新倒计时
+    if (m_initialized) { m_isPlaying = false; return; } // 鏆傚仠鎭㈠ 鈫?寮€濮嬫柊鍊掕鏃?
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -38,7 +45,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // ── 随机模式：重排音符轨道 ──
+    // 鈹€鈹€ 闅忔満妯″紡锛氶噸鎺掗煶绗﹁建閬?鈹€鈹€
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -61,7 +68,7 @@ void GameplayScene::onEnter() {
     buildTracks();
     buildJudgmentLine();
 
-    // ── 测试异象事件（5.4）──
+    // 鈹€鈹€ 娴嬭瘯寮傝薄浜嬩欢锛?.4锛夆攢鈹€
     std::vector<AnomalyEvent> testEvents = {
         { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
         { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
@@ -76,7 +83,7 @@ void GameplayScene::onEnter() {
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 改为在倒计时结束后由 Countdown 调用
+    // startGame(); // 鏀逛负鍦ㄥ€掕鏃剁粨鏉熷悗鐢?Countdown 璋冪敤
     startGame();
 }
 
@@ -89,7 +96,7 @@ void GameplayScene::loadChart(const std::string& filePath) {
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
-    // 从谱面 JSON 加载音乐文件
+    // 浠庤氨闈?JSON 鍔犺浇闊充箰鏂囦欢
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
     }

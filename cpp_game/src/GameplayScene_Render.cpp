@@ -89,13 +89,22 @@ void GameplayScene::render(sf::RenderTarget& target) {
         sf::RectangleShape gz({m_trackWidth, 80.0f});
         gz.setPosition({trackX, m_judgmentLineY - 80.0f});
         gz.setFillColor(sf::Color(nc.r, nc.g, nc.b, (int)glowA));
-        target.draw(gz);
+       target.draw(gz);
+   }
+
+    // hold bars (长按音符条)
+    for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
+        if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
+        if (m_noteRuntimes[i].type != 1) continue;
+        target.draw(m_holdBars[i]);
     }
 
-    // note trail (ghost rectangles above each note)
-    for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
+   // note trail (ghost rectangles above each note)
+   for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
-        const auto& shape = m_activeShapes[i];
+        // skip held hold notes (shown by hold bar, not by note head + trail)
+        if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
+       const auto& shape = m_activeShapes[i];
         const auto& nr = m_noteRuntimes[i];
         auto col = shape.getFillColor();
         sf::Vector2f pos = shape.getPosition();
@@ -109,11 +118,14 @@ void GameplayScene::render(sf::RenderTarget& target) {
         }
     }
 
-    // tap notes
-    for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
-        if (m_noteRuntimes[i].active && !m_noteRuntimes[i].processed)
+    // tap notes (skip held hold notes - shown by hold bar)
+   for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
+        if (m_noteRuntimes[i].active && !m_noteRuntimes[i].processed) {
+            // skip head of held hold notes (the hold bar shows it)
+            if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
             target.draw(m_activeShapes[i]);
-    }
+        }
+   }
 
     // HP bar
     {

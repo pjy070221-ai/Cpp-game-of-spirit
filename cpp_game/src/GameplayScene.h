@@ -61,7 +61,7 @@ private:
     void buildJudgmentLine();
     void buildBackground();
 
-    void spawnNotes(float currentTime);
+    void spawnNotes(float currentTime, float effSpeed);
     void checkJudgment(int track);
     void onNoteJudged(JudgeResult result);
     void checkHoldRelease(int track);
