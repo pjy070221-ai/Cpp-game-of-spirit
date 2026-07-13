@@ -1,4 +1,4 @@
-﻿#include "AnomalySystem.h"
+#include "AnomalySystem.h"
 #include <algorithm>
 #include <cmath>
 

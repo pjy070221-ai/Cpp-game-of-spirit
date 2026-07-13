@@ -1,4 +1,4 @@
-﻿#include "MusicPlayer.h"
+#include "MusicPlayer.h"
 
 bool MusicPlayer::load(const std::string& filePath) {
     stop();

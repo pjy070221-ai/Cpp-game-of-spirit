@@ -1,5 +1,6 @@
 fullscreen=false
-noteSpeed=5
+noteSpeed=7
 ﻿masterVolume=0.8
 fpsLimit=60
-offset=0
+offset=-20
+masterVolume=0.95

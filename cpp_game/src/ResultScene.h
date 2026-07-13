@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "GameplayScene.h"
 #include "ParticleSystem.h"

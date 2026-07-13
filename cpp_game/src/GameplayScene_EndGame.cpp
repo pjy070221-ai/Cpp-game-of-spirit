@@ -1,4 +1,4 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include "ResultScene.h"
 #include <iostream>
 

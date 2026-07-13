@@ -1,4 +1,4 @@
-﻿#include "PackScene.h"
+#include "PackScene.h"
 #include "GameplayScene.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
@@ -7,8 +7,9 @@
 #include <memory>
 
 PackScene::PackScene()
-    : m_songNames({sf::String(L"Beat Demo"), sf::String(L"\u6E38\u4EAC"), sf::String(L"Practice Mode")})
-    , m_chartPaths({"song_demo.json", "song.json", ""})
+    : m_songNames({sf::String(L"Beat Demo"), sf::String(L"\u6E38\u4EAC"), 
+                sf::String(L"Infinite Strife"), sf::String(L"Practice Mode")})
+    , m_chartPaths({"song_demo.json", "song.json", "song_infinite_strife.json", ""})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
@@ -37,7 +38,7 @@ void PackScene::onEnter() {
 }
 
 void PackScene::handleEvent(const sf::Event& event) {
-    // ── 键盘导航 ──
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?闂備焦顑欓崰姘鸿箛鏇楀亾娴ｅ啫顥嶉�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         bool changed = false;
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
@@ -58,7 +59,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标悬停高亮 ──
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮楠炲啴顢楅埀顒佺閻樻剚娈楁俊顖滄嚀�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_itemTexts.size(); ++i) {
@@ -73,7 +74,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // ── 鼠标点击 ──
+    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮閹瑩鎮烽弶鎸庣�?闂佸啿鍘滈崑鎾绘煃閸忓�?
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);
@@ -109,7 +110,7 @@ void PackScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 
-    // 菜单过渡遮罩渐入
+    // 闂佸吋瀵х划灞界暦閻斿憡浜ら柛銉ｅ妽鐠囩偤姊洪澶婃灓闁稿秹娼ч妴鎺楀箛椤掆偓�?
     if (SceneManager::s_transitionAlpha > 0.001f) {
         sf::RectangleShape ov({1280, 720});
         ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));

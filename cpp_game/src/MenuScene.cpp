@@ -1,5 +1,6 @@
-﻿#include "MenuScene.h"
+#include "MenuScene.h"
 #include "PackScene.h"
+#include "SettingsScene.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include <SFML/Graphics.hpp>
@@ -131,7 +132,7 @@ void MenuScene::handleEvent(const sf::Event& event) {
 
 void MenuScene::activateItem(int index) {
     if (index == 0) requestReplace(std::make_unique<PackScene>());
-    // index 1 = Settings — TBD
+    else if (index == 1) requestPush(std::make_unique<SettingsScene>());
 }
 
 void MenuScene::updateSelectionVisuals() {

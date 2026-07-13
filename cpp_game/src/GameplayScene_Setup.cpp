@@ -1,4 +1,4 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include "SettingsData.h"
 #include "ResourceManager.h"
 #include <algorithm>
@@ -16,16 +16,23 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // Return to Menu：不启动倒计时，直接返回菜单
+    // Return to Menu闁挎稒鐭粭澶愬触椤栨艾袟闁稿﹥甯熼鎼佸籍鐠佸湱绀夐柣鈺佺摠鐢瓨娼婚弬鎸庣闁兼寧绮屽畷?
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
         return;
     }
-    // 节奏大师 倒计时 3-2-1
+
+    // Retry
+    if (s_retry) {
+        m_countdownState = CountdownState::None;
+        m_isPlaying = false;
+        return;
+    }
+    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 暂停恢复 → 开始新倒计时
+    if (m_initialized) { m_isPlaying = false; return; } // 闁哄棗鍊告禒鐘诲箒閵忕媭妲?闁?鐎殿喒鍋撳┑顔碱儐閺屽﹪宕愰幒鏇ㄥ悁闁?
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -38,7 +45,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // ── 随机模式：重排音符轨道 ──
+    // 闁冲厜鍋撻柍鍏夊亾 闂傚懎绻戝┃鈧俊顖椻偓宕囩闁挎稒宀搁崳鎼佸箳閹烘鍙剧紒妤嬬畳瀵ゆ椽鏌?闁冲厜鍋撻柍鍏夊亾
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -61,22 +68,22 @@ void GameplayScene::onEnter() {
     buildTracks();
     buildJudgmentLine();
 
-    // ── 测试异象事件（5.4）──
-    std::vector<AnomalyEvent> testEvents = {
-        { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
-        { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
-        { 9.0f, 5.0f, AnomalyType::NoteSpeedChange, {{"speed", 1.8f}} },
-        {16.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 0.2f}, {"color_b", 0.2f}} },
-        {20.0f, 2.5f, AnomalyType::ScreenShake,     {{"intensity", 0.6f}} },
-        {25.0f, 3.0f, AnomalyType::NoteSpeedChange, {{"speed", 0.4f}} },
-    };
-    m_anomalySystem.setEvents(testEvents);
+    // 异象测试事件 — 已禁用
+    // std::vector<AnomalyEvent> testEvents = {
+    //     { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
+    //     { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
+    //     { 9.0f, 5.0f, AnomalyType::NoteSpeedChange, {{"speed", 1.8f}} },
+    //     {16.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 0.2f}, {"color_b", 0.2f}} },
+    //     {20.0f, 2.5f, AnomalyType::ScreenShake,     {{"intensity", 0.6f}} },
+    //     {25.0f, 3.0f, AnomalyType::NoteSpeedChange, {{"speed", 0.4f}} },
+    // };
+    // m_anomalySystem.setEvents(testEvents);
 
     m_flashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 改为在倒计时结束后由 Countdown 调用
+    // startGame(); // 闁衡偓闁稖绀嬮柛锔哄妼閳ь剚甯熼鎼佸籍閸撲胶娉㈤柡澶屽枎閹鎮?Countdown 閻犲鍟伴弫?
     startGame();
 }
 
@@ -89,9 +96,11 @@ void GameplayScene::loadChart(const std::string& filePath) {
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
-    // 从谱面 JSON 加载音乐文件
+    // 用户 Settings offset 用于微调延迟
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
+        SettingsData s;
+        m_musicPlayer.setOffset(s.getOffset());
     }
 }
 
@@ -104,17 +113,20 @@ void GameplayScene::startGame() {
     m_activeShapes.clear();
     m_holdBars.clear();
     m_keysHeld[0] = m_keysHeld[1] = m_keysHeld[2] = m_keysHeld[3] = false;
-    m_hp = m_maxHp;
+    m_hp = 999999;
+    m_maxHp = 999999;
     m_simTime = 0.0f;
     m_songFinished = false;
-    m_isPlaying = true;
-    m_musicPlayer.play();
+    // play handled by countdown handler
+    // m_isPlaying = true;
+    // m_musicPlayer.play();
 }
 
 void GameplayScene::applySettings() {
     SettingsData s;
-    m_noteSpeedPixels = 200.0f + s.getNoteSpeed() * 30.0f;
+    m_noteSpeedPixels = 400.0f + s.getNoteSpeed() * 80.0f;  // ns=8 → 1040px/s
     m_musicPlayer.setVolume(s.getMasterVolume());
+    m_musicPlayer.setOffset(s.getOffset());
 }
 
 void GameplayScene::buildTracks() {

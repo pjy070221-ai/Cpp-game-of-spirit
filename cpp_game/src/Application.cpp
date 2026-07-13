@@ -1,4 +1,4 @@
-﻿#include "Application.h"
+#include "Application.h"
 #include "SceneManager.h"
 
 Application::Application(const sf::String& title, unsigned int width, unsigned int height)

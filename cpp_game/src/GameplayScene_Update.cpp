@@ -1,15 +1,15 @@
-﻿#include "GameplayScene.h"
+#include "GameplayScene.h"
 #include "PauseScene.h"
 #include <cmath>
 
 void GameplayScene::update(float dt) {
-    // ── 倒计时 3-2-1 ──
+    // 閳光偓閳光偓 閸婃帟顓搁弮?3-2-1 閳光偓閳光偓
     if (m_countdownState == CountdownState::Counting) {
         m_countdownTimer -= dt;
         if (m_countdownTimer <= 0.0f) {
             m_countdownState = CountdownState::Started;
             m_cdNumText.reset(); m_cdGoText.reset(); m_cdLastDisplayed = -1;
-            if (m_countdownShouldStart) { m_countdownShouldStart = false; startGame(); }
+            if (m_countdownShouldStart) { m_countdownShouldStart = false; m_isPlaying = true; m_musicPlayer.play(); }
             else { m_isPlaying = true; m_musicPlayer.play(); }
         } else {
             int disp = 0;
@@ -36,7 +36,7 @@ void GameplayScene::update(float dt) {
         return;
     }
 
-    // Return to Menu 优先处理
+    // Return to Menu 娴兼ê鍘涙径鍕倞
     if (s_returnToMenu) {
         s_returnToMenu = false;
         m_musicPlayer.stop();
@@ -46,14 +46,13 @@ void GameplayScene::update(float dt) {
         return;
     }
 
-    if (!m_isPlaying || m_songFinished) return;
-
-    // 节奏大师 重试：重启当前谱面
-    if (s_retry) {
+        if (s_retry) {
         s_retry = false;
         requestReplace(std::make_unique<GameplayScene>());
         return;
     }
+
+    if (!m_isPlaying || m_songFinished) return;
 
     m_pulseTime += dt;
     m_glowIntensity = 0.5f + 0.3f * std::sin(m_pulseTime * 2.0f);
@@ -62,22 +61,22 @@ void GameplayScene::update(float dt) {
     if (m_musicPlayer.isLoaded()) {
         currentTime = m_musicPlayer.getCurrentTime();
     } else if (m_isPlaying) {
-        // 无音乐时用模拟时钟推进
+        // 閺冪娀鐓舵稊鎰閻劍膩閹风喐妞傞柦鐔稿腹鏉?
         m_simTime += dt;
         currentTime = m_simTime;
     }
 
-    // 异象系统更新
+    // 瀵倽钖勭化鑽ょ埠閺囧瓨鏌?
     m_anomalySystem.update(currentTime, dt);
 
-    // 计算有效下落速度（受 NoteSpeedChange 异象影响）
+    // 鐠侊紕鐣婚張澶嬫櫏娑撳鎯ら柅鐔峰閿涘牆褰?NoteSpeedChange 瀵倽钖勮ぐ鍗炴惙閿?
     float effSpeed = m_noteSpeedPixels;
     if (m_anomalySystem.isActive(AnomalyType::NoteSpeedChange)) {
         float speedMult = m_anomalySystem.getParam("speed", 0.5f);
         effSpeed *= speedMult;
     }
 
-        spawnNotes(currentTime);
+        spawnNotes(currentTime, effSpeed);
 
     for (auto& nr : m_noteRuntimes) {
         if (nr.active && !nr.processed)
@@ -90,16 +89,30 @@ void GameplayScene::update(float dt) {
                 {getTrackCenterX(m_noteRuntimes[i].track), m_noteRuntimes[i].y});
     }
 
-    // update hold bar positions
-    for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
-        if (!m_noteRuntimes[i].active) continue;
-        if (m_noteRuntimes[i].type != 1) continue;
-        float cx = getTrackCenterX(m_noteRuntimes[i].track);
-        float noteY = m_noteRuntimes[i].y;
-        float barHeight = m_judgmentLineY - noteY;
-        m_holdBars[i].setPosition({cx - m_trackWidth / 2.0f + 4.0f, noteY});
-        m_holdBars[i].setSize({m_trackWidth - 8.0f, barHeight});
-    }
+   // update hold bar positions
+   for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
+       if (!m_noteRuntimes[i].active) continue;
+       if (m_noteRuntimes[i].type != 1) continue;
+       float cx = getTrackCenterX(m_noteRuntimes[i].track);
+        auto& nr = m_noteRuntimes[i];
+       if (nr.isHeld) {
+            // pressed: head locks at judgment line, bar shrinks from above
+           float remaining = nr.targetTime + nr.holdDuration - currentTime;
+            float tailY = m_judgmentLineY - remaining * effSpeed; // above judgment line
+            float barH = m_judgmentLineY - tailY;
+           if (barH < 0.0f) barH = 0.0f;
+            m_holdBars[i].setPosition({cx - m_trackWidth / 2.0f + 4.0f, tailY});
+           m_holdBars[i].setSize({m_trackWidth - 8.0f, barH});
+           m_holdBars[i].setFillColor(sf::Color(0, 255, 200, 240));
+       } else {
+           // unpressed: full-length bar from tail to head
+           float tailY = m_judgmentLineY - (nr.targetTime + nr.holdDuration - currentTime) * effSpeed;
+            float barH = nr.holdDuration * effSpeed;
+           m_holdBars[i].setPosition({cx - m_trackWidth / 2.0f + 4.0f, tailY});
+           m_holdBars[i].setSize({m_trackWidth - 8.0f, barH});
+           m_holdBars[i].setFillColor(sf::Color(0, 200, 255, 170));
+       }
+   }
 
     autoMissCheck();
 
@@ -129,7 +142,7 @@ void GameplayScene::update(float dt) {
 
     m_hitFX.update(dt);
 
-    // ── 分数弹出 ──
+    // 閳光偓閳光偓 閸掑棙鏆熷鐟板毉 閳光偓閳光偓
     for (auto& sp : m_scorePopups) {
         sp.life -= dt;
         if (sp.life > 0) {
@@ -142,7 +155,7 @@ void GameplayScene::update(float dt) {
     m_scorePopups.erase(std::remove_if(m_scorePopups.begin(), m_scorePopups.end(),
         [](auto& s) { return s.life <= 0; }), m_scorePopups.end());
 
-    // ── 判定光环 ──
+    // 閳光偓閳光偓 閸掋倕鐣鹃崗澶屽箚 閳光偓閳光偓
     for (auto& hr : m_hitRings) {
         hr.life -= dt;
         if (hr.life > 0) {
@@ -156,10 +169,10 @@ void GameplayScene::update(float dt) {
     m_hitRings.erase(std::remove_if(m_hitRings.begin(), m_hitRings.end(),
         [](auto& h) { return h.life <= 0; }), m_hitRings.end());
 
-    // ── 连击闪光 ──
+    // 閳光偓閳光偓 鏉╃偛鍤梻顏勫帨 閳光偓閳光偓
     if (m_comboFlashTimer > 0) m_comboFlashTimer -= dt;
 
-    // 节奏大师 HP 归零 → 游戏结束
+    // 閼哄倸顨旀径褍绗€ HP 瑜版帡娴?閳?濞撳憡鍨欑紒鎾存将
     if (m_hp <= 0 && m_isPlaying) {
         m_isPlaying = false;
         m_songFinished = true;
@@ -171,23 +184,24 @@ void GameplayScene::update(float dt) {
         endGame();
 }
 
-void GameplayScene::spawnNotes(float currentTime) {
-    while (m_noteIndex < (int)m_noteData.size() &&
-           m_noteData[m_noteIndex].time <= currentTime + SPAWN_LOOKAHEAD) {
-        if (m_noteData[m_noteIndex].time >= currentTime) {
-            NoteData& src = m_noteData[m_noteIndex];
-            NoteRuntime nr;
-            nr.track = src.track;
-            nr.targetTime = src.time;
-            nr.type = src.type;
-            nr.y = 100.0f;
-            nr.noteSpeed = m_noteSpeedPixels;
-            nr.active = true;
+void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
+   while (m_noteIndex < (int)m_noteData.size() &&
+          m_noteData[m_noteIndex].time <= currentTime + SPAWN_LOOKAHEAD) {
+       if (m_noteData[m_noteIndex].time >= currentTime) {
+           NoteData& src = m_noteData[m_noteIndex];
+           NoteRuntime nr;
+           nr.track = src.track;
+           nr.targetTime = src.time;
+           nr.type = src.type;
+            nr.noteSpeed = effSpeed;
+           float timeUntilHit = src.time - currentTime;
+            nr.y = m_judgmentLineY - effSpeed * timeUntilHit;
+           nr.active = true;
             nr.holdDuration = src.holdDuration;
             nr.isHeld = false;
             m_noteRuntimes.push_back(nr);
 
-            // 节奏大师: 矩形音符 + 轨道独立颜色
+            // 閼哄倸顨旀径褍绗€: 閻晛鑸伴棅宕囶儊 + 鏉炪劑浜鹃悪顒傜彌妫版粏澹?
             static const sf::Color nc[4] = {
                 sf::Color(0, 220, 255), sf::Color(255, 100, 200),
                 sf::Color(255, 210, 0), sf::Color(100, 230, 100)
@@ -205,7 +219,7 @@ void GameplayScene::spawnNotes(float currentTime) {
             m_activeShapes.push_back(note);
 
             sf::RectangleShape bar;
-            bar.setFillColor(sf::Color(0, 200, 255, 80));
+            bar.setFillColor(sf::Color(0, 200, 255, 200));
             m_holdBars.push_back(bar);
         }
         m_noteIndex++;
