@@ -1,0 +1,9798 @@
+{
+  "title": "Nothing But Requiem with Museo - Pentiment",
+  "artist": "Nothing But Requiem with Museo",
+  "musicFile": "pentiment.ogg",
+  "bpm": 222.0,
+  "offset": 1062.0,
+  "trackCount": 4,
+  "notes": [
+    {
+      "time": 1.062,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 1.062,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 1.062,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 1.332,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 1.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 1.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 1.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 2.143,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 2.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 2.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 2.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 2.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 2.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 3.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 3.224,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 3.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 3.494,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 3.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 4.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 4.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 4.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 4.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 4.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 4.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 5.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 5.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 5.386,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 5.656,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 5.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 5.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 6.197,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 6.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 6.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 6.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 6.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 7.007,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 7.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 7.548,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 7.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 7.818,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 7.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 8.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 8.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 8.629,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 1.014
+    },
+    {
+      "time": 8.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 8.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 8.899,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.744
+    },
+    {
+      "time": 9.17,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.473
+    },
+    {
+      "time": 9.44,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 9.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 9.71,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 9.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 9.845,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 9.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 9.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 10.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 10.251,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 10.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 10.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 10.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 10.521,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 10.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 10.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 10.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 10.791,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 10.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 11.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 11.197,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 11.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 11.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 11.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 11.602,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 11.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 11.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 11.737,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 11.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 11.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 11.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 12.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 12.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 12.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 12.278,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 12.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 12.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 12.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 12.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 12.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 12.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 12.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 12.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 12.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 12.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 13.089,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 13.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 13.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 13.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 13.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 13.561,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 13.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 13.697,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 13.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 13.832,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 13.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 13.967,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 14.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 14.034,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 14.102,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 14.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 14.237,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 14.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 14.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 14.372,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 14.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 14.507,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 14.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 14.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 14.643,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 14.71,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 14.778,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 14.845,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 14.879,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.169
+    },
+    {
+      "time": 15.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 15.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 15.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 15.183,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 15.251,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 15.318,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 15.386,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 15.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 15.453,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 15.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 15.589,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 15.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 15.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 15.724,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 15.791,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 15.859,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 15.926,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 15.926,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 16.197,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 16.197,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.101
+    },
+    {
+      "time": 16.197,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 16.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 16.366,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 16.399,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 16.512,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 16.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 16.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 16.771,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 16.805,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 16.839,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 16.94,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 16.974,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.236
+    },
+    {
+      "time": 17.007,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.271
+    },
+    {
+      "time": 17.041,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.237
+    },
+    {
+      "time": 17.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 17.278,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 17.345,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 17.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 17.48,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 17.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 17.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 17.616,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 17.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 17.751,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 17.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 17.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 17.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 17.953,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 17.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 18.089,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 18.089,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 18.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 18.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 18.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 18.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 18.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 18.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 18.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 18.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 18.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 18.899,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 18.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 19.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 19.034,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 19.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 19.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 19.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 19.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 19.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 19.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 19.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 19.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 19.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 19.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 19.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 19.845,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 19.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 19.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 20.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 20.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 20.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 20.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 20.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 20.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 20.453,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 20.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 20.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 20.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 20.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 20.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 20.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 20.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 20.926,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 21.061,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 21.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 21.197,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 21.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 21.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 21.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 21.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 21.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 21.602,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.602,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.602,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.67,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 21.872,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.872,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.872,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 21.94,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 22.143,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 22.143,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 22.143,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 22.21,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 22.413,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 22.413,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 22.413,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 22.48,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 22.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 22.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 22.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 22.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 22.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 22.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 22.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 23.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 23.089,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 23.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 23.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 23.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 23.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 23.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 23.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 23.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 23.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 23.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 23.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 23.899,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 23.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 24.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 24.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 24.17,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 24.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 24.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 24.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 24.372,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 24.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 24.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 24.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 24.575,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 24.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 24.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 24.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 24.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 24.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 24.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 25.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 25.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 25.251,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 25.251,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 25.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 25.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 25.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 25.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 25.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 25.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 25.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 25.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 25.926,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.113
+    },
+    {
+      "time": 25.926,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.113
+    },
+    {
+      "time": 26.107,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.112
+    },
+    {
+      "time": 26.107,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.112
+    },
+    {
+      "time": 26.287,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.112
+    },
+    {
+      "time": 26.287,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.112
+    },
+    {
+      "time": 26.467,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 26.467,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.473
+    },
+    {
+      "time": 26.467,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.473
+    },
+    {
+      "time": 26.467,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.54
+    },
+    {
+      "time": 26.737,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 27.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 27.007,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 27.007,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 27.143,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 27.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 27.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 27.278,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 27.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 27.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 27.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 27.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 27.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 27.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 27.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 27.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 27.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 27.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 28.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 28.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 28.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 28.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 28.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 28.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 28.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 28.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 28.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 28.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 28.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 28.764,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 28.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 28.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 29.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 29.034,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 29.102,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 29.17,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 29.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 29.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 29.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 29.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 29.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 29.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 29.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 29.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 29.71,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 29.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 29.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 29.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 29.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 30.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 30.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 30.251,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 30.251,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 30.251,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 30.318,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 30.521,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.521,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.521,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.589,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 30.791,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.791,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.791,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 30.859,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 31.061,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 31.061,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 31.061,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 31.129,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 31.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 31.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 31.332,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 31.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 31.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 31.602,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 31.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 31.737,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 31.737,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 31.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 31.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 32.007,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 32.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 32.143,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 32.143,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 32.278,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 32.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 32.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 32.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 32.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 32.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 32.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 32.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 32.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 32.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 32.953,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 32.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 33.021,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 33.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 33.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 33.156,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 33.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 33.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 33.291,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 33.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 33.359,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 33.426,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 33.494,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.54
+    },
+    {
+      "time": 33.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 33.629,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 33.764,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 33.899,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 34.034,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 34.17,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 34.305,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 34.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 34.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 34.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 34.643,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 34.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 34.778,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 34.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 34.913,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 34.98,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 34.98,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 35.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 35.251,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.338
+    },
+    {
+      "time": 35.251,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.338
+    },
+    {
+      "time": 35.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 35.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 35.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 35.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 35.701,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 35.746,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 35.859,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 35.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 36.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 36.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 36.264,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 36.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 36.399,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 36.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 36.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 36.534,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 36.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 36.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 36.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 36.782,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 36.827,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 37.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 37.052,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 37.098,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 37.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 37.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 37.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 37.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 37.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 37.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 37.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 37.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 37.863,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 37.908,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 38.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 38.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 38.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 38.404,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 38.449,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 38.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 38.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 38.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 38.697,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 38.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 38.764,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 38.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 38.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 38.989,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 39.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 39.08,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 39.17,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 39.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 39.237,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 39.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 39.372,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 39.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 39.507,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.338
+    },
+    {
+      "time": 39.575,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 39.71,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 39.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 39.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 39.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 40.048,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 40.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 40.149,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 40.183,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 40.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 40.318,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 40.386,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 40.453,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 40.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 40.555,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 40.589,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 40.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 40.724,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 40.791,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 40.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 40.859,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 40.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 40.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 41.061,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 41.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 41.107,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 41.152,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 41.332,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 41.377,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 41.422,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 41.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 41.602,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 41.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 41.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 41.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 41.917,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 41.962,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 42.143,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 42.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 42.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 42.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 42.616,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 42.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 42.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 42.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 42.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 43.021,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 43.156,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 43.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 43.291,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 43.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.426,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 43.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 43.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 43.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 43.697,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 43.764,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 43.832,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 43.899,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 43.967,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 44.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 44.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 44.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 44.372,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 44.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 44.507,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 44.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 44.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 44.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 44.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 44.845,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 44.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 45.048,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 45.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 45.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 45.251,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 45.318,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 45.386,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 45.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 45.453,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 45.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 45.589,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 45.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 45.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 45.791,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 45.859,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 45.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 45.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 46.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 46.129,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 46.197,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 46.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 46.332,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 46.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 46.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 46.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 46.534,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 46.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 46.67,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 46.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 46.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 46.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 47.007,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 47.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 47.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 47.21,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 47.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 47.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 47.345,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 47.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 47.48,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 47.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 47.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 47.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 47.751,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 47.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 47.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 47.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 48.021,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 48.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 48.089,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 48.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 48.291,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 48.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 48.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 48.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 48.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 48.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 48.629,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 48.697,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 48.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 48.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 48.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 48.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 49.034,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 49.17,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 49.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 49.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 49.372,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 49.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 49.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 49.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 49.643,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 49.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 49.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 49.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 49.913,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 49.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 49.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 50.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 50.183,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 50.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 50.251,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 50.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 50.453,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 50.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 50.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 50.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 50.791,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 50.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 50.825,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 50.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 50.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 51.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 51.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 51.197,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 51.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 51.332,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 51.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 51.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 51.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 51.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 51.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 51.737,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 51.737,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 51.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 51.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 52.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 52.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 52.075,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 52.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 52.21,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 52.278,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 52.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 52.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 52.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 52.48,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 52.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 52.616,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 52.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 52.751,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 52.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 52.886,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 52.953,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 52.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 53.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 54.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 54.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 54.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 54.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 55.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 55.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 56.197,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 56.197,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 56.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 56.737,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 57.007,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 57.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 57.278,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 57.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 57.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 58.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 58.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 58.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 58.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 59.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 59.44,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 59.44,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 1.621
+    },
+    {
+      "time": 60.521,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 60.791,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 61.061,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 61.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 61.129,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 61.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 61.264,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 61.332,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 61.399,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 61.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 61.534,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 61.602,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 61.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 61.737,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 61.872,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 62.007,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 62.143,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 62.278,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 62.413,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 62.548,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 62.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 62.773,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 62.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 62.863,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 62.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 62.953,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.744
+    },
+    {
+      "time": 63.494,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 63.697,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 63.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 63.764,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 63.899,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.034,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 64.17,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.305,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.44,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.575,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.71,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 64.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 64.935,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 64.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 65.025,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 65.116,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.743
+    },
+    {
+      "time": 65.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 65.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.473
+    },
+    {
+      "time": 65.656,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 65.926,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.406
+    },
+    {
+      "time": 65.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 65.926,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 65.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 66.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 66.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 66.467,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 66.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 67.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 67.007,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.406
+    },
+    {
+      "time": 67.007,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 67.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 67.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 67.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 67.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 67.548,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 68.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 68.089,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 68.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 68.089,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 68.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 68.359,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 68.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 68.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 68.629,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 68.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 68.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 68.899,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 69.17,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 69.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 69.17,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 69.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 69.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 69.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 69.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 69.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 69.744,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 69.778,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 69.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 69.913,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 69.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 69.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 70.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 70.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 70.251,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 2.162
+    },
+    {
+      "time": 70.251,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 70.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 70.521,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 70.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 70.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 70.791,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 71.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 71.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 71.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 71.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 71.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 71.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 71.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 71.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 72.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 72.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 72.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 72.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 72.413,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 1.621
+    },
+    {
+      "time": 72.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 72.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 72.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 72.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 73.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 73.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 73.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 73.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 73.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 73.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 73.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 74.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 74.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 74.102,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 74.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 74.237,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 74.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 74.372,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 74.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 74.507,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 74.575,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 74.575,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 74.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 74.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 74.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 75.116,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 75.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 75.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 75.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 75.656,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 75.724,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 75.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 75.859,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 75.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 75.994,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 76.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 76.129,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 76.197,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 76.264,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 76.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 76.399,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 76.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 76.534,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 76.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 76.67,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 76.737,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 76.737,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 76.805,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 76.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 76.94,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 77.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 77.075,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 77.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 77.21,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 77.278,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 77.278,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 77.345,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 77.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 77.48,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 77.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 77.616,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 77.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 77.751,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 77.818,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 77.818,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 77.886,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 77.953,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 78.021,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 78.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 78.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 78.156,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 78.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 78.291,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 78.359,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 78.359,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 78.426,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 78.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 78.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 78.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 78.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 78.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 78.697,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 78.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 78.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 78.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 78.899,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.541
+    },
+    {
+      "time": 78.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 79.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 79.237,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 79.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 79.372,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 79.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 79.507,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 79.575,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 79.643,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 79.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 79.778,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 79.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 79.913,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 79.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 80.048,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 80.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 80.183,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 80.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 80.318,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 80.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 80.453,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 80.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 80.589,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 80.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 80.724,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 80.791,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 81.061,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 81.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 81.129,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 81.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 81.264,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 81.332,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 81.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 81.399,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 81.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 81.534,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 81.602,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 81.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 81.67,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 81.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 81.805,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 81.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 81.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 81.94,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 82.007,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 82.075,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 82.143,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 82.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 82.21,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 82.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 82.345,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 82.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 82.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 82.48,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 82.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 82.616,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 82.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 82.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 82.751,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 82.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 82.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 82.953,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 82.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 83.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 83.156,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 83.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 83.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 83.291,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 83.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 83.426,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 83.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 83.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 83.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 83.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 83.697,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 83.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 83.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 83.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 83.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 83.967,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 84.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 84.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 84.102,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 84.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 84.237,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 84.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 84.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 84.372,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 84.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 84.507,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 84.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 84.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 84.643,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 84.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 84.778,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 84.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 84.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 84.913,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 84.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 85.048,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 85.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 85.183,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 85.251,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.386,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 85.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.453,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 85.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 85.589,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 85.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 85.724,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 85.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.859,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 85.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 85.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 85.994,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 86.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 86.129,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 86.197,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 86.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 86.264,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 86.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 86.399,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 86.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 86.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 86.534,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 86.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 86.67,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 86.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 86.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 86.805,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 86.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 86.94,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 87.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 87.007,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 87.143,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 87.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 87.278,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 87.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 87.345,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 87.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 87.48,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 87.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 87.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 87.616,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 87.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 87.751,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 87.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 87.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 87.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 88.021,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 88.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 88.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 88.156,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 88.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 88.291,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 88.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 88.426,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 88.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 88.561,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 88.629,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 88.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 88.697,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 88.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 88.832,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 88.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 88.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 89.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 89.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 89.102,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 89.17,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 89.237,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 89.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 89.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 89.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 89.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 89.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 89.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 89.71,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 89.71,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 89.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 89.778,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 89.845,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 89.913,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 89.98,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.048,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.116,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.183,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.251,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.318,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.386,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.453,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.521,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.589,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.656,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.724,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.791,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 90.791,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.859,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 90.926,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 90.994,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.061,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.061,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 91.129,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.197,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.264,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.332,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 91.332,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.399,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.467,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.534,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.602,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.602,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 91.67,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.737,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.737,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.805,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 91.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 91.872,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 91.94,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.007,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.075,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.143,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.21,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.278,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.345,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.413,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.48,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.548,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.616,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.683,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.751,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.818,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 92.886,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 92.953,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 92.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 93.021,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 93.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 93.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 93.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 93.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 93.291,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 93.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 93.359,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 93.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 93.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 93.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 93.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 93.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 93.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 93.764,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 93.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 93.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 93.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 94.034,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.034,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.102,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.17,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.237,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.305,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.372,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.44,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.507,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.575,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.575,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 94.643,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.71,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.778,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.845,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 94.845,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 94.913,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 94.98,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 95.048,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 95.116,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 95.116,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 95.251,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 95.251,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 95.386,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 95.386,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 95.521,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 95.521,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 95.656,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 95.656,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 95.791,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 95.791,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 95.926,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 95.926,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 96.061,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 96.061,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 96.197,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 96.197,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 96.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 96.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 96.602,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 96.602,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 96.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 96.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 97.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 97.007,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.181
+    },
+    {
+      "time": 97.098,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 97.188,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.09
+    },
+    {
+      "time": 97.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 97.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 97.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 97.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 97.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 97.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 97.683,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.608
+    },
+    {
+      "time": 97.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 97.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 97.953,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.338
+    },
+    {
+      "time": 98.089,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 98.359,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 98.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 98.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 98.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 98.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 98.629,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 98.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 98.832,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 98.899,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 99.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 99.102,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 99.17,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 99.305,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 99.44,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 99.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 99.643,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 99.71,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 99.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 99.913,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 99.98,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 100.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 100.183,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 100.251,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 100.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 100.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 100.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 100.521,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 100.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 100.724,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 100.791,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 100.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 100.994,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 101.061,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 101.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 101.264,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 101.332,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 101.467,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 101.602,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 101.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 101.805,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 101.872,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 102.007,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 102.075,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 102.143,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 102.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 102.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 102.345,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 102.413,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 102.413,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 102.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 102.616,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 102.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 102.683,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 102.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 102.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 102.953,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 103.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 103.156,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 103.224,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 103.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 103.426,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 103.494,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 103.629,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 103.764,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 103.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 103.967,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 104.034,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 104.17,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 104.237,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 104.305,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 104.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 104.507,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 104.575,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 104.575,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 104.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 104.778,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 104.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 104.845,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 104.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 105.048,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 105.116,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 105.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 105.318,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 105.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 105.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 105.589,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 105.656,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 105.791,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 105.859,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 105.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 105.926,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 106.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 106.197,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 106.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 106.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 106.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 106.512,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 106.557,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 106.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 106.67,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 106.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 106.805,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 106.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 106.94,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 107.007,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 107.007,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 107.21,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 107.21,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 107.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 107.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 107.48,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 107.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 107.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 107.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 107.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 107.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 107.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 107.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 107.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 108.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 108.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 108.179,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 108.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 108.269,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 108.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 108.449,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 108.494,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 108.539,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 108.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 108.697,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 108.73,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 108.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 108.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 108.933,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 109.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 109.102,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 109.17,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 109.17,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 109.372,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 109.372,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 109.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 109.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 109.643,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 109.71,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 109.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 109.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 109.845,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 109.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 109.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 110.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 110.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 110.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 110.251,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 110.341,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 110.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 110.431,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 110.566,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 110.701,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 110.836,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 110.881,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 110.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 111.061,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 111.107,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 111.152,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 111.197,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 111.242,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 111.287,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 111.332,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 2.162
+    },
+    {
+      "time": 111.332,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 111.332,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 111.602,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 111.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 111.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 111.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 112.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 112.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 112.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 112.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 112.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 112.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 112.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 112.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 113.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 113.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 113.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 113.359,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 113.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 113.494,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 1.622
+    },
+    {
+      "time": 113.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 113.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 114.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 114.034,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 114.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 114.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 114.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 114.575,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 114.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 114.845,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 114.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 114.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 115.116,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 115.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 115.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 115.386,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 115.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 115.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 115.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 115.724,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 115.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 115.859,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 115.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 115.994,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 116.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 116.129,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 116.197,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 116.264,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 116.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 116.399,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 116.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 116.534,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 116.602,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 116.67,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 116.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 116.737,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 116.805,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 116.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 116.94,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 117.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 117.075,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 117.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 117.21,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 117.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 117.345,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 117.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 117.48,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 117.548,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 117.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 117.818,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 117.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 117.886,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 117.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 118.021,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 118.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 118.089,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 118.156,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 118.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 118.291,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 118.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 118.359,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 118.426,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 118.494,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 118.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 118.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 118.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 118.697,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 118.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 118.832,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 118.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 118.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 118.967,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 119.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 119.102,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 119.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 119.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 119.237,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 119.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 119.372,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 119.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 119.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 119.507,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 119.575,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 119.643,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 119.71,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 119.71,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 119.778,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 119.845,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.068
+    },
+    {
+      "time": 119.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 119.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 119.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 120.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 120.341,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 120.431,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 120.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 120.611,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 120.701,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 120.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 120.881,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 120.971,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 121.061,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.091
+    },
+    {
+      "time": 121.152,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.09
+    },
+    {
+      "time": 121.242,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.09
+    },
+    {
+      "time": 121.332,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 121.422,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 121.512,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 121.602,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 121.692,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.451
+    },
+    {
+      "time": 121.782,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 121.872,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.18
+    },
+    {
+      "time": 121.962,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.09
+    },
+    {
+      "time": 122.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 122.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 122.21,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 122.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 122.345,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 122.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 122.413,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 122.48,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 122.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 122.616,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 122.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 122.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 122.751,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 122.818,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 122.886,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 122.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 122.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 123.021,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 123.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 123.156,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 123.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 123.224,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 1.013
+    },
+    {
+      "time": 123.764,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.473
+    },
+    {
+      "time": 124.034,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 124.305,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 124.305,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 124.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 124.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 124.507,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 124.575,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 124.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 124.778,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 124.845,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 124.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 125.048,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 125.116,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 125.251,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.067
+    },
+    {
+      "time": 125.386,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 125.386,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 125.386,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 125.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 125.656,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 125.656,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 125.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 125.791,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 125.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 125.926,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 125.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 126.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 126.197,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 126.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 126.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 126.332,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 126.467,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 126.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 126.467,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 126.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 126.737,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 126.805,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 126.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 127.007,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 127.007,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 127.143,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 127.143,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 127.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 127.278,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 127.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 127.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 127.548,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 127.548,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 127.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 127.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 127.751,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 127.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 127.818,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 127.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 127.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 128.089,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 128.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 128.224,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 128.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 128.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 128.359,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 128.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 128.561,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 128.629,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 128.629,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 128.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 128.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 128.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 128.899,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 128.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 129.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 129.034,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 129.17,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 129.17,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 129.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 129.305,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 129.44,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 129.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 129.575,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 129.575,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 129.71,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 129.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 129.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 129.845,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 129.98,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 129.98,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 130.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 130.116,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 130.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 130.251,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 130.318,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 130.386,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 130.521,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 130.521,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 130.589,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 130.656,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 130.791,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 130.791,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 130.791,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 130.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 130.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 131.061,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 131.061,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 131.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 131.197,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 131.332,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 131.332,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 131.467,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 131.467,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 131.602,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 131.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 131.737,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 131.737,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 131.872,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 131.872,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 131.872,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 132.007,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 132.143,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 132.143,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 132.278,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 132.413,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 132.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 132.548,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 132.548,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 132.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 132.683,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 132.818,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 132.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 132.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 132.953,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 132.953,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 133.089,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 133.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 133.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 133.224,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 133.359,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 133.359,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 133.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 133.494,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 133.629,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 133.629,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 133.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 133.764,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 133.899,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 133.899,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 134.034,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 134.034,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 134.17,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 134.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 134.305,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 134.305,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 134.44,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 134.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 134.575,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 134.71,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 134.778,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 134.845,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 134.98,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 135.116,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 135.116,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 135.116,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 135.251,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 135.251,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 135.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 135.386,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 135.521,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 135.521,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 135.656,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 135.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 135.791,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 135.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 135.926,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 135.926,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 136.061,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 136.061,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 136.197,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 136.197,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 136.332,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 136.332,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 136.399,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 136.467,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 136.467,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 136.602,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 136.602,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 136.737,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 136.737,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 136.872,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 136.872,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 137.007,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 137.007,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 137.143,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 137.278,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 137.278,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 137.278,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 137.345,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 137.413,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 137.548,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 137.548,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 137.683,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 137.683,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 137.818,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 137.818,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 137.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 137.953,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 138.089,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 138.089,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 138.224,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 138.224,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 138.291,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 138.359,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 138.359,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 138.494,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 138.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 138.629,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 138.629,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 138.764,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 138.764,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 138.899,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 138.899,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 138.967,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 139.034,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 139.17,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 139.17,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 139.237,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 139.305,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 139.44,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 139.44,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 139.44,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 139.575,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 139.71,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 139.71,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 139.845,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 139.98,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 139.98,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 139.98,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 140.116,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 140.251,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 140.251,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 140.386,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 140.521,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 140.656,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 140.724,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 140.791,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 140.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 140.994,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 141.061,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.541
+    },
+    {
+      "time": 141.197,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.405
+    },
+    {
+      "time": 141.332,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.27
+    },
+    {
+      "time": 141.467,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 142.683,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 142.683,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 142.953,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 143.224,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 143.494,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 143.764,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 143.798,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 143.832,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 144.845,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 144.845,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 145.656,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 145.791,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 145.926,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.144
+    },
+    {
+      "time": 145.926,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 146.502,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 1.299
+    },
+    {
+      "time": 147.079,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.145
+    },
+    {
+      "time": 147.079,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 2.879
+    },
+    {
+      "time": 147.656,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 2.302
+    },
+    {
+      "time": 147.656,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.145
+    },
+    {
+      "time": 148.233,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 3.556
+    },
+    {
+      "time": 150.033,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 1.756
+    },
+    {
+      "time": 150.033,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 1.756
+    },
+    {
+      "time": 150.911,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.878
+    },
+    {
+      "time": 152.081,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 152.081,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 152.148,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 152.216,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 152.216,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 152.351,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 152.486,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 152.486,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 152.553,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 152.621,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 152.621,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 152.689,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 152.756,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 152.756,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 152.891,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 153.026,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 153.026,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 153.094,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 153.162,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 153.162,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 153.229,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 153.297,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 153.297,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 153.432,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 153.567,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 153.567,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 153.702,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 153.702,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 153.837,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 153.837,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 153.972,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.271
+    },
+    {
+      "time": 153.972,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 154.108,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 154.108,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 154.243,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 154.243,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 154.31,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 154.378,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 154.378,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 154.513,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 154.648,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 154.648,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 154.716,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 154.783,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 154.783,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 154.851,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 154.918,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 154.918,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 155.053,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.136
+    },
+    {
+      "time": 155.189,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 155.189,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 155.256,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 155.324,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 155.324,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 155.391,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 155.459,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 155.459,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 155.594,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.135
+    },
+    {
+      "time": 155.729,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 155.729,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 155.864,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 155.864,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 155.954,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 155.954,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 156.044,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 156.044,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 156.135,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 156.135,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 156.225,
+      "track": 0,
+      "type": 0
+    },
+    {
+      "time": 156.225,
+      "track": 1,
+      "type": 0
+    },
+    {
+      "time": 156.315,
+      "track": 2,
+      "type": 0
+    },
+    {
+      "time": 156.315,
+      "track": 3,
+      "type": 0
+    },
+    {
+      "time": 156.405,
+      "track": 0,
+      "type": 1,
+      "holdDuration": 0.54
+    },
+    {
+      "time": 156.54,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 156.608,
+      "track": 2,
+      "type": 1,
+      "holdDuration": 0.202
+    },
+    {
+      "time": 156.675,
+      "track": 3,
+      "type": 1,
+      "holdDuration": 0.203
+    },
+    {
+      "time": 156.81,
+      "track": 1,
+      "type": 1,
+      "holdDuration": 0.135
+    }
+  ]
+}
