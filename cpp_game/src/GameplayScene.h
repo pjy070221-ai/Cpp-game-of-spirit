@@ -137,6 +137,9 @@ private:
 
     int m_lastHitTrack = 0; // 粒子发射轨道（用于特效定位）
     sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
+    sf::Texture m_bgTexture;           // 背景图纹理
+    std::optional<sf::Sprite> m_bgSprite;  // 背景图精灵（SFML 3.1 无默认构造）
+    bool m_hasBackground = false;      // 是否有背景图
     // HUD 文字
     const sf::Font* m_font = nullptr;
     std::optional<sf::Text> m_scoreText;
@@ -156,6 +159,21 @@ private:
     std::unique_ptr<sf::Sound> m_holdSound;
 
     float m_glowIntensity = 0.5f;
+    float m_endDelayTimer = -1.0f;   // 结算延迟计时器（-1=未启动，>=0=倒计时中）
+    float m_laneShakeBurst = 0.0f;   // LaneShift 爆发强度（自衰减，0=无）
+    bool  m_wasLaneShiftActive = false;  // 上一帧 LaneShift 激活状态（边沿检测）
+    float m_laneShakeDirection = 1.0f;   // 当前爆发方向（+1 右，-1 左，交替）
+
+    // 钟声脉冲（57-58.5s 三声钟声）
+    float m_bellTollAlpha = 0.0f;
+
+    // 演出字幕（117s "Tell me, what scares you."）
+    bool  m_cineActive = false;
+    float m_cineTimer = 0.0f;
+    int   m_cineWordIdx = 0;
+    float m_cineDarkAlpha = 0.0f;
+    std::vector<sf::String> m_cineWords;
+    std::optional<sf::Text> m_cineText;
 };
 
 

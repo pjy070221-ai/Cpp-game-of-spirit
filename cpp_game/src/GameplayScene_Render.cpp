@@ -8,28 +8,50 @@ float GameplayScene::getTrackCenterX(int track) const {
 }
 
 void GameplayScene::render(sf::RenderTarget& target) {
-    // 屏幕震动异象效果
+    // 异象：ScreenShake（全屏抖动）+ LaneShift（轨道横向抖动），可叠加
     sf::View originalView = target.getView();
-    if (m_anomalySystem.isActive(AnomalyType::ScreenShake)) {
-        float intensity = m_anomalySystem.getIntensity(AnomalyType::ScreenShake);
+    float totalOx = 0.0f, totalOy = 0.0f;
+    {
         static std::mt19937 rng(std::random_device{}());
-        float ms = 8.0f * intensity;
-        float ox = std::uniform_real_distribution<float>(-ms, ms)(rng);
-        float oy = std::uniform_real_distribution<float>(-ms, ms)(rng);
-        sf::View shaken = originalView;
-        shaken.move({ox, oy});
-        target.setView(shaken);
+        if (m_anomalySystem.isActive(AnomalyType::ScreenShake)) {
+            float intensity = m_anomalySystem.getIntensity(AnomalyType::ScreenShake);
+            float ms = 5.0f * intensity;  // 较轻的屏幕抖动
+            totalOx += std::uniform_real_distribution<float>(-ms, ms)(rng);
+            totalOy += std::uniform_real_distribution<float>(-ms, ms)(rng);
+        }
+        if (m_laneShakeBurst > 0.001f) {
+            // 定向脉冲：先 slam 到一侧，再 ease-out 衰减回中
+            float dir = m_laneShakeDirection;  // +1 右 / -1 左
+            float offset = dir * 60.0f * m_laneShakeBurst * m_laneShakeBurst;  // ease-out 二次衰减
+            totalOx += offset;
+        }
+    }
+    if (totalOx != 0.0f || totalOy != 0.0f) {
+        sf::View shifted = originalView;
+        shifted.move({totalOx, totalOy});
+        target.setView(shifted);
     }
 
-    // 背景脉冲呼吸效果
-    float glow = m_glowIntensity * 30.0f;
-    sf::Color topColor((int)(10 + glow * 0.3f), (int)(5 + glow * 0.2f), (int)(20 + glow * 0.5f));
-    sf::Color botColor((int)(20 + glow * 0.5f), (int)(10 + glow * 0.3f), (int)(40 + glow));
-    m_bgGradient[0].color = topColor;
-    m_bgGradient[1].color = topColor;
-    m_bgGradient[2].color = botColor;
-    m_bgGradient[3].color = botColor;
-    target.draw(m_bgGradient);
+    // 背景图（如有，替换渐变背景）
+    if (m_hasBackground && m_bgSprite.has_value()) {
+        target.draw(*m_bgSprite);
+        // 暗色遮罩压暗背景，保持氛围
+        sf::RectangleShape bgOverlay({m_screenWidth, m_screenHeight});
+        bgOverlay.setFillColor(sf::Color(0, 0, 0, 100));
+        target.draw(bgOverlay);
+    }
+
+    // 背景脉冲呼吸效果（无背景图时使用）
+    if (!m_hasBackground) {
+        float glow = m_glowIntensity * 30.0f;
+        sf::Color topColor((int)(10 + glow * 0.3f), (int)(5 + glow * 0.2f), (int)(20 + glow * 0.5f));
+        sf::Color botColor((int)(20 + glow * 0.5f), (int)(10 + glow * 0.3f), (int)(40 + glow));
+        m_bgGradient[0].color = topColor;
+        m_bgGradient[1].color = topColor;
+        m_bgGradient[2].color = botColor;
+        m_bgGradient[3].color = botColor;
+        target.draw(m_bgGradient);
+    }
 
     // 轨道霓虹配色
     static const sf::Color neonColors[4] = {
@@ -189,9 +211,10 @@ void GameplayScene::render(sf::RenderTarget& target) {
         m_judgmentText->setOrigin({m_judgmentText->getLocalBounds().size.x / 2.0f, 0.0f});
         target.draw(*m_judgmentText);
     }
+    // 歌名 & 作者 — 右上角 AUTO PLAY 正下方
     if (m_songTitleText.has_value()) {
-        m_songTitleText->setPosition({640.0f, 680.0f});
-        m_songTitleText->setOrigin({m_songTitleText->getLocalBounds().size.x / 2.0f, 0.0f});
+        m_songTitleText->setPosition({m_screenWidth - 20.0f, 45.0f});
+        m_songTitleText->setOrigin({m_songTitleText->getLocalBounds().size.x, 0.0f});  // 右对齐
         target.draw(*m_songTitleText);
     }
 
@@ -222,6 +245,21 @@ void GameplayScene::render(sf::RenderTarget& target) {
         autoText.setFillColor(sf::Color(255, 200, 50, 200));
         autoText.setPosition({m_screenWidth - 180.0f, 10.0f});
         target.draw(autoText);
+    }
+
+    // 钟声暗色脉冲
+    if (m_bellTollAlpha > 1.0f) {
+        sf::RectangleShape bellOverlay({m_screenWidth, m_screenHeight});
+        bellOverlay.setFillColor(sf::Color(0, 0, 0, (uint8_t)m_bellTollAlpha));
+        target.draw(bellOverlay);
+    }
+
+    // 演出字幕：暗色遮罩 + 逐词文字
+    if (m_cineActive && m_cineDarkAlpha > 1.0f) {
+        sf::RectangleShape cineOverlay({m_screenWidth, m_screenHeight});
+        cineOverlay.setFillColor(sf::Color(0, 0, 0, (uint8_t)m_cineDarkAlpha));
+        target.draw(cineOverlay);
+        if (m_cineText.has_value()) target.draw(*m_cineText);
     }
 
     // 恢复视图 + 闪光异象遮罩

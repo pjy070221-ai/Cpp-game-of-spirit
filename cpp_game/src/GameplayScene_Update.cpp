@@ -52,6 +52,15 @@ void GameplayScene::update(float dt) {
         return;
     }
 
+    // ======== 结算延迟：等待 2 秒后再切换到结算界面 ========
+    if (m_endDelayTimer > 0.0f) {
+        m_endDelayTimer -= dt;
+        if (m_endDelayTimer <= 0.0f) {
+            endGame();
+            return;
+        }
+    }
+
     if (!m_isPlaying || m_songFinished) return;
 
     m_pulseTime += dt;
@@ -69,6 +78,85 @@ void GameplayScene::update(float dt) {
     // 异象系统更新
     m_anomalySystem.update(currentTime, dt);
 
+    // LaneShift 定向脉冲：事件激活边沿触发，方向交替，强度自衰减
+    bool laneShiftActive = m_anomalySystem.isActive(AnomalyType::LaneShift);
+    if (laneShiftActive && !m_wasLaneShiftActive) {
+        m_laneShakeBurst = 1.0f;           // 新爆发
+        m_laneShakeDirection *= -1.0f;     // 方向交替
+    }
+    m_wasLaneShiftActive = laneShiftActive;
+    if (m_laneShakeBurst > 0.0f) {
+        m_laneShakeBurst = std::max(0.0f, m_laneShakeBurst - dt * 4.0f);  // ~0.25s 衰减
+    }
+
+    // ======== 钟声脉冲（57-58.5s 三声钟声 + 玻璃碎裂）========
+    {
+        static const float bellTimes[] = {57.0f, 57.65f, 58.3f};
+        for (float bt : bellTimes) {
+            float dist = currentTime - bt;
+            if (dist >= 0.0f && dist < 0.3f) {
+                // 钟声：快速暗色脉冲，ease-out 衰减
+                float p = 1.0f - dist / 0.3f;
+                float alpha = 140.0f * p * p;  // quadratic ease-out
+                if (alpha > m_bellTollAlpha) m_bellTollAlpha = alpha;
+            }
+        }
+        if (m_bellTollAlpha > 0.0f)
+            m_bellTollAlpha = std::max(0.0f, m_bellTollAlpha - dt * 500.0f);  // 快速衰减
+    }
+
+    // ======== 演出字幕（117s "Tell me, what scares you."）========
+    if (!m_cineActive && currentTime >= 117.0f && currentTime < 120.0f && m_font) {
+        m_cineActive = true;
+        m_cineTimer = 0.0f;
+        m_cineWordIdx = 0;
+        m_cineDarkAlpha = 0.0f;
+        m_cineWords = {L"Tell", L"me,", L"what", L"scares", L"you."};
+        m_cineText.emplace(*m_font, L"", 52);
+        m_cineText->setFillColor(sf::Color(255, 255, 255, 0));
+        auto b = m_cineText->getLocalBounds();
+        m_cineText->setPosition({640.0f, 80.0f});
+    }
+    if (m_cineActive) {
+        m_cineTimer += dt;
+        float t = m_cineTimer;
+        // 阶段：0→0.8s 渐暗 / 0.8→2.5s 显示文字 / 2.5→3.3s 渐明
+        if (t < 0.8f) {
+            // ease-in 渐暗
+            float p = t / 0.8f;
+            m_cineDarkAlpha = 180.0f * (p * p);  // quadratic ease-in
+        } else if (t < 2.5f) {
+            m_cineDarkAlpha = 180.0f;
+        } else if (t < 3.3f) {
+            // ease-out 渐明
+            float p = (t - 2.5f) / 0.8f;
+            m_cineDarkAlpha = 180.0f * (1.0f - p * p);
+        } else {
+            m_cineActive = false;
+            m_cineDarkAlpha = 0.0f;
+        }
+
+        // 逐词显示：0.8s 后开始，每 0.35s 一个词
+        float wordTime = t - 0.8f;
+        if (wordTime > 0.0f) {
+            int newIdx = std::min((int)m_cineWords.size(), (int)(wordTime / 0.35f));
+            if (newIdx != m_cineWordIdx && newIdx <= (int)m_cineWords.size()) {
+                m_cineWordIdx = newIdx;
+                sf::String full;
+                for (int i = 0; i < m_cineWordIdx; ++i) {
+                    if (i > 0) full += L" ";
+                    full += m_cineWords[i];
+                }
+                if (m_cineText.has_value()) {
+                    m_cineText->setString(full);
+                    auto b = m_cineText->getLocalBounds();
+                    m_cineText->setOrigin({b.size.x / 2.0f, 0.0f});
+                    m_cineText->setFillColor(sf::Color(255, 255, 255, 220));
+                }
+            }
+        }
+    }
+
     // 流速受 NoteSpeedChange 异象影响时动态调整
     float effSpeed = m_noteSpeedPixels;
     if (m_anomalySystem.isActive(AnomalyType::NoteSpeedChange)) {
@@ -80,7 +168,7 @@ void GameplayScene::update(float dt) {
 
     for (auto& nr : m_noteRuntimes) {
         if (nr.active && !nr.processed)
-            nr.y += effSpeed * dt;
+            nr.y = m_judgmentLineY - (nr.targetTime - currentTime) * effSpeed;
     }
 
     for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
@@ -196,8 +284,13 @@ void GameplayScene::update(float dt) {
         return;
     }
 
-    if (m_noteIndex >= (int)m_noteData.size() && allNotesProcessed())
-        endGame();
+    // 所有音符处理完毕 → 启动结算延迟（避免结算界面突然弹出）
+    if (m_noteIndex >= (int)m_noteData.size() && allNotesProcessed()) {
+        if (m_endDelayTimer < 0.0f) {
+            m_endDelayTimer = 2.0f;   // 延迟 2 秒
+            m_isPlaying = false;      // 停止接收输入
+        }
+    }
 }
 
 void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
@@ -209,7 +302,6 @@ void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
            nr.track = src.track;
            nr.targetTime = src.time;
            nr.type = src.type;
-            nr.noteSpeed = effSpeed;
            float timeUntilHit = src.time - currentTime;
             nr.y = m_judgmentLineY - effSpeed * timeUntilHit;
            nr.active = true;

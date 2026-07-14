@@ -24,6 +24,7 @@ struct SongInfo {
     std::string title;
     std::string artist;
     std::string musicFile;
+    std::string background;  // 背景图路径（可选）
     float       bpm = 120.0f;
     float       offset = 0.0f;
     int         trackCount = 4;
@@ -37,7 +38,6 @@ struct NoteRuntime {
     bool  isHeld = false;     // player is holding this hold note
 
     float y = 0.0f;
-    float noteSpeed = 0.0f;
     bool  processed = false;
     bool  active = false;
 };

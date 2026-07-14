@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <ctime>
+#include <unordered_map>
 
 bool BeatmapParser::loadFromFile(const std::string& filePath) {
     std::ifstream file(filePath);
@@ -16,11 +17,13 @@ bool BeatmapParser::loadFromFile(const std::string& filePath) {
     m_songInfo.title     = extractString(json, "title");
     m_songInfo.artist    = extractString(json, "artist");
     m_songInfo.musicFile = extractString(json, "musicFile");
+    m_songInfo.background = extractString(json, "background");
     m_songInfo.bpm       = extractFloat(json, "bpm");
     m_songInfo.offset    = extractFloat(json, "offset");
     m_songInfo.trackCount = extractInt(json, "trackCount");
 
     extractNotes(json);
+    extractAnomalies(json);
 
     m_loaded = !m_notes.empty();
     return true;
@@ -153,6 +156,67 @@ void BeatmapParser::extractNotes(const std::string& json) {
         note.holdDuration = extractFloat(obj, "holdDuration");
 
         m_notes.push_back(note);
+        i = objEnd + 1;
+    }
+}
+
+// ---- 异象解析 ----
+
+AnomalyType BeatmapParser::anomalyTypeFromString(const std::string& s) {
+    static const std::unordered_map<std::string, AnomalyType> map = {
+        {"ScreenShake", AnomalyType::ScreenShake},
+        {"NoteSpeedChange", AnomalyType::NoteSpeedChange},
+        {"LaneShift", AnomalyType::LaneShift},
+        {"ColorInvert", AnomalyType::ColorInvert},
+        {"ChromaticRift", AnomalyType::ChromaticRift},
+        {"Flash", AnomalyType::Flash},
+        {"NoteFreeze", AnomalyType::NoteFreeze},
+        {"Reverse", AnomalyType::Reverse},
+        {"JudgementLineSplit", AnomalyType::JudgementLineSplit},
+        {"PerspectiveShift", AnomalyType::PerspectiveShift},
+    };
+    auto it = map.find(s);
+    return (it != map.end()) ? it->second : AnomalyType::Flash;
+}
+
+void BeatmapParser::extractAnomalies(const std::string& json) {
+    m_anomalies.clear();
+    size_t anomPos = json.find("\"anomalies\"");
+    if (anomPos == std::string::npos) return;
+
+    size_t arrStart = json.find('[', anomPos);
+    if (arrStart == std::string::npos) return;
+
+    // 已知参数键列表（将为每个异象对象尝试提取）
+    static const char* paramKeys[] = {"intensity", "speed", "color_r", "color_g", "color_b", "mode"};
+    static const int paramCount = 6;
+
+    size_t i = arrStart + 1;
+    while (i < json.size()) {
+        i = json.find('{', i);
+        if (i == std::string::npos || i > json.find(']', arrStart)) break;
+
+        size_t objEnd = json.find('}', i);
+        if (objEnd == std::string::npos) break;
+        std::string obj = json.substr(i, objEnd - i + 1);
+
+        AnomalyEvent evt;
+        evt.triggerTime = extractFloat(obj, "triggerTime");
+        evt.duration    = extractFloat(obj, "duration");
+        std::string typeStr = extractString(obj, "type");
+        evt.type = anomalyTypeFromString(typeStr);
+
+        // 提取额外参数
+        for (int k = 0; k < paramCount; ++k) {
+            // 搜索参数键（仅当它在对象中存在时）
+            std::string search = "\"" + std::string(paramKeys[k]) + "\"";
+            if (obj.find(search) != std::string::npos) {
+                float val = extractFloat(obj, paramKeys[k]);
+                evt.params[paramKeys[k]] = val;
+            }
+        }
+
+        m_anomalies.push_back(evt);
         i = objEnd + 1;
     }
 }

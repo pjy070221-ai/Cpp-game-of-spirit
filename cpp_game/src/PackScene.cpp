@@ -1,5 +1,6 @@
 #include "PackScene.h"
 #include "GameplayScene.h"
+#include "MenuScene.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "SettingsData.h"
@@ -68,7 +69,7 @@ void PackScene::handleEvent(const sf::Event& event) {
             activateItem(m_selection);
             return;
         } else if (key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape) {
-            requestPop();
+            requestReplace(std::make_unique<MenuScene>());
             return;
         }
         if (changed) updateSelectionVisuals();

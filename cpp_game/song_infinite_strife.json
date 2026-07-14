@@ -11682,5 +11682,148 @@
       "track": 3,
       "type": 0
     }
-  ]
+  ],
+  "anomalies": [
+    {
+      "triggerTime": 0.0,
+      "duration": 10.0,
+      "type": "ScreenShake"
+    },
+    {
+      "triggerTime": 20.0,
+      "duration": 4.0,
+      "type": "ScreenShake"
+    },
+    {
+      "triggerTime": 58.5,
+      "duration": 0.6,
+      "type": "ScreenShake"
+    },
+    {
+      "triggerTime": 58.5,
+      "duration": 0.3,
+      "type": "Flash"
+    },
+    {
+      "triggerTime": 60.0,
+      "duration": 20.0,
+      "type": "ScreenShake"
+    },
+    {
+      "triggerTime": 100.242,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 100.303,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 101.515,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 102.727,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 103.939,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 104.848,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 104.924,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 105.0,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 105.152,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 105.303,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 105.379,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 105.455,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.364,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.439,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.515,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.591,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.667,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.742,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.818,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 106.894,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 107.576,
+      "duration": 0.5,
+      "type": "LaneShift"
+    },
+    {
+      "triggerTime": 138.0,
+      "duration": 4.0,
+      "type": "ScreenShake"
+    },
+    {
+      "triggerTime": 166.0,
+      "duration": 6.0,
+      "type": "ScreenShake"
+    }
+  ],
+  "background": "assets/infinite_strife_bg.png"
 }
