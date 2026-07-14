@@ -12,6 +12,7 @@ bool GameplayScene::s_retry = false;
 bool GameplayScene::s_randomMode = false;
 bool GameplayScene::s_returnToMenu = false;
 bool GameplayScene::s_giveUp = false;
+bool GameplayScene::s_autoPlay = false;
 
 
 GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
@@ -19,14 +20,14 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // 从 PauseScene 返回主菜单 → 跳过本场景初始化
+    // Return to Menu?
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
         return;
     }
 
-    // 重试标志检测
+    // Retry
     if (s_retry) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
@@ -52,7 +53,7 @@ void GameplayScene::onEnter() {
     
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 重入保护：已初始化则跳过（由静态标志驱动）
+    if (m_initialized) { m_isPlaying = false; return; } // ???
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -65,7 +66,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // 随机模式：将每个音符随机分配到 4 个轨道
+    // ???
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -84,42 +85,36 @@ void GameplayScene::onEnter() {
         m_songTitleText.emplace(m_font, m_songInfo.title, 20);
     }
 
-    // 加载打击音效（失败不阻塞，静默跳过）
-    if (m_tapBuffer.loadFromFile("assets/tap_hit.wav"))
-        m_tapSound = new sf::Sound(m_tapBuffer);
-    if (m_holdBuffer.loadFromFile("assets/hold_hit.wav"))
-        m_holdSound = new sf::Sound(m_holdBuffer);
-
     buildBackground();
     buildTracks();
     buildJudgmentLine();
 
-    // 异象测试事件 — 已禁用
-    // std::vector<AnomalyEvent> testEvents = {
-    //     { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
-    //     { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
-    //     { 9.0f, 5.0f, AnomalyType::NoteSpeedChange, {{"speed", 1.8f}} },
-    //     {16.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 0.2f}, {"color_b", 0.2f}} },
-    //     {20.0f, 2.5f, AnomalyType::ScreenShake,     {{"intensity", 0.6f}} },
-    //     {25.0f, 3.0f, AnomalyType::NoteSpeedChange, {{"speed", 0.4f}} },
-    // };
-    // m_anomalySystem.setEvents(testEvents);
+    // ??.4?
+    std::vector<AnomalyEvent> testEvents = {
+        { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
+        { 6.0f, 2.0f, AnomalyType::ScreenShake,     {{"intensity", 1.0f}} },
+        { 9.0f, 5.0f, AnomalyType::NoteSpeedChange, {{"speed", 1.8f}} },
+        {16.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 0.2f}, {"color_b", 0.2f}} },
+        {20.0f, 2.5f, AnomalyType::ScreenShake,     {{"intensity", 0.6f}} },
+        {25.0f, 3.0f, AnomalyType::NoteSpeedChange, {{"speed", 0.4f}} },
+    };
+    m_anomalySystem.setEvents(testEvents);
 
     m_flashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 由 Countdown 倒计时结束后自动触发播放
+    // startGame(); // ?Countdown ?
     startGame();
 }
 
 void GameplayScene::onExit() {
     m_musicPlayer.stop();
-    delete m_tapSound;   m_tapSound = nullptr;
-    delete m_holdSound;  m_holdSound = nullptr;
 }
 
 void GameplayScene::loadChart(const std::string& filePath) {
+    SettingsData sd;
+    bool isEasy = (sd.getDifficulty() == 0);
     if (!m_beatmapParser.loadFromFile(filePath))
         m_beatmapParser.generateExampleBeatmap(4, 30.0f);
     m_noteData = m_beatmapParser.getNotes();
@@ -128,8 +123,6 @@ void GameplayScene::loadChart(const std::string& filePath) {
     // ?JSON ?
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
-        SettingsData s;
-        m_musicPlayer.setOffset(s.getOffset());
     }
 }
 
@@ -142,25 +135,22 @@ void GameplayScene::startGame() {
     m_activeShapes.clear();
     m_holdBars.clear();
     m_keysHeld[0] = m_keysHeld[1] = m_keysHeld[2] = m_keysHeld[3] = false;
-    m_hp = 999999;
-    m_maxHp = 999999;
     m_simTime = 0.0f;
     m_songFinished = false;
-    // 播放由倒计时处理器触发
-    // m_isPlaying = true;  // 原直接播放，现由倒计时触发
+    // play handled by countdown handler
+    // m_isPlaying = true;
     // m_musicPlayer.play();
 }
 
 void GameplayScene::applySettings() {
     SettingsData sd2;
+    m_autoPlay = sd2.getAutoPlay();
     float speedMult = 1.0f;
     if (sd2.getDifficulty() == 0) speedMult = 0.6f;
     else if (sd2.getDifficulty() == 1) speedMult = 1.25f;
     SettingsData s;
-    m_noteSpeedPixels = 400.0f + s.getNoteSpeed() * 80.0f;  // 流速公式：400 + ns×80（ns=8 时 = 1040px/s）
+    m_noteSpeedPixels = (400.0f + 5.0f * 80.0f) * speedMult;  // 800px/s * speedMult
     m_musicPlayer.setVolume(s.getMasterVolume());
-    m_musicPlayer.setOffset(s.getOffset());
-    m_autoPlay = s.getAutoPlay();
 }
 
 void GameplayScene::buildTracks() {

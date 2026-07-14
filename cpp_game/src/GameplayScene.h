@@ -13,7 +13,7 @@
 #include <memory>
 #include <optional>
 
-// 得分弹出文本
+// score/hit popups
 struct ScorePopup {
     std::optional<sf::Text> text;
     float life = 1.0f;
@@ -41,8 +41,9 @@ public:
     static bool s_retry;        // set by PauseScene/ResultScene restart current song current song
     static bool s_returnToMenu;       // set by PauseScene -> checked in update
     static bool s_giveUp;           // set by PauseScene -> end game immediately
+    static bool s_autoPlay;
         ~GameplayScene() override = default;
-  
+
 
     void onEnter() override;
     void onExit() override;
@@ -51,9 +52,9 @@ public:
     void render(sf::RenderTarget& target) override;
 
     ResultData getResultData() const;
-    
-    // 谱面路径（供外部加载）
-    
+
+    // chart path for external loading
+
 
 private:
     void loadChart(const std::string& filePath);
@@ -67,6 +68,7 @@ private:
     void checkJudgment(int track);
     void onNoteJudged(JudgeResult result);
     void checkHoldRelease(int track);
+    void simplifyNotes();
     void autoMissCheck();
     bool allNotesProcessed() const;
     void endGame();
@@ -74,10 +76,8 @@ private:
     float getTrackCenterX(int track) const;
     void addScorePopup(float x, float y, const std::string& text, const sf::Color& color);
     void addHitRing(float x, float y, const sf::Color& color);
-    void playTapSound();
-    void playHoldSound();
 
-    // 谱面 & 音频
+    // chart & audio
     BeatmapParser m_beatmapParser;
     MusicPlayer   m_musicPlayer;
     std::vector<NoteData> m_noteData;
@@ -85,10 +85,10 @@ private:
     int  m_noteIndex = 0;
     bool m_isPlaying = false;
     bool m_songFinished = false;
-    bool m_initialized = false;   // onEnter() 首次执行后置 true
-    float m_simTime = 0.0f;       // 模拟计时器（音乐未加载时作为后备时间源）
+    bool m_initialized = false;   // true after onEnter() runs once
+    float m_simTime = 0.0f;       // simulation time fallback when music not loaded
 
-    // 倒计时状态（3-2-1 开场）
+    // score/hit popups
     enum class CountdownState { None, Counting, Started };
     CountdownState m_countdownState = CountdownState::None;
     float m_countdownTimer = 3.0f;
@@ -98,27 +98,25 @@ private:
     bool m_countdownShouldStart = false;
     static constexpr float SPAWN_LOOKAHEAD = 3.0f;
 
-    // 运行时音符数据
+    // runtime notes
     std::vector<NoteRuntime> m_noteRuntimes;
-    std::vector<sf::RectangleShape> m_activeShapes;  // 活跃音符图形（与 m_noteRuntimes 同步）
+    std::vector<sf::RectangleShape> m_activeShapes;  // score/hit popups
     std::vector<sf::RectangleShape> m_holdBars;
     bool m_keysHeld[4] = {false, false, false, false};
 
-    // 判定时间窗口（时间判定，非像素距离）
+    // judgment timing windows
     float m_perfectTimeWindow = 0.040f;  // 40ms
     float m_greatTimeWindow   = 0.100f;  // 100ms
-    float m_goodTimeWindow    = 0.200f;  // 200ms
-    float m_missTimeWindow    = 0.400f;  // 自动 Miss 阈值（超出视为漏键）
+    float m_goodTimeWindow    = 0.200f;  // 100ms
+    float m_missTimeWindow    = 0.400f;  // 300ms
     float m_judgmentLineY = 550.0f;
 
-    // 计分系统
+    // scoring
     int m_score = 0, m_combo = 0, m_maxCombo = 0;
     int m_perfectCount = 0, m_greatCount = 0;
     int m_goodCount = 0, m_missCount = 0;
-    int m_hp = 100, m_maxHp = 100;    // HP 血量（归零则歌曲失败）
-    bool m_autoPlay = false;           // 自动演奏模式
 
-    // 轨道布局
+    // track layout
     int   m_trackCount = 4;
     float m_trackWidth = 80.0f;
     float m_trackSpacing = 20.0f;
@@ -126,7 +124,7 @@ private:
     float m_screenHeight = 720.0f;
     float m_noteSpeedPixels = 400.0f;
 
-    // 渲染资源
+    // rendering
     std::vector<sf::RectangleShape> m_tracks;
     sf::RectangleShape m_judgmentLineShape;
     ParticleSystem m_hitFX;
@@ -134,7 +132,6 @@ private:
     std::vector<HitRing> m_hitRings;
     float m_comboFlashTimer = 0.0f;
     sf::RectangleShape m_comboFlashOverlay;
-    
 
     // score milestone effect (every +1000)
     int m_lastScoreMilestone = 0;
@@ -146,6 +143,11 @@ private:
     float m_comboPopScale = 1.0f;
     float m_comboPopTimer = 0.0f;
     sf::Color m_comboPopColor;
+
+    // autoplay
+    bool m_autoPlay = false;
+    sf::Vector2f m_autoPlayNextInput;
+    std::optional<sf::Sound> m_tapHitSound, m_holdHitSound;
 
     // combo milestone effect (every +5)
     int m_lastComboMilestone = 0;
@@ -159,7 +161,7 @@ private:
 
     int m_lastHitTrack = 0; // track for particle emit position
     sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
-    // HUD 文字
+    // HUD
     sf::Font m_font;
     std::optional<sf::Text> m_scoreText;
     std::optional<sf::Text> m_comboText;
@@ -171,11 +173,6 @@ private:
     AnomalySystem m_anomalySystem;
     sf::RectangleShape m_flashOverlay;
 
-    // 打击音效
-    sf::SoundBuffer m_tapBuffer;
-    sf::SoundBuffer m_holdBuffer;
-    sf::Sound* m_tapSound = nullptr;
-    sf::Sound* m_holdSound = nullptr;
 
     float m_glowIntensity = 0.5f;
 };

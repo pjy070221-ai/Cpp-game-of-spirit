@@ -21,12 +21,8 @@ void SettingsData::setMasterVolume(float v) {
     set<float>("masterVolume", v);
 }
 
-float SettingsData::getNoteSpeed() const {
-    return get<float>("noteSpeed", 5.0f);
-}
-void SettingsData::setNoteSpeed(float v) {
-    set<float>("noteSpeed", v);
-}
+
+
 
 bool SettingsData::getFullscreen() const {
     return get<bool>("fullscreen", false);
@@ -35,19 +31,11 @@ void SettingsData::setFullscreen(bool v) {
     set<bool>("fullscreen", v);
 }
 
-int SettingsData::getFpsLimit() const {
-    return get<int>("fpsLimit", 60);
-}
-void SettingsData::setFpsLimit(int v) {
-    set<int>("fpsLimit", v);
-}
 
-float SettingsData::getOffset() const {
-    return get<float>("offset", 0.0f);
-}
-void SettingsData::setOffset(float ms) {
-    set<float>("offset", ms);
-}
+
+
+
+
 
 bool SettingsData::getAutoPlay() const { return get<bool>("autoPlay", false); }
 void SettingsData::setAutoPlay(bool v) { set<bool>("autoPlay", v); }
