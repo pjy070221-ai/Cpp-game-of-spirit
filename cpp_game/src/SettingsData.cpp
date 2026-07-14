@@ -12,7 +12,7 @@ SettingsData::~SettingsData() {
     saveToFile();
 }
 
-// ---- convenience accessors ----
+// ---- 便捷访问器 ----
 
 float SettingsData::getMasterVolume() const {
     return get<float>("masterVolume", 0.8f);
@@ -49,8 +49,11 @@ void SettingsData::setOffset(float ms) {
     set<float>("offset", ms);
 }
 
-// ---- file I/O ----
-// format: key=value  (one per line)
+bool SettingsData::getAutoPlay() const { return get<bool>("autoPlay", false); }
+void SettingsData::setAutoPlay(bool v) { set<bool>("autoPlay", v); }
+
+// ---- 文件读写 ----
+// 格式：key=value（每行一个）
 
 bool SettingsData::loadFromFile() {
     std::ifstream file(m_configFilePath);
@@ -66,14 +69,14 @@ bool SettingsData::loadFromFile() {
 
         if (key.empty()) continue;
 
-        // try int first
+        // 先尝试解析为 int
         try { size_t pos = 0; int iv = std::stoi(val, &pos); if (pos == val.size()) { set<int>(key, iv); continue; } } catch (...) {}
-        // try float
+        // 再尝试解析为 float
         try { size_t pos = 0; float fv = std::stof(val, &pos); if (pos == val.size()) { set<float>(key, fv); continue; } } catch (...) {}
-        // bool
+        // 布尔值
         if (val == "true")  { set<bool>(key, true);  continue; }
         if (val == "false") { set<bool>(key, false); continue; }
-        // string fallback
+        // 都不匹配则作为字符串存储
         set<std::string>(key, val);
     }
     return true;
