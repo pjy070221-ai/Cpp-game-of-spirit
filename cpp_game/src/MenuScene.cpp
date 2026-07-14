@@ -14,14 +14,14 @@ MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
     m_font = *fontPtr;
     m_fontLoaded = true;
 
-    // ── 标题 "指尖振律" ──
+    //
     m_titleText.emplace(m_font, L"\u6307\u5C16\u632F\u5F8B", 72);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
     m_titleText->setPosition({640.0f, 150.0f});
 
-    // ── 浮动光效 ──
+    //
     std::mt19937 rng(12345);
     auto angD = std::uniform_real_distribution<float>(0, 6.2832f);
     auto rxD = std::uniform_real_distribution<float>(30, 200);
@@ -44,7 +44,7 @@ MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
         m_floatLights.push_back(fl);
     }
 
-    // ── 选项 ──
+    //
     for (int i = 0; i < (int)m_items.size(); ++i) {
         sf::Text txt(m_font, m_items[i], 36);
         txt.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color(200, 200, 200));
@@ -54,11 +54,11 @@ MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
         m_itemTexts.push_back(txt);
     }
 
-    // ── 选项发光 ──
+    //
     m_optionGlow.setFillColor(sf::Color(180, 220, 255, 0));
     m_optionGlow2.setFillColor(sf::Color(100, 180, 255, 0));
 
-    // ── 过渡遮罩 ──
+    //
     m_fadeOverlay.setSize({1280, 720});
     m_fadeOverlay.setFillColor(sf::Color(0, 0, 0, 0));
     m_flashOverlay.setSize({1280, 720});
@@ -86,7 +86,7 @@ void MenuScene::startTransition(int targetIndex) {
     m_pendingIndex = targetIndex;
     m_transitioning = true;
     m_fadeTimer = 0.0f;
-    m_flashTimer = 0.0f; // 跳过白色闪光
+    m_flashTimer = 0.0f; // skip white flash
 }
 
 void MenuScene::handleEvent(const sf::Event& event) {
@@ -143,14 +143,14 @@ void MenuScene::updateSelectionVisuals() {
 void MenuScene::update(float dt) {
     m_animTimer += dt;
 
-    // ── 霓虹标题 ──
+    //
     if (m_titleText.has_value()) m_titleText->setFillColor(getNeonColor(m_animTimer));
 
-    // ── 共享过渡衰减 ──
+    //
     if (!m_transitioning && SceneManager::s_transitionAlpha > 0.001f)
         SceneManager::s_transitionAlpha = std::max(0.0f, SceneManager::s_transitionAlpha - dt * 2.5f);
 
-    // ── 浮动光效 ──
+    //
     for (auto& fl : m_floatLights) {
         fl.angle += fl.speed * dt;
         fl.shape.setPosition({
@@ -163,7 +163,7 @@ void MenuScene::update(float dt) {
         fl.shape.setFillColor(c);
     }
 
-    // ── 过渡动画 ──
+    //
     if (m_transitioning) {
         if (m_flashTimer > 0.0f) {
             m_flashTimer -= dt;
@@ -185,13 +185,13 @@ void MenuScene::render(sf::RenderTarget& target) {
     target.clear(sf::Color(10, 5, 20));
     if (!m_fontLoaded) return;
 
-    // 浮动光效
+    // floating lights
     for (auto& fl : m_floatLights) target.draw(fl.shape);
 
-    // 标题
+    // title
     if (m_titleText.has_value()) target.draw(*m_titleText);
 
-    // 选项发光
+    // selection glow
     if (!m_transitioning) {
         const auto& sel = m_itemTexts[m_selection];
         float pulse = 0.5f + 0.5f * std::sin(m_animTimer * 4.0f);
@@ -215,14 +215,14 @@ void MenuScene::render(sf::RenderTarget& target) {
         target.draw(border);
     }
 
-    // 选项文字
+    // menu item text
     for (auto& t : m_itemTexts) target.draw(t);
 
-    // 点击闪光 + 渐黑遮罩
+    // flash + fade overlay
     if (m_flashTimer > 0.0f) target.draw(m_flashOverlay);
     if (m_fadeOverlay.getFillColor().a > 0) target.draw(m_fadeOverlay);
 
-    // 共享过渡遮罩（来自 TitleScene）
+    // shared transition overlay (from TitleScene)
     if (SceneManager::s_transitionAlpha > 0.001f && !m_transitioning) {
         sf::RectangleShape ov({1280, 720});
         ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));

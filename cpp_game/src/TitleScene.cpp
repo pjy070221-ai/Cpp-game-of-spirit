@@ -32,7 +32,7 @@ TitleScene::TitleScene() {
     m_loadFill.setSize({0.0f, 6.0f});
     m_loadFill.setPosition({440.0f, 500.0f});
 
-    // title chars: 指尖振律
+    // title chars: fingertips rhythm
     const wchar_t title[] = L"\u6307\u5C16\u632F\u5F8B";
     float startX = 640.0f - 4 * 40.0f;
     for (int i = 0; i < 4; ++i) {
@@ -64,7 +64,7 @@ TitleScene::TitleScene() {
         m_subChars.push_back(cd);
     }
 
-    // prompt: 按任意键继续
+    // prompt: press any key to continue
     m_promptText.emplace(m_font);
     m_promptText->setString(L"\u6309\u4EFB\u610F\u952E\u7EE7\u7EED");
     m_promptText->setCharacterSize(24);

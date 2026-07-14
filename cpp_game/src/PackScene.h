@@ -19,6 +19,7 @@ public:
 private:
     void activateItem(int index);
     void updateSelectionVisuals();
+    void rebuildItemTexts();
 
     sf::Font m_font;
     bool m_fontLoaded = false;

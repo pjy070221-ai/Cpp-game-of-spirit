@@ -31,7 +31,7 @@ private:
     std::vector<sf::Text> m_itemTexts;
     float m_animTimer = 0.0f;
 
-    // 浮动光效
+    //
     struct FloatLight {
         sf::CircleShape shape;
         float angle, orbitRadiusX, orbitRadiusY, speed;
@@ -39,10 +39,10 @@ private:
     std::vector<FloatLight> m_floatLights;
     float m_titleCenterX = 640.0f, m_titleCenterY = 150.0f;
 
-    // 选项发光
+    //
     sf::RectangleShape m_optionGlow, m_optionGlow2;
 
-    // 过渡
+    //
     bool m_transitioning = false;
     float m_fadeTimer = 0.0f, m_flashTimer = 0.0f;
     int m_pendingIndex = -1;

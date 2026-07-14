@@ -54,7 +54,7 @@ void HoldRenderer::initVisual(HoldNoteVisual& v) {
 void HoldRenderer::update(float currentMusicTime) {
     float dt = currentMusicTime - m_lastMusicTime;
     m_lastMusicTime = currentMusicTime;
-    // 激活新音符
+    //
     while (m_nextIdx < m_notes.size() &&
            currentMusicTime >= m_notes[m_nextIdx].startTime - LEAD)
         m_notes[m_nextIdx++].isAlive = true;

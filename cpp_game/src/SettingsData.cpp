@@ -96,3 +96,10 @@ bool SettingsData::saveToFile() const {
     }
     return true;
 }
+
+int SettingsData::getDifficulty() const { return get<int>("difficulty", 1); }
+void SettingsData::setDifficulty(int v) { set<int>("difficulty", v); }
+
+void SettingsData::save() {
+    saveToFile();
+}
