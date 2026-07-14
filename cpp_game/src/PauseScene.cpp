@@ -17,7 +17,7 @@ PauseScene::PauseScene() {
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
     m_titleText->setPosition({640.0f, 200.0f});
 
-    for (auto& s : {"Continue", "Retry", "Return to Menu"}) {
+    for (auto& s : {"Continue", "Retry", "Give Up", "Return to Menu"}) {
         sf::Text txt(m_font, s, 36);
         txt.setFillColor(m_itemTexts.empty() ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto ib = txt.getLocalBounds();
@@ -36,12 +36,12 @@ void PauseScene::handleEvent(const sf::Event& event) {
     //
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
-            m_selection = (m_selection + 1) % 3;
+            m_selection = (m_selection - 1 + 4) % 4;
             updateSelectionVisuals();
             return;
         }
         if (key->scancode == sf::Keyboard::Scan::Down || key->code == sf::Keyboard::Key::Down) {
-            m_selection = (m_selection + 1) % 3;
+            m_selection = (m_selection + 1) % 4;
             updateSelectionVisuals();
             return;
         }
@@ -90,6 +90,10 @@ void PauseScene::activateItem(int index) {
     } else if (index == 1) {
         // Retry
         GameplayScene::s_retry = true;
+        requestPop();
+    } else if (index == 2) {
+        // Give Up
+        GameplayScene::s_giveUp = true;
         requestPop();
     } else {
         // Return to Menu

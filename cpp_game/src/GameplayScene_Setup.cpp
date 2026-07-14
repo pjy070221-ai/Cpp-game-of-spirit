@@ -1,6 +1,8 @@
 #include "GameplayScene.h"
 #include "SettingsData.h"
 #include "ResourceManager.h"
+#include "SceneManager.h"
+#include "ResultScene.h"
 #include <algorithm>
 #include <random>
 
@@ -9,6 +11,7 @@ std::string GameplayScene::s_chartPath = "";
 bool GameplayScene::s_retry = false;
 bool GameplayScene::s_randomMode = false;
 bool GameplayScene::s_returnToMenu = false;
+bool GameplayScene::s_giveUp = false;
 
 
 GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
@@ -30,6 +33,23 @@ void GameplayScene::onEnter() {
         return;
     }
     // ??3-2-1
+    if (s_giveUp) {
+        s_giveUp = false;
+        m_musicPlayer.stop();
+        auto data = getResultData();
+        int total = m_perfectCount + m_greatCount + m_goodCount + m_missCount;
+        float accuracy = (total > 0) ? (float)(m_perfectCount + m_greatCount) / total * 100.0f : 0.0f;
+        std::string grade;
+        if (accuracy >= 90.0f) grade = "S";
+        else if (accuracy >= 75.0f) grade = "A";
+        else if (accuracy >= 60.0f) grade = "B";
+        else if (accuracy >= 40.0f) grade = "C";
+        else grade = "D";
+        getSceneManager()->replaceScene(std::make_unique<ResultScene>(data, grade));
+        return;
+    }
+    
+    
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
     if (m_initialized) { m_isPlaying = false; return; } // ???
@@ -99,7 +119,6 @@ void GameplayScene::loadChart(const std::string& filePath) {
     m_noteData = m_beatmapParser.getNotes();
     m_songInfo = m_beatmapParser.getSongInfo();
     if (isEasy) simplifyNotes();
-    if (isEasy) simplifyNotes();
     // ?JSON ?
     if (!m_songInfo.musicFile.empty()) {
         m_musicPlayer.load(m_songInfo.musicFile);
@@ -126,6 +145,7 @@ void GameplayScene::applySettings() {
     SettingsData sd2;
     float speedMult = 1.0f;
     if (sd2.getDifficulty() == 0) speedMult = 0.6f;
+    else if (sd2.getDifficulty() == 1) speedMult = 1.25f;
     SettingsData s;
     m_noteSpeedPixels = (400.0f + s.getNoteSpeed() * 80.0f) * speedMult;
     m_musicPlayer.setVolume(s.getMasterVolume());
@@ -161,27 +181,45 @@ void GameplayScene::buildBackground() {
 
 void GameplayScene::simplifyNotes() {
     if (m_noteData.empty()) return;
-    
+
     bool isTarget = (m_songInfo.title.find("Infinite Strife") != std::string::npos) ||
                     (m_songInfo.title.find("Pentiment") != std::string::npos);
     if (!isTarget) return;
-    
-    std::vector<NoteData> simplified;
-    int trackCount = m_songInfo.trackCount;
-    for (int track = 0; track < trackCount; track++) {
+
+    // Pass 1: per-track minimum spacing (3.5s between taps on same track)
+    // Keeps all hold notes (type=1) intact
+    std::vector<NoteData> trackFiltered;
+    for (int track = 0; track < m_songInfo.trackCount; track++) {
         float lastTime = -999.0f;
         for (const auto& note : m_noteData) {
             if (note.track != track) continue;
             if (note.type == 1) {
-                simplified.push_back(note);
+                trackFiltered.push_back(note);
                 lastTime = note.time + note.holdDuration;
-            } else if (note.time - lastTime >= 2.5f) {
-                simplified.push_back(note);
+            } else if (note.time - lastTime >= 3.5f) {
+                trackFiltered.push_back(note);
                 lastTime = note.time;
             }
         }
     }
-    std::sort(simplified.begin(), simplified.end(),
+
+    // Sort by time for global pass
+    std::sort(trackFiltered.begin(), trackFiltered.end(),
         [](const NoteData& a, const NoteData& b) { return a.time < b.time; });
+
+    // Pass 2: global minimum spacing (0.5s between any notes)
+    // Prevents cross-track crowding in dense sections
+    std::vector<NoteData> simplified;
+    float lastGlobalTime = -999.0f;
+    for (const auto& note : trackFiltered) {
+        if (note.type == 1) {
+            simplified.push_back(note);
+            lastGlobalTime = note.time;
+        } else if (note.time - lastGlobalTime >= 0.5f) {
+            simplified.push_back(note);
+            lastGlobalTime = note.time;
+        }
+    }
+
     m_noteData = simplified;
 }

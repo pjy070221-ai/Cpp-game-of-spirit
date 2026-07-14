@@ -53,6 +53,12 @@ void GameplayScene::update(float dt) {
         return;
     }
 
+    if (s_giveUp) {
+        s_giveUp = false;
+        endGame();
+        return;
+    }
+
     if (!m_isPlaying || m_songFinished) return;
 
     m_pulseTime += dt;

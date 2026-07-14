@@ -59,6 +59,14 @@ void GameplayScene::checkJudgment(int track) {
         m_comboPopColor = jhc[std::uniform_int_distribution<int>(0,5)(rngJh)];
         m_comboPopScale = 1.8f;
         m_comboPopTimer = 0.35f;
+
+    // combo milestone effect (every +5)
+    int curCm = m_combo / 5;
+    if (curCm > m_lastComboMilestone) {
+        m_lastComboMilestone = curCm;
+        m_comboRingTimer = 0.6f;
+        m_comboFX.emit({640.0f, 600.0f}, 25, m_comboPopColor, 80, 300, 0.4f, 1.0f, 3.0f, 8.0f);
+    }
         if (m_combo > m_maxCombo) m_maxCombo = m_combo;
         m_judgmentDisplayTimer = 0.8f;
         if (m_scoreText.has_value())
@@ -170,7 +178,10 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
             sf::Color(100, 230, 100), sf::Color(255, 150, 50), sf::Color(200, 100, 255)
         };
         sf::Color mc = msColors[std::uniform_int_distribution<int>(0,5)(rngMs)];
-        m_milestoneFX.emit({120.0f, m_judgmentLineY}, 30, mc, 80, 300, 0.4f, 1.2f, 2.0f, 7.0f);
+        m_milestoneFX.emit({120.0f, m_judgmentLineY}, 40, mc, 120, 500, 0.4f, 1.2f, 3.0f, 10.0f);
+        m_milestoneFX.emit({1160.0f, m_judgmentLineY}, 40, mc, 120, 500, 0.4f, 1.2f, 3.0f, 10.0f);
+        m_milestoneBurstCount = 4;
+        m_milestoneBurstTimer = 0.3f;
         m_milestoneFX.emit({1160.0f, m_judgmentLineY}, 30, mc, 80, 300, 0.4f, 1.2f, 2.0f, 7.0f);
     }
 
@@ -184,6 +195,14 @@ void GameplayScene::onNoteJudged(JudgeResult result) {
         m_comboPopColor = cpColors[std::uniform_int_distribution<int>(0,5)(rngCp)];
         m_comboPopScale = 1.8f;
         m_comboPopTimer = 0.35f;
+
+    // combo milestone effect (every +5)
+    int curCm = m_combo / 5;
+    if (curCm > m_lastComboMilestone) {
+        m_lastComboMilestone = curCm;
+        m_comboRingTimer = 0.6f;
+        m_comboFX.emit({640.0f, 600.0f}, 25, m_comboPopColor, 80, 300, 0.4f, 1.0f, 3.0f, 8.0f);
+    }
     }
 }
 

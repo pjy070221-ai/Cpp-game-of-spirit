@@ -136,6 +136,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
 
     m_hitFX.render(target);
     m_milestoneFX.render(target);
+    m_comboFX.render(target);
 
     // judgment line with pulse
     uint8_t pulseAlpha = (uint8_t)(128 + (int)(127 * m_glowIntensity));
@@ -161,6 +162,21 @@ void GameplayScene::render(sf::RenderTarget& target) {
         m_scoreText->setPosition({20.0f, 10.0f});
         target.draw(*m_scoreText);
     }
+
+    // combo milestone ring
+    if (m_comboRingTimer > 0) {
+        float t = 1.0f - m_comboRingTimer / 0.6f;
+        float radius = 20.0f + t * 50.0f;
+        sf::CircleShape ring(radius);
+        ring.setPosition({640.0f - radius, 600.0f - radius});
+        ring.setFillColor(sf::Color::Transparent);
+        sf::Color rc = m_comboPopColor;
+        rc.a = (uint8_t)((1.0f - t) * 200);
+        ring.setOutlineThickness(2.0f + t * 2.0f);
+        ring.setOutlineColor(rc);
+        target.draw(ring);
+    }
+
     if (m_comboText.has_value() && m_combo > 0) {
         float cs = 1.0f;
         if      (m_combo >= 50) cs = 2.0f;

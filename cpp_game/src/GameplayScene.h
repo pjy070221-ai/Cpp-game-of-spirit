@@ -39,6 +39,7 @@ public:
     static bool s_randomMode;  // set by PackScene randomize tracks on enter tracks on enter
     static bool s_retry;        // set by PauseScene/ResultScene restart current song current song
     static bool s_returnToMenu;       // set by PauseScene -> checked in update
+    static bool s_giveUp;           // set by PauseScene -> end game immediately
         ~GameplayScene() override = default;
 
 
@@ -140,6 +141,15 @@ private:
     float m_comboPopScale = 1.0f;
     float m_comboPopTimer = 0.0f;
     sf::Color m_comboPopColor;
+
+    // combo milestone effect (every +5)
+    int m_lastComboMilestone = 0;
+    float m_comboRingTimer = 0.0f;
+    ParticleSystem m_comboFX;
+
+    // score milestone multi-burst
+    int m_milestoneBurstCount = 0;
+    float m_milestoneBurstTimer = 0.0f;
 
 
     int m_lastHitTrack = 0; // track for particle emit position

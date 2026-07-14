@@ -8,9 +8,10 @@
 #include <memory>
 
 PackScene::PackScene()
-    : m_songNames({sf::String(L"Beat Demo"), sf::String(L"\u6E38\u4EAC"), 
-                sf::String(L"Infinite Strife"), sf::String(L"Practice Mode")})
-    , m_chartPaths({"song_demo.json", "song.json", "song_infinite_strife.json", ""})
+    : m_songNames({sf::String(L"Infinite Strife"), sf::String(L"Pentiment"),
+                sf::String(L"Fracture Ray"),
+                sf::String(L"\u81EA\u6211\u5BF9\u8BDD")})
+    , m_chartPaths({"song_infinite_strife.json", "song_pentiment.json", "song_fracture_ray_hard.json", "song_zi_wo_dui_hua.json"})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
@@ -107,7 +108,20 @@ void PackScene::handleEvent(const sf::Event& event) {
 }
 
 void PackScene::activateItem(int index) {
-    GameplayScene::s_chartPath = m_chartPaths[index];
+    std::string path = m_chartPaths[index];
+    if (index == 2) {  // Fracture Ray uses difficulty-based charts
+    if (index == 3) {  // Self dialogue difficulty-based chart
+        SettingsData sdZ;
+        if (sdZ.getDifficulty() == 1)
+            path = "song_zi_wo_dui_hua_hard.json";
+    }
+        SettingsData sd;
+        if (sd.getDifficulty() == 0)
+            path = "song_fracture_ray_easy.json";
+        else
+            path = "song_fracture_ray_hard.json";
+    }
+    GameplayScene::s_chartPath = path;
     requestPush(std::make_unique<GameplayScene>());
 }
 
