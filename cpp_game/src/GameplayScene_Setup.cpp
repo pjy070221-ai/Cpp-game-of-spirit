@@ -5,6 +5,8 @@
 #include "ResultScene.h"
 #include <algorithm>
 #include <random>
+#include <filesystem>
+#include <iostream>
 
 std::string GameplayScene::s_chartPath = "";
 
@@ -89,6 +91,53 @@ void GameplayScene::onEnter() {
     buildTracks();
     buildJudgmentLine();
 
+    std::cout << "[GameplayScene] Current directory: " << std::filesystem::current_path() << std::endl;
+    
+    std::vector<std::string> tapPaths = {
+        "assets/tap_hit.wav",
+        "../assets/tap_hit.wav",
+        "tap_hit.wav",
+        "../../assets/tap_hit.wav"
+    };
+    sf::SoundBuffer* tapBuf = nullptr;
+    for (const auto& path : tapPaths) {
+        tapBuf = ResourceManager::instance().loadSoundBuffer(path);
+        if (tapBuf) {
+            std::cout << "[GameplayScene] Loaded tap_hit.wav from: " << path << std::endl;
+            std::cout << "[GameplayScene] Sample count: " << tapBuf->getSampleCount() << std::endl;
+            std::cout << "[GameplayScene] Duration: " << tapBuf->getDuration().asSeconds() << "s" << std::endl;
+            break;
+        }
+        std::cout << "[GameplayScene] Failed to load: " << path << " (exists: " << std::filesystem::exists(path) << ")" << std::endl;
+    }
+
+    if (tapBuf) {
+        m_tapHitSound.emplace(*tapBuf);
+        m_tapHitSound->setVolume(80.0f);
+        m_tapHitSound->play();
+        std::cout << "[GameplayScene] Test tap sound played" << std::endl;
+    }
+
+    std::vector<std::string> holdPaths = {
+        "assets/hold_hit.wav",
+        "../assets/hold_hit.wav",
+        "hold_hit.wav",
+        "../../assets/hold_hit.wav"
+    };
+    sf::SoundBuffer* holdBuf = nullptr;
+    for (const auto& path : holdPaths) {
+        holdBuf = ResourceManager::instance().loadSoundBuffer(path);
+        if (holdBuf) {
+            std::cout << "[GameplayScene] Loaded hold_hit.wav from: " << path << std::endl;
+            break;
+        }
+    }
+
+    if (holdBuf) {
+        m_holdHitSound.emplace(*holdBuf);
+        m_holdHitSound->setVolume(80.0f);
+    }
+
     // ??.4?
     std::vector<AnomalyEvent> testEvents = {
         { 3.0f, 1.5f, AnomalyType::Flash,           {{"color_r", 1.0f}, {"color_g", 1.0f}, {"color_b", 1.0f}} },
@@ -150,7 +199,10 @@ void GameplayScene::applySettings() {
     else if (sd2.getDifficulty() == 1) speedMult = 1.25f;
     SettingsData s;
     m_noteSpeedPixels = (400.0f + 5.0f * 80.0f) * speedMult;  // 800px/s * speedMult
+    float vol = s.getMasterVolume() * 100.0f;
     m_musicPlayer.setVolume(s.getMasterVolume());
+    if (m_tapHitSound.has_value()) m_tapHitSound->setVolume(vol);
+    if (m_holdHitSound.has_value()) m_holdHitSound->setVolume(vol);
 }
 
 void GameplayScene::buildTracks() {

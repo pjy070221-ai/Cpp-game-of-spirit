@@ -3,6 +3,7 @@
 #include <random>
 #include <fstream>
 #include <windows.h>
+#include <filesystem>
 
 Game::Game()
     : settings("settings.json")
@@ -57,6 +58,55 @@ Game::Game()
 
     if (!fontLoaded) {
         std::cout << "[Game] Warning: Font load failed" << std::endl;
+    }
+
+    std::string hitSoundPath = "tap_hit.wav";
+    std::filesystem::path absPath = std::filesystem::absolute(hitSoundPath);
+    std::cout << "[Game] Looking for hit sound at: " << absPath << std::endl;
+    std::cout << "[Game] File exists: " << (std::filesystem::exists(absPath) ? "YES" : "NO") << std::endl;
+
+    if (hitSoundBuffer.loadFromFile(hitSoundPath)) {
+        hitSounds.resize(MAX_HIT_SOUNDS);
+        for (int i = 0; i < MAX_HIT_SOUNDS; ++i) {
+            hitSounds[i].setBuffer(hitSoundBuffer);
+            hitSounds[i].setVolume(settings.getMasterVolume() * 100.f);
+        }
+        std::cout << "[Game] Loaded hit sound: tap_hit.wav (" << MAX_HIT_SOUNDS << " channels)" << std::endl;
+        std::cout << "[Game] Sample count: " << hitSoundBuffer.getSampleCount() << std::endl;
+        std::cout << "[Game] Duration: " << hitSoundBuffer.getDuration().asSeconds() << "s" << std::endl;
+        hitSounds[0].play();
+        std::cout << "[Game] Test hit sound played at startup" << std::endl;
+    }
+    else {
+        std::cout << "[Game] Warning: Failed to load hit sound: " << hitSoundPath << std::endl;
+        std::cout << "[Game] Current directory: " << std::filesystem::current_path() << std::endl;
+        
+        std::vector<std::string> searchPaths = {
+            ".",
+            "../",
+            "../../",
+            "assets/",
+            "../assets/",
+            "audio/",
+            "../audio/"
+        };
+        
+        for (const auto& path : searchPaths) {
+            std::string testPath = path + "tap_hit.wav";
+            if (std::filesystem::exists(testPath)) {
+                std::cout << "[Game] Found tap_hit.wav at: " << std::filesystem::absolute(testPath) << std::endl;
+                if (hitSoundBuffer.loadFromFile(testPath)) {
+                    hitSounds.resize(MAX_HIT_SOUNDS);
+                    for (int i = 0; i < MAX_HIT_SOUNDS; ++i) {
+                        hitSounds[i].setBuffer(hitSoundBuffer);
+                        hitSounds[i].setVolume(settings.getMasterVolume() * 100.f);
+                    }
+                    std::cout << "[Game] Loaded hit sound from alternative path" << std::endl;
+                    hitSounds[0].play();
+                    break;
+                }
+            }
+        }
     }
 
     if (fontLoaded) {
@@ -391,13 +441,20 @@ void Game::handleEvents() {
                 std::cout << "Note Speed: " << settings.getNoteSpeed() << std::endl;
                 std::cout << "Fullscreen: " << (settings.getFullscreen() ? "ON" : "OFF") << std::endl;
                 std::cout << "Score: " << score << "  Combo: " << combo << std::endl;
+                std::cout << "Hit sound buffer loaded: " << (hitSoundBuffer.getSampleCount() > 0 ? "YES" : "NO") << std::endl;
+                std::cout << "Hit sound channels: " << hitSounds.size() << std::endl;
                 std::cout << "------------------------\n" << std::endl;
+            }
+            else if (key == sf::Keyboard::Key::T) {
+                playHitSound();
+                std::cout << "[Game] Test hit sound played" << std::endl;
             }
             else if (key == sf::Keyboard::Key::Up) {
                 float vol = std::min(1.0f, settings.getMasterVolume() + 0.05f);
                 settings.setMasterVolume(vol);
                 settings.saveToFile();
                 if (musicPlayer.isLoaded()) musicPlayer.setVolume(vol);
+                for (auto& sound : hitSounds) sound.setVolume(vol * 100.f);
                 updateSpeedText();
                 updateMenuText();
                 std::cout << "[Game] Volume: " << (int)(vol * 100) << "%" << std::endl;
@@ -407,6 +464,7 @@ void Game::handleEvents() {
                 settings.setMasterVolume(vol);
                 settings.saveToFile();
                 if (musicPlayer.isLoaded()) musicPlayer.setVolume(vol);
+                for (auto& sound : hitSounds) sound.setVolume(vol * 100.f);
                 updateSpeedText();
                 updateMenuText();
                 std::cout << "[Game] Volume: " << (int)(vol * 100) << "%" << std::endl;
@@ -578,18 +636,21 @@ void Game::onNoteJudged(JudgeResult result, int track) {
         color = sf::Color::Yellow;
         points = 100;
         combo++;
+        playHitSound();
         break;
     case JudgeResult::Great:
         text = "GREAT";
         color = sf::Color::Cyan;
         points = 50;
         combo++;
+        playHitSound();
         break;
     case JudgeResult::Good:
         text = "GOOD";
         color = sf::Color::Green;
         points = 25;
         combo++;
+        playHitSound();
         break;
     case JudgeResult::Miss:
         text = "MISS";
@@ -638,6 +699,22 @@ void Game::onNoteJudged(JudgeResult result, int track) {
         particle.setFillColor(color);
         particles.push_back(particle);
     }
+}
+
+void Game::playHitSound() {
+    if (hitSoundBuffer.getSampleCount() == 0) {
+        std::cout << "[Game] playHitSound: buffer not loaded" << std::endl;
+        return;
+    }
+
+    for (auto& sound : hitSounds) {
+        if (sound.getStatus() != sf::Sound::Playing) {
+            sound.play();
+            return;
+        }
+    }
+
+    std::cout << "[Game] playHitSound: all channels busy" << std::endl;
 }
 
 // ============================================================
@@ -813,6 +890,8 @@ void Game::applySettings() {
         musicPlayer.setVolume(settings.getMasterVolume());
     }
 
+    for (auto& sound : hitSounds) sound.setVolume(settings.getMasterVolume() * 100.f);
+
     std::cout << "[Game] Settings applied" << std::endl;
 }
 
@@ -876,6 +955,7 @@ void Game::executeMenuSelection() {
         settings.setMasterVolume(newVol);
         settings.saveToFile();
         if (musicPlayer.isLoaded()) musicPlayer.setVolume(newVol);
+        for (auto& sound : hitSounds) sound.setVolume(newVol * 100.f);
         updateSpeedText();
         menuOptions[0] = "Volume: " + std::to_string((int)(newVol * 100)) + "%";
         updateMenuText();

@@ -12,7 +12,7 @@
 #include <map>
 
 // ============================================================
-// ÅÐ¶¨½á¹ûÃ¶¾Ù
+// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½
 // ============================================================
 enum class JudgeResult {
     Perfect,
@@ -23,7 +23,7 @@ enum class JudgeResult {
 };
 
 // ============================================================
-// Game Àà
+// Game ï¿½ï¿½
 // ============================================================
 class Game {
 public:
@@ -50,12 +50,13 @@ private:
     void drawNoteTracks();
     void drawNeonTitle();
 
-    // ===== ÒôÓÎºËÐÄ¹¦ÄÜ =====
+    // ===== ï¿½ï¿½ï¿½Îºï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ =====
     void generateExampleNotes();
     void spawnNotes(float currentTime);
     void checkJudgment(int track);
     void onNoteJudged(JudgeResult result, int track);
     void showJudgment(const std::string& text, sf::Color color);
+    void playHitSound();
 
     sf::RenderWindow window;
     SettingsData settings;
@@ -97,7 +98,7 @@ private:
     float screenHeight;
     float noteSpeedPixels;
 
-    // ===== ÒôÀÖºÍÆ×Ãæ =====
+    // ===== ï¿½ï¿½ï¿½Öºï¿½ï¿½ï¿½ï¿½ï¿½ =====
     MusicPlayer musicPlayer;
     BeatmapParser beatmapParser;
     std::vector<NoteData> notes;
@@ -109,4 +110,8 @@ private:
     float greatWindow;
     float goodWindow;
     sf::Color lastJudgmentColor;
+
+    sf::SoundBuffer hitSoundBuffer;
+    std::vector<sf::Sound> hitSounds;
+    static const int MAX_HIT_SOUNDS = 8;
 };
