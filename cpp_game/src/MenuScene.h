@@ -23,7 +23,7 @@ private:
     void startTransition(int targetIndex);
     sf::Color getNeonColor(float time) const;
 
-    sf::Font m_font;
+    const sf::Font* m_font = nullptr;
     bool m_fontLoaded = false;
     std::vector<std::string> m_items;
     int m_selection = 0;

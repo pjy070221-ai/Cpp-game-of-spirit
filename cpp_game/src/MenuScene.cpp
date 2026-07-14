@@ -11,11 +11,11 @@
 MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
-    m_font = *fontPtr;
+    m_font = fontPtr;
     m_fontLoaded = true;
 
     //
-    m_titleText.emplace(m_font, L"\u6307\u5C16\u632F\u5F8B", 72);
+    m_titleText.emplace(*m_font, L"\u6307\u5C16\u632F\u5F8B", 72);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
@@ -46,7 +46,7 @@ MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
 
     //
     for (int i = 0; i < (int)m_items.size(); ++i) {
-        sf::Text txt(m_font, m_items[i], 36);
+        sf::Text txt(*m_font, m_items[i], 36);
         txt.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto ib = txt.getLocalBounds();
         txt.setOrigin({ib.size.x / 2.0f, 0.0f});

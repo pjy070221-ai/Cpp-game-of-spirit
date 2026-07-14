@@ -1,6 +1,7 @@
 #include "ResultScene.h"
 #include "GameplayScene.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 #include "Easing.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -10,23 +11,25 @@
 ResultScene::ResultScene(const ResultData& data, const std::string& grade)
     : m_data(data), m_grade(grade)
 {
-    if (!m_font.openFromFile("assets/fonts/msyh.ttf")) return;
+    sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
+    if (!fontPtr) return;
+    m_font = fontPtr;
     m_fontLoaded = true;
 
-    m_titleText.emplace(m_font, L"\u7ED3\u7B97", 48);
+    m_titleText.emplace(*m_font, L"\u7ED3\u7B97", 48);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
     m_titleText->setPosition({640.0f, 50.0f});
 
-    m_scoreText.emplace(m_font, sf::String(L"\u5206\u6570: ") + std::to_string(data.score), 36);
+    m_scoreText.emplace(*m_font, sf::String(L"\u5206\u6570: ") + std::to_string(data.score), 36);
     m_scoreText->setFillColor(sf::Color(255, 200, 100));
     auto sb = m_scoreText->getLocalBounds();
     m_scoreText->setOrigin({sb.size.x / 2.0f, 0.0f});
     m_scoreText->setPosition({640.0f, 130.0f});
 
     auto gc = gradeColor();
-    m_gradeText.emplace(m_font, sf::String(L"\u8BC4\u7EA7: ") + grade, 48);
+    m_gradeText.emplace(*m_font, sf::String(L"\u8BC4\u7EA7: ") + grade, 48);
     m_gradeText->setFillColor(gc);
     auto gb = m_gradeText->getLocalBounds();
     m_gradeText->setOrigin({gb.size.x / 2.0f, 0.0f});
@@ -38,42 +41,42 @@ ResultScene::ResultScene(const ResultData& data, const std::string& grade)
     else if (grade == "B") cele = L"\u8868\u73B0\u4E0D\u9519!";
     else if (grade == "C") cele = L"\u7EE7\u7EED\u52A0\u6CB9!";
     else cele = L"\u518D\u8BD5\u4E00\u6B21!";
-    m_celebrationText.emplace(m_font, cele, 28);
+    m_celebrationText.emplace(*m_font, cele, 28);
     m_celebrationText->setFillColor(gc);
     m_celebrationText->setPosition({640, 260});
     m_celebrationText->setOrigin({m_celebrationText->getLocalBounds().size.x / 2.0f, 0});
     m_celebrationText->setScale({2.0f, 2.0f});
     m_celebrationText->setFillColor(sf::Color(gc.r, gc.g, gc.b, 0));
 
-    m_perfectText.emplace(m_font, sf::String(L"Perfect: ") + std::to_string(data.perfectCount), 24);
+    m_perfectText.emplace(*m_font, sf::String(L"Perfect: ") + std::to_string(data.perfectCount), 24);
     m_perfectText->setFillColor(sf::Color::Yellow);
     m_perfectText->setPosition({540.0f, 290.0f});
 
-    m_greatText.emplace(m_font, sf::String(L"Great:   ") + std::to_string(data.greatCount), 24);
+    m_greatText.emplace(*m_font, sf::String(L"Great:   ") + std::to_string(data.greatCount), 24);
     m_greatText->setFillColor(sf::Color::Cyan);
     m_greatText->setPosition({540.0f, 325.0f});
 
-    m_goodText.emplace(m_font, sf::String(L"Good:    ") + std::to_string(data.goodCount), 24);
+    m_goodText.emplace(*m_font, sf::String(L"Good:    ") + std::to_string(data.goodCount), 24);
     m_goodText->setFillColor(sf::Color::Green);
     m_goodText->setPosition({540.0f, 360.0f});
 
-    m_missText.emplace(m_font, sf::String(L"Miss:    ") + std::to_string(data.missCount), 24);
+    m_missText.emplace(*m_font, sf::String(L"Miss:    ") + std::to_string(data.missCount), 24);
     m_missText->setFillColor(sf::Color::Red);
     m_missText->setPosition({540.0f, 395.0f});
 
-    m_comboText.emplace(m_font, sf::String(L"\u6700\u9AD8Combo: ") + std::to_string(data.maxCombo), 30);
+    m_comboText.emplace(*m_font, sf::String(L"\u6700\u9AD8Combo: ") + std::to_string(data.maxCombo), 30);
     m_comboText->setFillColor(sf::Color(0, 255, 200));
     auto cb = m_comboText->getLocalBounds();
     m_comboText->setOrigin({cb.size.x / 2.0f, 0.0f});
     m_comboText->setPosition({640.0f, 460.0f});
 
-    m_retryText.emplace(m_font, L"\u91CD\u8BD5", 32);
+    m_retryText.emplace(*m_font, L"\u91CD\u8BD5", 32);
     m_retryText->setFillColor(sf::Color::Yellow);
     auto rt = m_retryText->getLocalBounds();
     m_retryText->setOrigin({rt.size.x / 2.0f, 0.0f});
     m_retryText->setPosition({480.0f, 560.0f});
 
-    m_continueText.emplace(m_font, L"\u6B4C\u66F2\u5217\u8868", 32);
+    m_continueText.emplace(*m_font, L"\u6B4C\u66F2\u5217\u8868", 32);
     m_continueText->setFillColor(sf::Color(200, 200, 200));
     auto ct = m_continueText->getLocalBounds();
     m_continueText->setOrigin({ct.size.x / 2.0f, 0.0f});

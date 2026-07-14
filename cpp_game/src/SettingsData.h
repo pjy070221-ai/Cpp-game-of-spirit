@@ -8,9 +8,9 @@ using SettingVariant = std::variant<int, float, bool, std::string>;
 
 class SettingsData {
 public:
-    // 构造时指定配置文件路径（默认：当前目录 settings.json�?
+    // 构造时指定配置文件路径（默认：当前目录 settings.json）
     explicit SettingsData(const std::string& filePath = "settings.json");
-    ~SettingsData();  // 析构时自动保�?
+    ~SettingsData();  // 析构时自动保存
 
     // 禁止拷贝
     SettingsData(const SettingsData&) = delete;
@@ -32,22 +32,29 @@ public:
         m_settings[key] = value;
     }
 
-    // 便捷访问�?
+    // 便捷访问器
     float getMasterVolume() const;
     void  setMasterVolume(float v);
 
+    float getNoteSpeed() const;
+    void  setNoteSpeed(float v);
 
     bool  getFullscreen() const;
     void  setFullscreen(bool v);
 
+    int   getFpsLimit() const;
+    void  setFpsLimit(int v);
 
+    float getOffset() const;
+    void  setOffset(float ms);
 
     bool getAutoPlay() const;
     void setAutoPlay(bool v);
 
-    int getDifficulty() const;   // 0=Easy, 1=Hard
+    int getDifficulty() const;
     void setDifficulty(int v);
-    void save();  // force immediate save to file
+
+    void save();  // 立即保存到文件
 
 private:
     bool loadFromFile();

@@ -22,7 +22,7 @@ bool BeatmapParser::loadFromFile(const std::string& filePath) {
 
     extractNotes(json);
 
-    m_loaded = !m_notes.empty() || true;
+    m_loaded = !m_notes.empty();
     return true;
 }
 
@@ -119,7 +119,7 @@ float BeatmapParser::extractFloat(const std::string& json, const std::string& ke
     if (start == std::string::npos || json[start] == '"') return 0.0f;
     size_t end = start;
     while (end < json.size() && (std::isdigit(json[end]) || json[end] == '.' || json[end] == '-' || json[end] == '+')) end++;
-    return std::stof(json.substr(start, end - start));
+    try { return std::stof(json.substr(start, end - start)); } catch (...) { return 0.0f; }
 }
 
 int BeatmapParser::extractInt(const std::string& json, const std::string& key) {
@@ -131,6 +131,7 @@ void BeatmapParser::extractNotes(const std::string& json) {
     size_t notesPos = json.find("\"notes\"");
 
     // no notes key found, try reading as pure note list
+    if (notesPos == std::string::npos) return;
     size_t arrStart = json.find('[', notesPos);
     if (arrStart == std::string::npos) return;
 

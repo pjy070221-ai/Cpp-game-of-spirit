@@ -2,30 +2,29 @@
 #include "GameplayScene.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
-#include "MenuScene.h"
 #include "SettingsData.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <filesystem>
 
 PackScene::PackScene()
     : m_songNames({sf::String(L"Infinite Strife"), sf::String(L"Pentiment"),
-                sf::String(L"Fracture Ray"),
-                sf::String(L"\u81EA\u6211\u5BF9\u8BDD")})
-    , m_chartPaths({"song_infinite_strife.json", "song_pentiment.json", "song_fracture_ray_hard.json", "song_zi_wo_dui_hua.json"})
+                sf::String(L"Fracture Ray"), sf::String(L"\u81EA\u6211\u5BF9\u8BDD"), sf::String(L"Practice Mode")})
+    , m_chartBases({"song_infinite_strife", "song_pentiment", "song_fracture_ray", "song_zi_wo_dui_hua", ""})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
-    m_font = *fontPtr;
+    m_font = fontPtr;
     m_fontLoaded = true;
 
-    m_titleText.emplace(m_font, "Select Song", 48);
+    m_titleText.emplace(*m_font, "Select Song", 48);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
     m_titleText->setPosition({640.0f, 100.0f});
 
     for (int i = 0; i < (int)m_songNames.size(); ++i) {
-        sf::Text txt(m_font, m_songNames[i], 36);
+        sf::Text txt(*m_font, m_songNames[i], 36);
         txt.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto ib = txt.getLocalBounds();
         txt.setOrigin({ib.size.x / 2.0f, 0.0f});
@@ -40,7 +39,7 @@ void PackScene::rebuildItemTexts() {
     std::string badge = (diff == 0) ? " [E]" : " [H]";
     m_itemTexts.clear();
     for (int i = 0; i < (int)m_songNames.size(); ++i) {
-        sf::Text txt(m_font, m_songNames[i] + sf::String(badge), 36);
+        sf::Text txt(*m_font, m_songNames[i] + sf::String(badge), 36);
         txt.setFillColor(i == 0 ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto ib = txt.getLocalBounds();
         txt.setOrigin({ib.size.x / 2.0f, 0.0f});
@@ -56,7 +55,7 @@ void PackScene::onEnter() {
 }
 
 void PackScene::handleEvent(const sf::Event& event) {
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?闂備焦顑欓崰姘鸿箛鏇楀亾娴ｅ啫顥嶉�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // ── 键盘 ──
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         bool changed = false;
         if (key->scancode == sf::Keyboard::Scan::Up || key->code == sf::Keyboard::Key::Up) {
@@ -70,14 +69,13 @@ void PackScene::handleEvent(const sf::Event& event) {
             return;
         } else if (key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape) {
             requestPop();
-            requestReplace(std::make_unique<MenuScene>());
             return;
         }
         if (changed) updateSelectionVisuals();
         return;
     }
 
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮楠炲啴顢楅埀顒佺閻樻剚娈楁俊顖滄嚀�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // ── 鼠标悬停 ──
     if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
         sf::Vector2f mousePos(mouseMoved->position);
         for (int i = 0; i < (int)m_itemTexts.size(); ++i) {
@@ -92,7 +90,7 @@ void PackScene::handleEvent(const sf::Event& event) {
         return;
     }
 
-    // 闂佸啿鍘滈崑鎾绘煃閸忓�?婵崿鍛ｉ柣鏍电秮閹瑩鎮烽弶鎸庣�?闂佸啿鍘滈崑鎾绘煃閸忓�?
+    // ── 鼠标点击 ──
     if (const auto* mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseBtn->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos(mouseBtn->position);
@@ -108,20 +106,19 @@ void PackScene::handleEvent(const sf::Event& event) {
 }
 
 void PackScene::activateItem(int index) {
-    std::string path = m_chartPaths[index];
-    if (index == 2) {  // Fracture Ray uses difficulty-based charts
-    if (index == 3) {  // Self dialogue difficulty-based chart
-        SettingsData sdZ;
-        if (sdZ.getDifficulty() == 1)
-            path = "song_zi_wo_dui_hua_hard.json";
-    }
+    const auto& base = m_chartBases[index];
+    if (base.empty()) {
+        GameplayScene::s_chartPath = "";  // Practice Mode: 随机生成
+    } else {
         SettingsData sd;
-        if (sd.getDifficulty() == 0)
-            path = "song_fracture_ray_easy.json";
-        else
-            path = "song_fracture_ray_hard.json";
+        std::string path = base + ".json";
+        if (sd.getDifficulty() == 1) {
+            std::string hardPath = base + "_hard.json";
+            if (std::filesystem::exists(hardPath))
+                path = hardPath;
+        }
+        GameplayScene::s_chartPath = path;
     }
-    GameplayScene::s_chartPath = path;
     requestPush(std::make_unique<GameplayScene>());
 }
 
@@ -141,7 +138,7 @@ void PackScene::render(sf::RenderTarget& target) {
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);
 
-    // 闂佸吋瀵х划灞界暦閻斿憡浜ら柛銉ｅ妽鐠囩偤姊洪澶婃灓闁稿秹娼ч妴鎺楀箛椤掆偓�?
+    // ── 过渡遮罩 ──
     if (SceneManager::s_transitionAlpha > 0.001f) {
         sf::RectangleShape ov({1280, 720});
         ov.setFillColor(sf::Color(0, 0, 0, (std::uint8_t)(SceneManager::s_transitionAlpha * 255)));

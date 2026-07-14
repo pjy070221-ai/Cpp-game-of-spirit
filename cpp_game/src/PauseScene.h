@@ -20,7 +20,7 @@ private:
     void activateItem(int index);
     void updateSelectionVisuals();
 
-    sf::Font m_font;
+    const sf::Font* m_font = nullptr;
     bool m_fontLoaded = false;
     int m_selection = 0;
     std::optional<sf::Text> m_titleText;

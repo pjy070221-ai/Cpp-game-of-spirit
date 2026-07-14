@@ -21,7 +21,7 @@ private:
     void activateItem(int index);
     void updateSelectionVisuals();
 
-    sf::Font m_font;
+    const sf::Font* m_font = nullptr;
     bool m_fontLoaded = false;
     std::vector<std::string> m_labels;  // setting display names
     std::vector<float> m_values;        // current values (float for all)

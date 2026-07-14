@@ -9,20 +9,21 @@
 #include <memory>
 
 SettingsScene::SettingsScene()
-    : m_labels({"Volume", "Fullscreen", "Auto Play", "Difficulty"})
+    : m_labels({"Volume", "Note Speed", "Fullscreen", "FPS Limit", "Offset (ms)", "Auto Play", "Difficulty"})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
-    m_font = *fontPtr;
+    m_font = fontPtr;
     m_fontLoaded = true;
 
     SettingsData s;
-    m_values = {s.getMasterVolume(),
+    m_values = {s.getMasterVolume(), s.getNoteSpeed(),
                 s.getFullscreen() ? 1.0f : 0.0f,
+                (float)s.getFpsLimit(), s.getOffset(),
                 s.getAutoPlay() ? 1.0f : 0.0f,
                 (float)s.getDifficulty()};
 
-    m_titleText.emplace(m_font, "Settings", 48);
+    m_titleText.emplace(*m_font, "Settings", 48);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
@@ -32,7 +33,14 @@ SettingsScene::SettingsScene()
 }
 
 void SettingsScene::onEnter() {
+    SettingsData s;
+    m_values = {s.getMasterVolume(), s.getNoteSpeed(),
+                s.getFullscreen() ? 1.0f : 0.0f,
+                (float)s.getFpsLimit(), s.getOffset(),
+                s.getAutoPlay() ? 1.0f : 0.0f,
+                (float)s.getDifficulty()};
     m_selection = 0;
+    refreshDisplay();
     updateSelectionVisuals();
 }
 
@@ -67,16 +75,26 @@ void SettingsScene::handleEvent(const sf::Event& event) {
         if (m_selection == 0) {           // 音量 0-1
             v = std::clamp(v + delta * 0.05f, 0.0f, 1.0f);
             s.setMasterVolume(v);
-        } else if (m_selection == 1) {    // 全屏切换
+        } else if (m_selection == 1) {    // 流速 1-10
+            v = std::clamp(v + delta * 0.5f, 1.0f, 10.0f);
+            s.setNoteSpeed(v);
+        } else if (m_selection == 2) {    // 全屏切换
             v = (v > 0.5f) ? 0.0f : 1.0f;
             s.setFullscreen(v > 0.5f);
-        } else if (m_selection == 2) {  // Auto Play 开关
+        } else if (m_selection == 3) {    // 帧率限制 30-240
+            v = std::clamp(v + delta * 10.0f, 30.0f, 240.0f);
+            s.setFpsLimit((int)v);
+        } else if (m_selection == 4) {    // 延迟偏移 -200~200ms
+            v = std::clamp(v + delta * 10.0f, -200.0f, 200.0f);
+            s.setOffset(v);
+        } else if (m_selection == 5) {  // Auto Play 开关
             v = (v > 0.5f) ? 0.0f : 1.0f;
             s.setAutoPlay(v > 0.5f);
-        } else if (m_selection == 3) {  // Difficulty 切换
+        } else if (m_selection == 6) {  // 难度 Easy/Hard
             v = (v > 0.5f) ? 0.0f : 1.0f;
-            s.setDifficulty((int)(v + 0.1f));
+            s.setDifficulty((int)v);
         }
+        s.save();
         refreshDisplay();
         return;
     }
@@ -112,12 +130,13 @@ void SettingsScene::refreshDisplay() {
     for (int i = 0; i < (int)m_labels.size(); ++i) {
         std::string val;
         float v = m_values[i];
-       if (i == 1) val = (v > 0.5f) ? "Yes" : "No";
-       else if (i == 2) val = (v > 0.5f) ? "ON" : "OFF";
-        else if (i == 3) val = (v > 0.5f) ? "Hard" : "Easy";
-       else { std::ostringstream oss; oss << std::fixed << std::setprecision(1) << v; val = oss.str(); }
+        if (i == 2) val = (v > 0.5f) ? "Yes" : "No";
+        else if (i == 3 || i == 4) val = std::to_string((int)v);
+        else if (i == 5) val = (v > 0.5f) ? "ON" : "OFF";
+        else if (i == 6) val = (v > 0.5f) ? "Hard" : "Easy";
+        else { std::ostringstream oss; oss << std::fixed << std::setprecision(1) << v; val = oss.str(); }
 
-        sf::Text txt(m_font, m_labels[i] + ": " + val, 28);
+        sf::Text txt(*m_font, m_labels[i] + ": " + val, 28);
         txt.setFillColor(i == m_selection ? sf::Color::Yellow : sf::Color(200, 200, 200));
         auto tb = txt.getLocalBounds();
         txt.setOrigin({tb.size.x / 2.0f, 0.0f});

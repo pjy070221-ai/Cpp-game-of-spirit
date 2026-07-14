@@ -13,12 +13,12 @@
 TitleScene::TitleScene() {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
-    m_font = *fontPtr;
+    m_font = fontPtr;
     m_fontLoaded = true;
 
     if (m_textLayer.resize({1280, 720})) {
         m_textLayer.clear(sf::Color::Transparent);
-        sf::Text t(m_font, L"    ", 80);
+        sf::Text t(*m_font, L"    ", 80);
         t.setFillColor(sf::Color::White);
         m_textLayer.draw(t);
         m_textLayer.display();
@@ -36,7 +36,7 @@ TitleScene::TitleScene() {
     const wchar_t title[] = L"\u6307\u5C16\u632F\u5F8B";
     float startX = 640.0f - 4 * 40.0f;
     for (int i = 0; i < 4; ++i) {
-        CharData cd(m_font);
+        CharData cd(*m_font);
         cd.text.setString(std::wstring(1, title[i]));
         cd.text.setCharacterSize(80);
         cd.text.setFillColor(sf::Color::White);
@@ -51,7 +51,7 @@ TitleScene::TitleScene() {
 
     // subtitle: Cross Beat
     {
-        CharData cd(m_font);
+        CharData cd(*m_font);
         cd.text.setString(L"Cross Beat");
         cd.text.setCharacterSize(28);
         cd.text.setFillColor(sf::Color(0, 200, 255, 0));
@@ -65,7 +65,7 @@ TitleScene::TitleScene() {
     }
 
     // prompt: press any key to continue
-    m_promptText.emplace(m_font);
+    m_promptText.emplace(*m_font);
     m_promptText->setString(L"\u6309\u4EFB\u610F\u952E\u7EE7\u7EED");
     m_promptText->setCharacterSize(24);
     m_promptText->setFillColor(sf::Color(200, 200, 200, 0));

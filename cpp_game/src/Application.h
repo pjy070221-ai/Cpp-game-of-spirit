@@ -21,6 +21,5 @@ private:
 
     sf::RenderWindow m_window;
     SceneManager m_sceneManager;
-    sf::Clock m_clock;
     float m_deltaTime = 0.0f;
 };

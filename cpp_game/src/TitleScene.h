@@ -54,7 +54,7 @@ private:
         CharData(const sf::Font& f) : text(f) {}
     };
     std::vector<CharData> m_titleChars, m_subChars;
-    sf::Font m_font;
+    const sf::Font* m_font = nullptr;
     bool m_fontLoaded = false;
 
     // glitch effect

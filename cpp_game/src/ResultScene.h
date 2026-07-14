@@ -20,7 +20,7 @@ private:
 
     ResultData m_data;
     std::string m_grade;
-    sf::Font m_font;
+    const sf::Font* m_font = nullptr;
     bool m_fontLoaded = false;
     float m_timer = 0.0f;
 
