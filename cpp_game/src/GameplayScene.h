@@ -7,12 +7,13 @@
 #include "ParticleSystem.h"
 #include "AnomalySystem.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include <string>
 #include <memory>
 #include <optional>
 
-// 闁煎搫鍊搁〃鏃€寰勮缁椻偓闁瑰灚鎸搁崵顕€鎮х憴鍕珡缂備焦鎸婚悗顖涙媴?
+// 得分弹出文本
 struct ScorePopup {
     std::optional<sf::Text> text;
     float life = 1.0f;
@@ -35,10 +36,10 @@ struct ResultData {
 class GameplayScene : public IScene {
 public:
     GameplayScene();
-    static std::string s_chartPath;   // set by PackScene before push
-    static bool s_randomMode;  // set by PackScene 闁?randomize tracks on enter
-    static bool s_retry;        // set by PauseScene/ResultScene 闁?restart current song
-    static bool s_returnToMenu;       // set by PauseScene -> checked in update
+    static std::string s_chartPath;   // 谱面路径（由 PackScene 在 push 前设置）
+    static bool s_randomMode;  // 随机轨道模式（由 PackScene 设置）
+    static bool s_retry;        // 重试标志（由 PauseScene / ResultScene 设置）
+    static bool s_returnToMenu;       // 返回主菜单标志（PauseScene 设置 → update 检测）
         ~GameplayScene() override = default;
   
 
@@ -50,7 +51,7 @@ public:
 
     ResultData getResultData() const;
     
-    // chart path for external loading
+    // 谱面路径（供外部加载）
     
 
 private:
@@ -72,8 +73,10 @@ private:
     float getTrackCenterX(int track) const;
     void addScorePopup(float x, float y, const std::string& text, const sf::Color& color);
     void addHitRing(float x, float y, const sf::Color& color);
+    void playTapSound();
+    void playHoldSound();
 
-    // chart & audio
+    // 谱面 & 音频
     BeatmapParser m_beatmapParser;
     MusicPlayer   m_musicPlayer;
     std::vector<NoteData> m_noteData;
@@ -81,10 +84,10 @@ private:
     int  m_noteIndex = 0;
     bool m_isPlaying = false;
     bool m_songFinished = false;
-    bool m_initialized = false;   // true after onEnter() runs once
-    float m_simTime = 0.0f;       // 婵☆垪鍓濈€氭瑩寮崼鏇熷闁挎稑鐗婂Λ銈夋閸忓懐顔囬柡鍐ㄥ閺併倝鏁?
+    bool m_initialized = false;   // onEnter() 首次执行后置 true
+    float m_simTime = 0.0f;       // 模拟计时器（音乐未加载时作为后备时间源）
 
-    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
+    // 倒计时状态（3-2-1 开场）
     enum class CountdownState { None, Counting, Started };
     CountdownState m_countdownState = CountdownState::None;
     float m_countdownTimer = 3.0f;
@@ -94,26 +97,27 @@ private:
     bool m_countdownShouldStart = false;
     static constexpr float SPAWN_LOOKAHEAD = 3.0f;
 
-    // runtime notes
+    // 运行时音符数据
     std::vector<NoteRuntime> m_noteRuntimes;
-    std::vector<sf::RectangleShape> m_activeShapes;  // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁活厸鏅涢懜浼存瀹曞浂鍎?
+    std::vector<sf::RectangleShape> m_activeShapes;  // 活跃音符图形（与 m_noteRuntimes 同步）
     std::vector<sf::RectangleShape> m_holdBars;
     bool m_keysHeld[4] = {false, false, false, false};
 
-    // judgment 闁?闁哄啫鐖煎Λ鍧楀礆閵堝懐鏆扮紒鎰殔瑜版盯鏁嶉崼銏╂健闁?
-    float m_perfectTimeWindow = 0.040f;  // 閸?0ms
-    float m_greatTimeWindow   = 0.100f;  // 閸?00ms
-    float m_goodTimeWindow    = 0.200f;  // 閸?00ms
-    float m_missTimeWindow    = 0.400f;  // 閻℃帒鎳庨崵顓熺▔瀹ュ懏鎯欓幖?
+    // 判定时间窗口（时间判定，非像素距离）
+    float m_perfectTimeWindow = 0.040f;  // 40ms
+    float m_greatTimeWindow   = 0.100f;  // 100ms
+    float m_goodTimeWindow    = 0.200f;  // 200ms
+    float m_missTimeWindow    = 0.400f;  // 自动 Miss 阈值（超出视为漏键）
     float m_judgmentLineY = 550.0f;
 
-    // scoring
+    // 计分系统
     int m_score = 0, m_combo = 0, m_maxCombo = 0;
     int m_perfectCount = 0, m_greatCount = 0;
     int m_goodCount = 0, m_missCount = 0;
-    int m_hp = 100, m_maxHp = 100;    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿鍎遍幃宥夊磹閼测晠鍏囩紓?
+    int m_hp = 100, m_maxHp = 100;    // HP 血量（归零则歌曲失败）
+    bool m_autoPlay = false;           // 自动演奏模式
 
-    // track layout
+    // 轨道布局
     int   m_trackCount = 4;
     float m_trackWidth = 80.0f;
     float m_trackSpacing = 20.0f;
@@ -121,7 +125,7 @@ private:
     float m_screenHeight = 720.0f;
     float m_noteSpeedPixels = 400.0f;
 
-    // rendering
+    // 渲染资源
     std::vector<sf::RectangleShape> m_tracks;
     sf::RectangleShape m_judgmentLineShape;
     ParticleSystem m_hitFX;
@@ -131,9 +135,9 @@ private:
     sf::RectangleShape m_comboFlashOverlay;
     
 
-    int m_lastHitTrack = 0; // track for particle emit position
+    int m_lastHitTrack = 0; // 粒子发射轨道（用于特效定位）
     sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
-    // HUD
+    // HUD 文字
     sf::Font m_font;
     std::optional<sf::Text> m_scoreText;
     std::optional<sf::Text> m_comboText;
@@ -144,8 +148,13 @@ private:
     float m_pulseTime = 0.0f;
     AnomalySystem m_anomalySystem;
     sf::RectangleShape m_flashOverlay;
-    
-    
+
+    // 打击音效
+    sf::SoundBuffer m_tapBuffer;
+    sf::SoundBuffer m_holdBuffer;
+    sf::Sound* m_tapSound = nullptr;
+    sf::Sound* m_holdSound = nullptr;
+
     float m_glowIntensity = 0.5f;
 };
 

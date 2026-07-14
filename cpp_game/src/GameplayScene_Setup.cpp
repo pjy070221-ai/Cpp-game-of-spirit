@@ -16,23 +16,23 @@ GameplayScene::GameplayScene() : m_lastJudgmentColor(sf::Color::White)
 }
 
 void GameplayScene::onEnter() {
-    // Return to Menu闁挎稒鐭粭澶愬触椤栨艾袟闁稿﹥甯熼鎼佸籍鐠佸湱绀夐柣鈺佺摠鐢瓨娼婚弬鎸庣闁兼寧绮屽畷?
+    // 从 PauseScene 返回主菜单 → 跳过本场景初始化
     if (s_returnToMenu) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
         return;
     }
 
-    // Retry
+    // 重试标志检测
     if (s_retry) {
         m_countdownState = CountdownState::None;
         m_isPlaying = false;
         return;
     }
-    // 闁煎搫鍊搁〃鏃€寰勮缁椻偓 闁稿﹥甯熼鎼佸籍?3-2-1
+    // 倒计时 3-2-1 状态初始化
     m_countdownState = CountdownState::Counting;
     m_countdownTimer = 3.0f;
-    if (m_initialized) { m_isPlaying = false; return; } // 闁哄棗鍊告禒鐘诲箒閵忕媭妲?闁?鐎殿喒鍋撳┑顔碱儐閺屽﹪宕愰幒鏇ㄥ悁闁?
+    if (m_initialized) { m_isPlaying = false; return; } // 重入保护：已初始化则跳过（由静态标志驱动）
     
     m_initialized = true;
     m_countdownShouldStart = true;
@@ -45,7 +45,7 @@ void GameplayScene::onEnter() {
         m_songInfo = m_beatmapParser.getSongInfo();
     }
 
-    // 闁冲厜鍋撻柍鍏夊亾 闂傚懎绻戝┃鈧俊顖椻偓宕囩闁挎稒宀搁崳鎼佸箳閹烘鍙剧紒妤嬬畳瀵ゆ椽鏌?闁冲厜鍋撻柍鍏夊亾
+    // 随机模式：将每个音符随机分配到 4 个轨道
     if (s_randomMode) {
         s_randomMode = false;
         std::mt19937 rng(std::random_device{}());
@@ -63,6 +63,12 @@ void GameplayScene::onEnter() {
         m_judgmentText.emplace(m_font, "", 36);
         m_songTitleText.emplace(m_font, m_songInfo.title, 20);
     }
+
+    // 加载打击音效（失败不阻塞，静默跳过）
+    if (m_tapBuffer.loadFromFile("assets/tap_hit.wav"))
+        m_tapSound = new sf::Sound(m_tapBuffer);
+    if (m_holdBuffer.loadFromFile("assets/hold_hit.wav"))
+        m_holdSound = new sf::Sound(m_holdBuffer);
 
     buildBackground();
     buildTracks();
@@ -83,12 +89,14 @@ void GameplayScene::onEnter() {
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
-    // startGame(); // 闁衡偓闁稖绀嬮柛锔哄妼閳ь剚甯熼鎼佸籍閸撲胶娉㈤柡澶屽枎閹鎮?Countdown 閻犲鍟伴弫?
+    // startGame(); // 由 Countdown 倒计时结束后自动触发播放
     startGame();
 }
 
 void GameplayScene::onExit() {
     m_musicPlayer.stop();
+    delete m_tapSound;   m_tapSound = nullptr;
+    delete m_holdSound;  m_holdSound = nullptr;
 }
 
 void GameplayScene::loadChart(const std::string& filePath) {
@@ -117,16 +125,17 @@ void GameplayScene::startGame() {
     m_maxHp = 999999;
     m_simTime = 0.0f;
     m_songFinished = false;
-    // play handled by countdown handler
-    // m_isPlaying = true;
+    // 播放由倒计时处理器触发
+    // m_isPlaying = true;  // 原直接播放，现由倒计时触发
     // m_musicPlayer.play();
 }
 
 void GameplayScene::applySettings() {
     SettingsData s;
-    m_noteSpeedPixels = 400.0f + s.getNoteSpeed() * 80.0f;  // ns=8 → 1040px/s
+    m_noteSpeedPixels = 400.0f + s.getNoteSpeed() * 80.0f;  // 流速公式：400 + ns×80（ns=8 时 = 1040px/s）
     m_musicPlayer.setVolume(s.getMasterVolume());
     m_musicPlayer.setOffset(s.getOffset());
+    m_autoPlay = s.getAutoPlay();
 }
 
 void GameplayScene::buildTracks() {

@@ -8,7 +8,7 @@ float GameplayScene::getTrackCenterX(int track) const {
 }
 
 void GameplayScene::render(sf::RenderTarget& target) {
-    // screen shake
+    // 屏幕震动异象效果
     sf::View originalView = target.getView();
     if (m_anomalySystem.isActive(AnomalyType::ScreenShake)) {
         float intensity = m_anomalySystem.getIntensity(AnomalyType::ScreenShake);
@@ -21,7 +21,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.setView(shaken);
     }
 
-    // background pulse
+    // 背景脉冲呼吸效果
     float glow = m_glowIntensity * 30.0f;
     sf::Color topColor((int)(10 + glow * 0.3f), (int)(5 + glow * 0.2f), (int)(20 + glow * 0.5f));
     sf::Color botColor((int)(20 + glow * 0.5f), (int)(10 + glow * 0.3f), (int)(40 + glow));
@@ -31,7 +31,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
     m_bgGradient[3].color = botColor;
     target.draw(m_bgGradient);
 
-    // track neon colors
+    // 轨道霓虹配色
     static const sf::Color neonColors[4] = {
         sf::Color(0, 220, 255),
         sf::Color(255, 100, 200),
@@ -45,7 +45,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         float trackX = startX + t * (m_trackWidth + m_trackSpacing);
         const auto& nc = neonColors[t];
 
-        // compute glow intensity from approaching notes
+        // 根据接近判定线的音符计算轨道发光强度
         float trackGlow = 0.0f;
         for (auto& nr : m_noteRuntimes) {
             if (!nr.active || nr.processed || nr.track != t) continue;
@@ -53,20 +53,20 @@ void GameplayScene::render(sf::RenderTarget& target) {
             if (dist < 200.0f) trackGlow = std::max(trackGlow, 1.0f - dist / 200.0f);
         }
 
-        // 1. outer glow behind track
+        // 1. 轨道外层辉光
         float outerGlowA = 15.0f + trackGlow * 45.0f;
         sf::RectangleShape outerGlow({m_trackWidth + 20.0f, m_judgmentLineY - 50.0f});
         outerGlow.setPosition({trackX - 10.0f, 50.0f});
         outerGlow.setFillColor(sf::Color(nc.r, nc.g, nc.b, (int)outerGlowA));
         target.draw(outerGlow);
 
-        // 2. track body (enhanced)
+        // 2. 轨道主体（增强）
         float g = 60.0f + trackGlow * 120.0f;
         m_tracks[t].setFillColor(sf::Color((int)(30 + g * 0.3f), (int)(20 + g * 0.5f),
                                             (int)(50 + g * 0.8f), (int)(80 + trackGlow * 80)));
         target.draw(m_tracks[t]);
 
-        // 3. neon track border lines (left + right)
+        // 3. 轨道霓虹边框（左 + 右）
         float lineGlowBase = 120.0f + trackGlow * 135.0f;
         int rL = (int)std::min(255.0f, nc.r * lineGlowBase / 180.0f);
         int gL = (int)std::min(255.0f, nc.g * lineGlowBase / 180.0f);
@@ -84,7 +84,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         borderR.setFillColor(lineColor);
         target.draw(borderR);
 
-        // 4. track bottom glow zone (enhanced)
+        // 4. 轨道底部发光区域（增强）
         float glowA = 20.0f + trackGlow * 80.0f;
         sf::RectangleShape gz({m_trackWidth, 80.0f});
         gz.setPosition({trackX, m_judgmentLineY - 80.0f});
@@ -92,17 +92,17 @@ void GameplayScene::render(sf::RenderTarget& target) {
        target.draw(gz);
    }
 
-    // hold bars — hide when judged (processed). Render is synced to judgment lifecycle.
+    // Hold 长条 — 已判定（processed）时隐藏。渲染与判定生命周期同步。
     for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
         if (m_noteRuntimes[i].type != 1) continue;
         target.draw(m_holdBars[i]);
     }
 
-   // note trail (ghost rectangles above each note)
+   // 音符拖尾（每个音符上方的残影矩形）
    for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
-        // skip held hold notes (shown by hold bar, not by note head + trail)
+        // 跳过被按住的 Hold 音符（由 Hold 长条显示，非音符头部 + 拖尾）
         if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
        const auto& shape = m_activeShapes[i];
         const auto& nr = m_noteRuntimes[i];
@@ -118,16 +118,16 @@ void GameplayScene::render(sf::RenderTarget& target) {
         }
     }
 
-    // tap notes (skip held hold notes - shown by hold bar)
+    // Tap 音符（跳过被按住的 Hold — 由 Hold 长条表示）
    for (size_t i = 0; i < m_activeShapes.size() && i < m_noteRuntimes.size(); ++i) {
         if (m_noteRuntimes[i].active && !m_noteRuntimes[i].processed) {
-            // skip head of held hold notes (the hold bar shows it)
+            // 跳过 Hold 头部（Hold 长条已显示）
             if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
             target.draw(m_activeShapes[i]);
         }
    }
 
-    // HP bar
+    // HP 血量条
     {
         float hpRatio = (float)m_hp / m_maxHp;
         sf::RectangleShape bg({22.0f, 260.0f});
@@ -145,29 +145,29 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(fill);
     }
 
-    // hit particles
+    // 命中粒子特效
     m_hitFX.render(target);
 
-    // judgment line with pulse
+    // 判定线（带脉冲效果）
     uint8_t pulseAlpha = (uint8_t)(128 + (int)(127 * m_glowIntensity));
     m_judgmentLineShape.setFillColor(sf::Color(0, 255, 255, pulseAlpha));
     m_judgmentLineShape.setSize({m_screenWidth, 3.0f + m_glowIntensity});
     target.draw(m_judgmentLineShape);
 
-    // score popups
+    // 得分弹出文字
     for (auto& sp : m_scorePopups) if (sp.text.has_value()) target.draw(*sp.text);
 
-    // hit rings
+    // 判定光环
     for (auto& hr : m_hitRings) target.draw(hr.shape);
 
-    // combo flash
+    // Combo 闪光
     if (m_comboFlashTimer > 0) {
         float fa = m_comboFlashTimer / 0.15f * 180;
         m_comboFlashOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)fa));
         target.draw(m_comboFlashOverlay);
     }
 
-    // HUD
+    // HUD 信息
     if (m_scoreText.has_value()) {
         m_scoreText->setPosition({20.0f, 10.0f});
         target.draw(*m_scoreText);
@@ -195,7 +195,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(*m_songTitleText);
     }
 
-    // progress bar
+    // 进度条
     {
         float duration = 30.0f;
         if (!m_noteData.empty())
@@ -207,7 +207,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(pb);
     }
 
-    // countdown overlay
+    // 倒计时遮罩
     if (m_countdownState == CountdownState::Counting) {
         sf::RectangleShape cdOverlay({m_screenWidth, m_screenHeight});
         cdOverlay.setFillColor(sf::Color(0, 0, 0, 140));
@@ -216,7 +216,15 @@ void GameplayScene::render(sf::RenderTarget& target) {
         if (m_cdGoText.has_value()) target.draw(*m_cdGoText);
     }
 
-    // restore view + flash overlay
+    // 自动演奏提示
+    if (m_autoPlay) {
+        sf::Text autoText(m_font, "AUTO PLAY", 28);
+        autoText.setFillColor(sf::Color(255, 200, 50, 200));
+        autoText.setPosition({m_screenWidth - 180.0f, 10.0f});
+        target.draw(autoText);
+    }
+
+    // 恢复视图 + 闪光异象遮罩
     target.setView(originalView);
     if (m_anomalySystem.isActive(AnomalyType::Flash)) {
         float fi = m_anomalySystem.getIntensity(AnomalyType::Flash);

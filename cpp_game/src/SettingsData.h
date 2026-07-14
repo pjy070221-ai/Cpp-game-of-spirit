@@ -8,15 +8,15 @@ using SettingVariant = std::variant<int, float, bool, std::string>;
 
 class SettingsData {
 public:
-    // construct with config file path (default: settings.json in cwd)
+    // 构造时指定配置文件路径（默认：当前目录 settings.json）
     explicit SettingsData(const std::string& filePath = "settings.json");
-    ~SettingsData();  // auto-save on destruction
+    ~SettingsData();  // 析构时自动保存
 
-    // no copy
+    // 禁止拷贝
     SettingsData(const SettingsData&) = delete;
     SettingsData& operator=(const SettingsData&) = delete;
 
-    // generic template accessors (defined inline for template)
+    // 泛型模板访问器（在头文件中内联实现）
     template<typename T>
     T get(const std::string& key, T defaultValue) const {
         auto it = m_settings.find(key);
@@ -32,7 +32,7 @@ public:
         m_settings[key] = value;
     }
 
-    // convenience accessors
+    // 便捷访问器
     float getMasterVolume() const;
     void  setMasterVolume(float v);
 
@@ -47,6 +47,9 @@ public:
 
     float getOffset() const;
     void  setOffset(float ms);
+
+    bool getAutoPlay() const;
+    void setAutoPlay(bool v);
 
 private:
     bool loadFromFile();

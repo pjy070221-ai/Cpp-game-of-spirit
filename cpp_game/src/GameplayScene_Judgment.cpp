@@ -2,7 +2,7 @@
 #include <cmath>
 
 void GameplayScene::checkJudgment(int track) {
-    // 閳光偓閳光偓 閼惧嘲褰囪ぐ鎾冲闂婂厖绠伴弮鍫曟？ 閳光偓閳光偓
+    // ======== 按键判定：查找当前 track 上最近的未处理音符 ========
     float currentTime = m_simTime;
     if (m_musicPlayer.isLoaded())
         currentTime = m_musicPlayer.getCurrentTime();
@@ -12,25 +12,25 @@ void GameplayScene::checkJudgment(int track) {
     for (int i = 0; i < (int)m_noteRuntimes.size(); ++i) {
         if (!m_noteRuntimes[i].active || m_noteRuntimes[i].processed) continue;
         if (m_noteRuntimes[i].track != track) continue;
-        // skip hold notes that are already being held
+        // 跳过已按住的 Hold 音符
         if (m_noteRuntimes[i].type == 1 && m_noteRuntimes[i].isHeld) continue;
         float timeDiff = std::abs(currentTime - m_noteRuntimes[i].targetTime);
         if (timeDiff < minTimeDiff) { minTimeDiff = timeDiff; bestIdx = i; }
     }
-    if (bestIdx < 0) return;  // 鐠囥儴寤洪柆鎾存￥瀵板懎鍨界€规岸鐓剁粭锔肩礉缁岀儤瀵滄稉宥呮惙鎼?
+    if (bestIdx < 0) return;  // 该 track 无可判定音符（已处理或无活跃）
 
     auto& nr = m_noteRuntimes[bestIdx];
 
-    // hold note press閿涘牊妞傞梻鏉戝灲鐎规熬绱?
+    // Hold 长按音符头部判定
     if (nr.type == 1) {
         float timeDiff = std::abs(currentTime - nr.targetTime);
-        if (timeDiff > m_goodTimeWindow) return; // too early or too late, ignore
+        if (timeDiff > m_goodTimeWindow) return; // 过早或过晚，忽略此次按键
         nr.isHeld = true;
                     static const sf::Color hc2[4] = {sf::Color(0,220,255),sf::Color(255,100,200),sf::Color(255,210,0),sf::Color(100,230,100)};
             const auto& hc3 = hc2[nr.track % 4];
             m_holdBars[bestIdx].setFillColor(sf::Color(hc3.r, hc3.g, hc3.b, 120));
-        // score for the successful press
-        nr.processed = true; // marks the head hit
+        // Hold 头部按下计分
+        nr.processed = true; // 标记头部已命中
         if (timeDiff < m_perfectTimeWindow) {
             m_score += 50; m_perfectCount++;
             if (m_judgmentText.has_value()) {
@@ -57,29 +57,31 @@ void GameplayScene::checkJudgment(int track) {
             m_scoreText->setString("Score: " + std::to_string(m_score));
         if (m_comboText.has_value())
             m_comboText->setString(std::to_string(m_combo));
-        // un-processed so update() can track hold completion
+        // 取消 processed 标记，让 update() 追踪 Hold 尾部完成
         nr.processed = false;
+        playHoldSound();
         return;
     }
 
     m_lastHitTrack = track;
-    // normal note judgment 閳?閺冨爼妫块崚銈呯暰
+    // 普通音符（Tap）判定
     JudgeResult result;
     if      (minTimeDiff < m_perfectTimeWindow) result = JudgeResult::Perfect;
     else if (minTimeDiff < m_greatTimeWindow)   result = JudgeResult::Great;
     else if (minTimeDiff < m_goodTimeWindow)    result = JudgeResult::Good;
     else if (minTimeDiff < m_missTimeWindow)    result = JudgeResult::Miss;
-    else                                        return;  // 鐡掑懎鍤?300ms 缁愭褰涢敍灞肩瑝閸濆秴绨?
+    else                                        return;  // 超过 miss 窗口，不处理（留给 autoMissCheck）
 
     onNoteJudged(result);
     nr.processed = true;
+    playTapSound();
 }
 
 void GameplayScene::checkHoldRelease(int track) {
     for (auto& nr : m_noteRuntimes) {
         if (!nr.active || nr.track != track) continue;
         if (nr.type == 1 && nr.isHeld && !nr.processed) {
-            // released early = miss
+            // 提前松手 = BREAK（视为 Miss）
             nr.isHeld = false;
             nr.processed = true;
             m_missCount++;
@@ -160,7 +162,7 @@ void GameplayScene::autoMissCheck() {
 
     for (auto& nr : m_noteRuntimes) {
         if (!nr.active || nr.processed) continue;
-        // don't auto-miss notes being held
+        // 不自动 Miss 正在被按住的 Hold 音符
         if (nr.type == 1 && nr.isHeld) continue;
         if (currentTime > nr.targetTime + m_missTimeWindow && nr.y > m_judgmentLineY) {
             nr.processed = true;
@@ -207,4 +209,12 @@ void GameplayScene::addHitRing(float x, float y, const sf::Color& color) {
     hr.shape.setOutlineColor(color);
     hr.life = 0.5f;
     m_hitRings.push_back(std::move(hr));
+}
+
+void GameplayScene::playTapSound() {
+    if (m_tapSound) m_tapSound->play();
+}
+
+void GameplayScene::playHoldSound() {
+    if (m_holdSound) m_holdSound->play();
 }

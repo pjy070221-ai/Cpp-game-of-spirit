@@ -3,7 +3,7 @@
 #include <cmath>
 
 void GameplayScene::update(float dt) {
-    // 閳光偓閳光偓 閸婃帟顓搁弮?3-2-1 閳光偓閳光偓
+    // ======== 倒计时 3-2-1 开场 ========
     if (m_countdownState == CountdownState::Counting) {
         m_countdownTimer -= dt;
         if (m_countdownTimer <= 0.0f) {
@@ -36,7 +36,7 @@ void GameplayScene::update(float dt) {
         return;
     }
 
-    // Return to Menu 娴兼ê鍘涙径鍕倞
+    // 返回主菜单（来自 PauseScene 信号）
     if (s_returnToMenu) {
         s_returnToMenu = false;
         m_musicPlayer.stop();
@@ -61,15 +61,15 @@ void GameplayScene::update(float dt) {
     if (m_musicPlayer.isLoaded()) {
         currentTime = m_musicPlayer.getCurrentTime();
     } else if (m_isPlaying) {
-        // 閺冪娀鐓舵稊鎰閻劍膩閹风喐妞傞柦鐔稿腹鏉?
+        // 音乐未加载时使用模拟时间驱动
         m_simTime += dt;
         currentTime = m_simTime;
     }
 
-    // 瀵倽钖勭化鑽ょ埠閺囧瓨鏌?
+    // 异象系统更新
     m_anomalySystem.update(currentTime, dt);
 
-    // 鐠侊紕鐣婚張澶嬫櫏娑撳鎯ら柅鐔峰閿涘牆褰?NoteSpeedChange 瀵倽钖勮ぐ鍗炴惙閿?
+    // 流速受 NoteSpeedChange 异象影响时动态调整
     float effSpeed = m_noteSpeedPixels;
     if (m_anomalySystem.isActive(AnomalyType::NoteSpeedChange)) {
         float speedMult = m_anomalySystem.getParam("speed", 0.5f);
@@ -89,23 +89,23 @@ void GameplayScene::update(float dt) {
                 {getTrackCenterX(m_noteRuntimes[i].track), m_noteRuntimes[i].y});
     }
 
-   // update hold bar positions
+   // 更新 Hold 长条位置
    for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
        if (!m_noteRuntimes[i].active) continue;
        if (m_noteRuntimes[i].type != 1) continue;
        float cx = getTrackCenterX(m_noteRuntimes[i].track);
         auto& nr = m_noteRuntimes[i];
        if (nr.isHeld) {
-            // pressed: head locks at judgment line, bar shrinks from above
+            // 已按住：头部锁定在判定线，长条从上方收缩
            float remaining = nr.targetTime + nr.holdDuration - currentTime;
-            float tailY = m_judgmentLineY - remaining * effSpeed; // above judgment line
+            float tailY = m_judgmentLineY - remaining * effSpeed; // 判定线上方
             float barH = m_judgmentLineY - tailY;
            if (barH < 0.0f) barH = 0.0f;
             m_holdBars[i].setPosition({cx - m_trackWidth / 2.0f + 4.0f, tailY});
            m_holdBars[i].setSize({m_trackWidth - 8.0f, barH});
            m_holdBars[i].setFillColor(sf::Color(0, 255, 200, 240));
        } else {
-           // unpressed: full-length bar from tail to head
+           // 未按住：完整长条（从尾部到头部）
            float tailY = m_judgmentLineY - (nr.targetTime + nr.holdDuration - currentTime) * effSpeed;
             float barH = nr.holdDuration * effSpeed;
            m_holdBars[i].setPosition({cx - m_trackWidth / 2.0f + 4.0f, tailY});
@@ -114,9 +114,25 @@ void GameplayScene::update(float dt) {
        }
    }
 
+    // 自动演奏：音符到达判定线时自动触发
+    if (m_autoPlay) {
+        for (auto& nr : m_noteRuntimes) {
+            if (!nr.active || nr.processed) continue;
+            float timeDiff = currentTime - nr.targetTime;
+            // Tap 音符：在 perfect 窗口内自动击中
+            if (nr.type == 0 && timeDiff >= -m_perfectTimeWindow && timeDiff <= m_perfectTimeWindow) {
+                checkJudgment(nr.track);
+            }
+            // Hold 音符：在 perfect 窗口内自动按下（尾部由 hold completion check 结算）
+            if (nr.type == 1 && !nr.isHeld && timeDiff >= -m_perfectTimeWindow && timeDiff <= m_perfectTimeWindow) {
+                checkJudgment(nr.track);
+            }
+        }
+    }
+
     autoMissCheck();
 
-    // hold note completion check
+    // Hold 音符完成检测
     if (m_musicPlayer.isLoaded()) {
         float now = m_musicPlayer.getCurrentTime();
         for (auto& nr : m_noteRuntimes) {
@@ -142,7 +158,7 @@ void GameplayScene::update(float dt) {
 
     m_hitFX.update(dt);
 
-    // 閳光偓閳光偓 閸掑棙鏆熷鐟板毉 閳光偓閳光偓
+    // ======== 得分弹出动画更新 ========
     for (auto& sp : m_scorePopups) {
         sp.life -= dt;
         if (sp.life > 0) {
@@ -155,7 +171,7 @@ void GameplayScene::update(float dt) {
     m_scorePopups.erase(std::remove_if(m_scorePopups.begin(), m_scorePopups.end(),
         [](auto& s) { return s.life <= 0; }), m_scorePopups.end());
 
-    // 閳光偓閳光偓 閸掋倕鐣鹃崗澶屽箚 閳光偓閳光偓
+    // ======== 判定光环扩展动画 ========
     for (auto& hr : m_hitRings) {
         hr.life -= dt;
         if (hr.life > 0) {
@@ -169,10 +185,10 @@ void GameplayScene::update(float dt) {
     m_hitRings.erase(std::remove_if(m_hitRings.begin(), m_hitRings.end(),
         [](auto& h) { return h.life <= 0; }), m_hitRings.end());
 
-    // 閳光偓閳光偓 鏉╃偛鍤梻顏勫帨 閳光偓閳光偓
+    // ======== Combo 闪光计时衰减 ========
     if (m_comboFlashTimer > 0) m_comboFlashTimer -= dt;
 
-    // 閼哄倸顨旀径褍绗€ HP 瑜版帡娴?閳?濞撳憡鍨欑紒鎾存将
+    // HP 归零检查 → 触发歌曲失败
     if (m_hp <= 0 && m_isPlaying) {
         m_isPlaying = false;
         m_songFinished = true;
@@ -201,7 +217,7 @@ void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
             nr.isHeld = false;
             m_noteRuntimes.push_back(nr);
 
-            // 閼哄倸顨旀径褍绗€: 閻晛鑸伴棅宕囶儊 + 鏉炪劑浜鹃悪顒傜彌妫版粏澹?
+            // 音符配色：主色 + 边框色（4 轨各不同）
             static const sf::Color nc[4] = {
                 sf::Color(0, 220, 255), sf::Color(255, 100, 200),
                 sf::Color(255, 210, 0), sf::Color(100, 230, 100)
@@ -228,6 +244,7 @@ void GameplayScene::spawnNotes(float currentTime, float effSpeed) {
 
 void GameplayScene::handleEvent(const sf::Event& event) {
     if (!m_isPlaying) return;
+    if (m_autoPlay) return;  // 自动演奏模式：屏蔽玩家输入
 
     if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scan::Escape || key->code == sf::Keyboard::Key::Escape) {

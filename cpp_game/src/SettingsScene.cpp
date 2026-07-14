@@ -9,7 +9,7 @@
 #include <memory>
 
 SettingsScene::SettingsScene()
-    : m_labels({"Volume", "Note Speed", "Fullscreen", "FPS Limit", "Offset (ms)"})
+    : m_labels({"Volume", "Note Speed", "Fullscreen", "FPS Limit", "Offset (ms)", "Auto Play"})
 {
     sf::Font* fontPtr = ResourceManager::instance().loadFont("assets/fonts/msyh.ttf");
     if (!fontPtr) return;
@@ -19,7 +19,8 @@ SettingsScene::SettingsScene()
     SettingsData s;
     m_values = {s.getMasterVolume(), s.getNoteSpeed(),
                 s.getFullscreen() ? 1.0f : 0.0f,
-                (float)s.getFpsLimit(), s.getOffset()};
+                (float)s.getFpsLimit(), s.getOffset(),
+                s.getAutoPlay() ? 1.0f : 0.0f};
 
     m_titleText.emplace(m_font, "Settings", 48);
     m_titleText->setFillColor(sf::Color::White);
@@ -63,21 +64,24 @@ void SettingsScene::handleEvent(const sf::Event& event) {
 
         float& v = m_values[m_selection];
         SettingsData s;
-        if (m_selection == 0) {           // Volume 0-1
+        if (m_selection == 0) {           // 音量 0-1
             v = std::clamp(v + delta * 0.05f, 0.0f, 1.0f);
             s.setMasterVolume(v);
-        } else if (m_selection == 1) {    // NoteSpeed 1-10
+        } else if (m_selection == 1) {    // 流速 1-10
             v = std::clamp(v + delta * 0.5f, 1.0f, 10.0f);
             s.setNoteSpeed(v);
-        } else if (m_selection == 2) {    // Fullscreen toggle
+        } else if (m_selection == 2) {    // 全屏切换
             v = (v > 0.5f) ? 0.0f : 1.0f;
             s.setFullscreen(v > 0.5f);
-        } else if (m_selection == 3) {    // FPS 30-240
+        } else if (m_selection == 3) {    // 帧率限制 30-240
             v = std::clamp(v + delta * 10.0f, 30.0f, 240.0f);
             s.setFpsLimit((int)v);
-        } else if (m_selection == 4) {    // Offset -200~200
+        } else if (m_selection == 4) {    // 延迟偏移 -200~200ms
             v = std::clamp(v + delta * 10.0f, -200.0f, 200.0f);
             s.setOffset(v);
+        } else if (m_selection == 5) {  // Auto Play 开关
+            v = (v > 0.5f) ? 0.0f : 1.0f;
+            s.setAutoPlay(v > 0.5f);
         }
         refreshDisplay();
         return;
@@ -116,6 +120,7 @@ void SettingsScene::refreshDisplay() {
         float v = m_values[i];
         if (i == 2) val = (v > 0.5f) ? "Yes" : "No";
         else if (i == 3 || i == 4) val = std::to_string((int)v);
+        else if (i == 5) val = (v > 0.5f) ? "ON" : "OFF";
         else { std::ostringstream oss; oss << std::fixed << std::setprecision(1) << v; val = oss.str(); }
 
         sf::Text txt(m_font, m_labels[i] + ": " + val, 28);
