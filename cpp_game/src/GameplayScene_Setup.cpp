@@ -1,4 +1,4 @@
-#include "GameplayScene.h"
+﻿#include "GameplayScene.h"
 #include "SettingsData.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -82,7 +82,7 @@ void GameplayScene::onEnter() {
         m_scoreText.emplace(m_font, "Score: 0", 24);
         m_comboText.emplace(m_font, "", 48);
         m_judgmentText.emplace(m_font, "", 36);
-        m_songTitleText.emplace(m_font, m_songInfo.title, 20);
+        // m_songTitleText.emplace(m_font, m_songInfo.title, 20); // garbled
     }
 
     buildBackground();
@@ -174,6 +174,18 @@ void GameplayScene::buildJudgmentLine() {
 }
 
 void GameplayScene::buildBackground() {
+    // Load background image based on song title
+    std::string bgFile = "assets/bg.png";
+    if (m_songInfo.title.find("Pentiment") != std::string::npos)
+        bgFile = "assets/pentiment_bg.jpg";
+    if (m_songInfo.title.find("自我对话") != std::string::npos)
+        bgFile = "assets/self_dialogue_bg.png";
+    m_bgTexture.loadFromFile(bgFile);
+    m_bgSprite = std::make_unique<sf::Sprite>(m_bgTexture);
+    sf::Vector2u texSize = m_bgTexture.getSize();
+    if (texSize.x > 0 && texSize.y > 0) {
+        m_bgSprite->setScale({m_screenWidth / (float)texSize.x, m_screenHeight / (float)texSize.y});
+    }
     m_bgGradient.resize(4);
     m_bgGradient[0] = sf::Vertex({0.0f, 0.0f}, sf::Color(10, 5, 20));
     m_bgGradient[1] = sf::Vertex({m_screenWidth, 0.0f}, sf::Color(10, 5, 20));
@@ -225,3 +237,4 @@ void GameplayScene::simplifyNotes() {
 
     m_noteData = simplified;
 }
+

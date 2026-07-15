@@ -167,7 +167,9 @@ private:
 
 
     int m_lastHitTrack = 0; // track for particle emit position
-    sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
+   sf::VertexArray m_bgGradient{ sf::PrimitiveType::TriangleStrip };
+    sf::Texture m_bgTexture;
+    std::unique_ptr<sf::Sprite> m_bgSprite;
     // HUD
     sf::Font m_font;
     std::optional<sf::Text> m_scoreText;
@@ -183,6 +185,7 @@ private:
 
     float m_glowIntensity = 0.5f;
 };
+
 
 
 

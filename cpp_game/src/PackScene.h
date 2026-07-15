@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "IScene.h"
 #include <SFML/Graphics.hpp>
@@ -28,5 +28,7 @@ private:
     int m_selection = 0;
     std::optional<sf::Text> m_titleText;
     std::vector<sf::Text> m_itemTexts;
+    sf::Texture m_bgTexture;
+    std::unique_ptr<sf::Sprite> m_bgSprite;
 };
 

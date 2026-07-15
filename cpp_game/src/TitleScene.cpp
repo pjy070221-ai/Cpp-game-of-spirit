@@ -79,6 +79,13 @@ TitleScene::TitleScene() {
     m_bgGradient[1] = sf::Vertex({1280.0f, 0.0f}, sf::Color(8, 4, 16));
     m_bgGradient[2] = sf::Vertex({0.0f, 720.0f}, sf::Color(20, 8, 40));
     m_bgGradient[3] = sf::Vertex({1280.0f, 720.0f}, sf::Color(20, 8, 40));
+
+    // Load background image
+    m_bgTexture.loadFromFile("assets/title_bg.jpg");
+    if (m_bgTexture.getSize().x > 0) {
+        m_bgSprite = std::make_unique<sf::Sprite>(m_bgTexture);
+        m_bgSprite->setScale({1280.0f / m_bgTexture.getSize().x, 720.0f / m_bgTexture.getSize().y});
+    }
 }
 
 void TitleScene::onEnter() {
@@ -275,6 +282,10 @@ void TitleScene::update(float dt) {
 
 void TitleScene::render(sf::RenderTarget& target) {
     target.clear(sf::Color(8, 4, 16));
+
+    // background image
+    if (m_bgTexture.getSize().x > 0 && m_bgSprite)
+        target.draw(*m_bgSprite);
     target.draw(m_bgGradient);
     m_stars.render(target);
     m_dust.render(target);

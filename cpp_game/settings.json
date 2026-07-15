@@ -1,8 +1,8 @@
-autoPlay=true
-﻿masterVolume=0.8
-noteSpeed=5
+difficulty=1
 fullscreen=false
-difficulty=0
+noteSpeed=5
+﻿masterVolume=0.8
+autoPlay=true
 fpsLimit=60
 offset=-9
 masterVolume=1

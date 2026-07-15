@@ -8,6 +8,8 @@ float GameplayScene::getTrackCenterX(int track) const {
 }
 
 void GameplayScene::render(sf::RenderTarget& target) {
+    // Prevent 1-frame flash when returning to menu
+    if (s_returnToMenu) return;
     // screen shake
     sf::View originalView = target.getView();
     if (m_anomalySystem.isActive(AnomalyType::ScreenShake)) {
@@ -30,6 +32,10 @@ void GameplayScene::render(sf::RenderTarget& target) {
     m_bgGradient[2].color = botColor;
     m_bgGradient[3].color = botColor;
     target.draw(m_bgGradient);
+
+    // background image (drawn on top of gradient)
+    if (m_bgTexture.getSize().x > 0 && m_bgSprite)
+        target.draw(*m_bgSprite);
 
     // track neon colors
     static const sf::Color neonColors[4] = {
@@ -235,6 +241,7 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(m_flashOverlay);
     }
 }
+
 
 
 

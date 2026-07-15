@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "IScene.h"
 #include "ParticleSystem.h"
@@ -79,5 +79,7 @@ private:
     // transition to MenuScene
     bool m_transitioning = false;
     float m_transitionTimer = 0.0f;
+    sf::Texture m_bgTexture;
+    std::unique_ptr<sf::Sprite> m_bgSprite;
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "IScene.h"
 #include "SceneManager.h"
@@ -47,4 +47,6 @@ private:
     float m_fadeTimer = 0.0f, m_flashTimer = 0.0f;
     int m_pendingIndex = -1;
     sf::RectangleShape m_fadeOverlay, m_flashOverlay;
+    sf::Texture m_bgTexture;
+    std::unique_ptr<sf::Sprite> m_bgSprite;
 };

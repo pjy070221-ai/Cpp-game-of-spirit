@@ -18,6 +18,13 @@ PackScene::PackScene()
     m_font = *fontPtr;
     m_fontLoaded = true;
 
+    // Load background image
+    m_bgTexture.loadFromFile("assets/menu_bg.jpg");
+    if (m_bgTexture.getSize().x > 0) {
+        m_bgSprite = std::make_unique<sf::Sprite>(m_bgTexture);
+        m_bgSprite->setScale({1280.0f / m_bgTexture.getSize().x, 720.0f / m_bgTexture.getSize().y});
+    }
+
     m_titleText.emplace(m_font, "Select Song", 48);
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
@@ -137,6 +144,10 @@ void PackScene::update(float dt) {
 
 void PackScene::render(sf::RenderTarget& target) {
     target.clear(sf::Color(10, 5, 20));
+
+    // background image
+    if (m_bgTexture.getSize().x > 0 && m_bgSprite)
+        target.draw(*m_bgSprite);
     if (!m_fontLoaded) return;
     if (m_titleText.has_value()) target.draw(*m_titleText);
     for (auto& t : m_itemTexts) target.draw(t);

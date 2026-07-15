@@ -16,6 +16,13 @@ MenuScene::MenuScene() : m_items({"Start Game", "Settings", "Exit"}) {
 
     //
     m_titleText.emplace(m_font, L"\u6307\u5C16\u632F\u5F8B", 72);
+
+    // Load background image
+    m_bgTexture.loadFromFile("assets/menu_bg.jpg");
+    if (m_bgTexture.getSize().x > 0) {
+        m_bgSprite = std::make_unique<sf::Sprite>(m_bgTexture);
+        m_bgSprite->setScale({1280.0f / m_bgTexture.getSize().x, 720.0f / m_bgTexture.getSize().y});
+    }
     m_titleText->setFillColor(sf::Color::White);
     auto tb = m_titleText->getLocalBounds();
     m_titleText->setOrigin({tb.size.x / 2.0f, 0.0f});
@@ -183,6 +190,10 @@ void MenuScene::update(float dt) {
 
 void MenuScene::render(sf::RenderTarget& target) {
     target.clear(sf::Color(10, 5, 20));
+
+    // background image
+    if (m_bgTexture.getSize().x > 0 && m_bgSprite)
+        target.draw(*m_bgSprite);
     if (!m_fontLoaded) return;
 
     // floating lights
