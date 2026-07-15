@@ -1,3 +1,6 @@
+﻿#ifdef _MSC_VER
+#pragma warning(disable: 4819)
+#endif
 #pragma once
 
 #include "IScene.h"
@@ -137,7 +140,11 @@ private:
     int m_lastScoreMilestone = 0;
     float m_milestoneGlowTimer = 0.0f;
     sf::RectangleShape m_milestoneGlowOverlay;
+    //struct MS_Particle { sf::Vector2f pos; sf::Vector2f vel; sf::Color col; float life; float maxLife; float size; };
+    //std::vector<MS_Particle> m_milestoneParticles;
     ParticleSystem m_milestoneFX;
+    struct MsCircle { sf::CircleShape s; sf::Vector2f v; float life; float maxLife; };
+    std::vector<MsCircle> m_msCircles;
 
     // combo pop animation
     float m_comboPopScale = 1.0f;
@@ -176,6 +183,8 @@ private:
 
     float m_glowIntensity = 0.5f;
 };
+
+
 
 
 

@@ -1,4 +1,4 @@
-#include "GameplayScene.h"
+﻿#include "GameplayScene.h"
 #include "PauseScene.h"
 #include "Easing.h"
 #include <cmath>
@@ -57,6 +57,36 @@ void GameplayScene::update(float dt) {
         s_giveUp = false;
         endGame();
         return;
+    }
+
+    // DEBUG: press T to test milestone particles
+    static bool s_testTriggered = false;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T) && !s_testTriggered) {
+        s_testTriggered = true;
+        static std::mt19937 rngDbg(std::random_device{}());
+        std::uniform_real_distribution<float> xd(100.0f, 1180.0f), yd(50.0f, 350.0f);
+        for (int bi = 0; bi < 3; bi++)
+            m_milestoneFX.emit({xd(rngDbg), yd(rngDbg)}, 20, sf::Color::Yellow, 80, 300, 0.5f, 1.5f, 2, 8);
+        m_milestoneGlowTimer = 0.5f;
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T))
+        s_testTriggered = false;
+
+    // === BACKUP MILESTONE CHECK (every frame, catches any score change) ===
+    {
+        int curMs = m_score / 500;
+        if (curMs > m_lastScoreMilestone) {
+            m_lastScoreMilestone = curMs;
+            m_milestoneGlowTimer = 0.5f;
+            static std::mt19937 rngBk(std::random_device{}());
+            static const sf::Color bkCols[6] = {
+                sf::Color(0, 220, 255), sf::Color(255, 100, 200), sf::Color(255, 210, 0),
+                sf::Color(100, 230, 100), sf::Color(255, 150, 50), sf::Color(200, 100, 255) };
+            sf::Color bk = bkCols[std::uniform_int_distribution<int>(0,5)(rngBk)];
+            std::uniform_real_distribution<float> xdBk(100.0f, 1180.0f), yBk(50.0f, 350.0f);
+            for (int bi = 0; bi < 3; bi++)
+                m_milestoneFX.emit({xdBk(rngBk), yBk(rngBk)}, 20, bk, 80, 300, 0.5f, 1.5f, 2, 8);
+        }
     }
 
     if (!m_isPlaying || m_songFinished) return;
@@ -288,6 +318,7 @@ void GameplayScene::handleEvent(const sf::Event& event) {
         if (track >= 0) { m_keysHeld[track] = false; checkHoldRelease(track); }
     }
 }
+
 
 
 

@@ -104,6 +104,7 @@ void GameplayScene::onEnter() {
     m_flashOverlay.setFillColor(sf::Color::Transparent);
     m_comboFlashOverlay.setSize({m_screenWidth, m_screenHeight});
     m_comboFlashOverlay.setFillColor(sf::Color::Transparent);
+    m_milestoneGlowOverlay.setSize({m_screenWidth, m_screenHeight});
     // startGame(); // ?Countdown ?
     startGame();
 }

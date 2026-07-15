@@ -1,4 +1,5 @@
 #include "SettingsScene.h"
+#include "Application.h"
 #include "SettingsData.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
@@ -70,6 +71,7 @@ void SettingsScene::handleEvent(const sf::Event& event) {
         } else if (m_selection == 1) {    // 全屏切换
             v = (v > 0.5f) ? 0.0f : 1.0f;
             s.setFullscreen(v > 0.5f);
+            Application::s_instance->setFullscreen(v > 0.5f);
         } else if (m_selection == 2) {  // Auto Play 开关
             v = (v > 0.5f) ? 0.0f : 1.0f;
             s.setAutoPlay(v > 0.5f);
