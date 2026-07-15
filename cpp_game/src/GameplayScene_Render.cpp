@@ -92,12 +92,12 @@ void GameplayScene::render(sf::RenderTarget& target) {
        target.draw(gz);
    }
 
-    // milestone glow overlay
-    if (m_milestoneGlowTimer > 0) {
-        float msGlow = m_milestoneGlowTimer / 0.5f;
-        m_milestoneGlowOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)(msGlow * 100)));
-        target.draw(m_milestoneGlowOverlay);
-    }
+    // milestone glow overlay [DISABLED]
+    // if (m_milestoneGlowTimer > 0) {
+    //     float msGlow = m_milestoneGlowTimer / 0.5f;
+    //     m_milestoneGlowOverlay.setFillColor(sf::Color(255, 255, 255, (uint8_t)(msGlow * 100)));
+    //     target.draw(m_milestoneGlowOverlay);
+    // }
 
     // hold bars - hide when judged (sync'ed with judgment lifecycle)
     for (size_t i = 0; i < m_holdBars.size() && i < m_noteRuntimes.size(); ++i) {
@@ -235,5 +235,6 @@ void GameplayScene::render(sf::RenderTarget& target) {
         target.draw(m_flashOverlay);
     }
 }
+
 
 
